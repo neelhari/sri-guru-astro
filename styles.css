@@ -639,7 +639,109 @@ img {
 }
 
 /* ==========================================================================
-   2. EXPLORE OUR ASTROLOGY SERVICES (Luminous Warm Ivory)
+   1.5 FEATURED CONSULTATION BANNERS (High-Impact Visual Cards)
+   ========================================================================== */
+
+.section-featured-banners {
+  background-color: var(--bg-dark-navy);
+  padding: 10px 0 40px;
+}
+
+.banners-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .banners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.consultation-banner-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  max-height: 320px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(200, 157, 70, 0.35);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.banner-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.consultation-banner-card:hover .banner-bg-img {
+  transform: scale(1.04);
+}
+
+.banner-overlay-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 24px 20px 22px;
+  background: linear-gradient(to top, rgba(8, 16, 32, 0.95) 0%, rgba(8, 16, 32, 0.7) 60%, rgba(8, 16, 32, 0) 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.banner-title {
+  font-size: 1.55rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+}
+
+.banner-subtext {
+  font-size: 0.82rem;
+  color: var(--text-cream);
+  max-width: 360px;
+  line-height: 1.4;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.btn-banner-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  color: #0E1626;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 10px 28px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition);
+  margin-top: 4px;
+}
+
+.btn-banner-action:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 157, 70, 0.4);
+}
+
+/* ==========================================================================
+   2. EXPLORE OUR ASTROLOGY SERVICES (Vertical 75/25 Stack + Alternating Animations)
    ========================================================================== */
 
 .section-services-light {
@@ -677,101 +779,128 @@ img {
 }
 
 .link-view-all {
-  display: none;
+  display: inline-block;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--gold-dark);
 }
 
-.services-cards-grid {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  padding: 10px 4px 18px;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-.services-cards-grid::-webkit-scrollbar {
-  height: 6px;
-}
-
-.services-cards-grid::-webkit-scrollbar-thumb {
-  background: #C89D46;
-  border-radius: 6px;
-}
-
-.service-mockup-card {
-  flex: 0 0 280px;
-  min-width: 280px;
-  max-width: 280px;
-  scroll-snap-align: start;
-  background: var(--bg-light-card);
-  border: 1px solid #EAE2D5;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
+.services-vertical-stack {
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition), box-shadow var(--transition);
-  cursor: pointer;
+  gap: 28px;
+  max-width: 580px;
+  margin: 0 auto;
 }
 
-.service-mockup-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(14, 26, 52, 0.12);
+@media (min-width: 880px) {
+  .services-vertical-stack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
+    gap: 28px;
+  }
+}
+
+.service-tall-card {
+  background: var(--bg-light-card);
+  border: 1px solid #EAE2D5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(14, 26, 52, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, box-shadow var(--transition);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Alternating AOS-style reveal animations */
+.service-tall-card.anim-slide-right {
+  transform: translateX(45px);
+}
+
+.service-tall-card.anim-slide-left {
+  transform: translateX(-45px);
+}
+
+.service-tall-card.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.service-tall-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(14, 26, 52, 0.14);
   border-color: var(--gold-primary);
 }
 
-.service-card-img-wrap {
+/* 75% Image Ratio Area */
+.service-tall-img-wrap {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
+  position: relative;
   overflow: hidden;
-  background-color: var(--bg-dark-navy);
+  background: #081020;
 }
 
-.service-card-thumb {
+.service-tall-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition);
+  transition: transform 0.5s ease;
 }
 
-.service-mockup-card:hover .service-card-thumb {
+.service-tall-card:hover .service-tall-thumb {
   transform: scale(1.06);
 }
 
-.service-card-content {
-  padding: 16px 16px 18px;
+.service-number-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(8, 16, 32, 0.85);
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold-border-subtle);
+}
+
+/* 25% Compact Content Area */
+.service-tall-body {
+  padding: 18px 20px 20px;
   display: flex;
   flex-direction: column;
-  flex: 1;
   justify-content: space-between;
+  flex: 1;
 }
 
-.service-item-title {
-  font-size: 1.22rem;
+.service-tall-title {
+  font-size: 1.35rem;
   color: var(--text-dark-navy);
   margin-bottom: 6px;
-  line-height: 1.2;
+  line-height: 1.25;
+  font-weight: 700;
 }
 
-.service-item-desc {
-  font-size: 0.85rem;
+.service-tall-desc {
+  font-size: 0.88rem;
   color: var(--text-dark-body);
   line-height: 1.45;
   margin-bottom: 14px;
 }
 
-.service-link-row {
+.service-tall-link-row {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--gold-dark);
+  padding-top: 10px;
+  border-top: 1px solid #F0E8DC;
 }
 
 /* ==========================================================================
@@ -852,7 +981,7 @@ img {
 }
 
 /* ==========================================================================
-   4. OUR ASTROLOGY SYSTEMS (Luminous Warm Ivory)
+   4. OUR ASTROLOGY SYSTEMS (2-Grid Layout on Mobile & Desktop)
    ========================================================================== */
 
 .section-systems-light {
@@ -866,39 +995,72 @@ img {
   margin: 0 auto 36px;
 }
 
-.systems-cards-grid {
+.systems-two-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
 }
 
-.system-mockup-card {
-  background: var(--bg-light-card);
+@media (min-width: 768px) {
+  .systems-two-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+.system-grid-card {
+  background: #FFFFFF;
   border: 1px solid #EAE2D5;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.system-card-img {
+.system-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(14, 26, 52, 0.12);
+  border-color: var(--gold-primary);
+}
+
+.system-grid-img-wrap {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #081020;
+}
+
+.system-grid-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-.system-card-body {
-  padding: 16px 18px 20px;
+.system-grid-card:hover .system-grid-img {
+  transform: scale(1.06);
 }
 
-.system-card-title {
-  font-size: 1.3rem;
+.system-grid-body {
+  padding: 14px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.system-grid-title {
+  font-size: 1.05rem;
   color: var(--text-dark-navy);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
-.system-card-desc {
-  font-size: 0.88rem;
+.system-grid-desc {
+  font-size: 0.78rem;
   color: var(--text-dark-body);
+  line-height: 1.4;
 }
 
 /* ==========================================================================
@@ -1078,37 +1240,44 @@ img {
 }
 
 /* ==========================================================================
-   7. SPIRITUAL SERVICES (Dark Midnight Navy with Sacred Fire)
+   7. SPIRITUAL SERVICES (Full-Bleed Edge-to-Edge Banner - Zero Gaps, Zero Tint)
    ========================================================================== */
 
 .section-spiritual-dark {
   background: #080E1A;
-  padding: 60px 0;
+  padding: 0 0 60px 0;
   border-top: 1px solid var(--gold-border-subtle);
   border-bottom: 1px solid var(--gold-border-subtle);
 }
 
-.spiritual-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.spiritual-left-altar {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1.5px solid rgba(222, 107, 53, 0.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.homam-altar-img {
+.spiritual-full-banner {
   width: 100%;
-  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+  max-height: 480px;
+  background: #080E1A;
+}
+
+.homam-full-banner-img {
+  width: 100%;
+  height: 100%;
+  max-height: 480px;
   object-fit: cover;
+  display: block;
+}
+
+.spiritual-body-container {
+  padding-top: 36px;
+}
+
+.spiritual-center-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .spiritual-main-title {
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   color: var(--text-ivory);
   margin-bottom: 8px;
 }
@@ -1116,28 +1285,28 @@ img {
 .spiritual-tagline {
   font-size: 0.95rem;
   color: var(--text-cream);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .spiritual-four-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
 .spiritual-icon-box {
   background: #111A2E;
   border: 1px solid var(--gold-border-subtle);
   border-radius: var(--radius-sm);
-  padding: 12px 6px;
+  padding: 14px 8px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   color: var(--text-ivory);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all var(--transition);
 }
@@ -1145,44 +1314,16 @@ img {
 .spiritual-icon-box:hover {
   border-color: var(--gold-primary);
   background: #182644;
+  transform: translateY(-2px);
 }
 
 .spiritual-glyph {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
-/* ==========================================================================
-   8. SACRED GALLERY (Luminous Warm Ivory)
-   ========================================================================== */
-
-.section-gallery-light {
-  background-color: var(--bg-light-ivory);
-  padding: 60px 0;
-}
-
-.gallery-photo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.gallery-photo-item {
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  border: 1px solid #E2D6C3;
-  aspect-ratio: 4/3;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-}
-
-.gallery-photo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition);
-}
-
-.gallery-photo-item:hover img {
-  transform: scale(1.05);
+.spiritual-action-btn-wrap {
+  display: flex;
+  justify-content: center;
 }
 
 /* ==========================================================================
@@ -1493,10 +1634,10 @@ img {
 /* Floating WhatsApp Quick Action Button */
 .floating-whatsapp-btn {
   position: fixed;
-  bottom: 80px;
-  right: 18px;
-  width: 50px;
-  height: 50px;
+  bottom: 24px;
+  right: 20px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: #25D366;
   color: #FFFFFF;
@@ -1514,24 +1655,6 @@ img {
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
 }
 
-.floating-whatsapp-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 20px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #25D366;
-  color: #FFFFFF;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 160;
-  transition: transform var(--transition), box-shadow var(--transition);
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
-}
-
 @media (min-width: 768px) {
   .floating-whatsapp-btn {
     bottom: 28px;
@@ -1540,30 +1663,12 @@ img {
     height: 56px;
   }
 
-  .services-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    overflow-x: visible;
-    scroll-snap-type: none;
-    gap: 20px;
-  }
-
-  .service-mockup-card {
-    flex: unset;
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  .link-view-all {
-    display: inline-block;
-  }
-
   .trust-pillars-row {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .systems-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .systems-two-grid {
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
 
@@ -1587,25 +1692,6 @@ img {
 
   .astrologer-cta-row {
     flex-direction: row;
-  }
-
-  .spiritual-layout {
-    flex-direction: row;
-    align-items: center;
-    gap: 36px;
-  }
-
-  .spiritual-left-altar {
-    flex: 1;
-  }
-
-  .spiritual-right-content {
-    flex: 1.2;
-  }
-
-  .gallery-photo-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
   }
 
   .golden-banner-buttons {
@@ -1659,12 +1745,12 @@ img {
     bottom: 24px;
   }
 
-  .services-cards-grid {
+  .services-vertical-stack {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
-  .systems-cards-grid {
+  .systems-two-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }

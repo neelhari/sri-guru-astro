@@ -368,29 +368,49 @@ class AstrologyApp {
       "vastu": "service-vastu.html"
     };
 
-    this.data.services.forEach(service => {
+    this.data.services.forEach((service, index) => {
       const pageUrl = serviceUrls[service.id] || "services.html";
       const card = document.createElement("a");
       card.href = pageUrl;
-      card.className = "service-mockup-card";
+      const animClass = index % 2 === 0 ? "anim-slide-right" : "anim-slide-left";
+      card.className = `service-tall-card ${animClass}`;
 
       card.innerHTML = `
-        <div class="service-card-img-wrap">
-          <img src="${service.img}" alt="${service.title}" class="service-card-thumb" loading="lazy">
+        <div class="service-tall-img-wrap">
+          <img src="${service.img}" alt="${service.title}" class="service-tall-thumb" loading="lazy">
+          <span class="service-number-pill">0${index + 1}</span>
         </div>
-        <div class="service-card-content">
-          <div>
-            <h3 class="service-item-title">${service.title}</h3>
-            <p class="service-item-desc">${service.shortDesc}</p>
-          </div>
-          <div class="service-link-row">
-            <span>View Details</span>
+        <div class="service-tall-body">
+          <h3 class="service-tall-title">${service.title}</h3>
+          <p class="service-tall-desc">${service.shortDesc}</p>
+          <div class="service-tall-link-row">
+            <span>Explore Guidance</span>
             <span>&rarr;</span>
           </div>
         </div>
       `;
       this.servicesCardsContainer.appendChild(card);
     });
+
+    this.initScrollAnimations();
+  }
+
+  initScrollAnimations() {
+    const animatedCards = document.querySelectorAll(".service-tall-card");
+    if (!("IntersectionObserver" in window)) {
+      animatedCards.forEach(c => c.classList.add("in-view"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    animatedCards.forEach(card => observer.observe(card));
   }
 
   renderSystems() {
@@ -399,12 +419,14 @@ class AstrologyApp {
 
     this.data.systems.forEach(sys => {
       const card = document.createElement("div");
-      card.className = "system-mockup-card";
+      card.className = "system-grid-card";
       card.innerHTML = `
-        <img src="${sys.img}" alt="${sys.title}" class="system-card-img" loading="lazy">
-        <div class="system-card-body">
-          <h3 class="system-card-title">${sys.title}</h3>
-          <p class="system-card-desc">${sys.desc}</p>
+        <div class="system-grid-img-wrap">
+          <img src="${sys.img}" alt="${sys.title}" class="system-grid-img" loading="lazy">
+        </div>
+        <div class="system-grid-body">
+          <h3 class="system-grid-title">${sys.title}</h3>
+          <p class="system-grid-desc">${sys.desc}</p>
         </div>
       `;
       this.systemsCardsContainer.appendChild(card);
@@ -412,17 +434,7 @@ class AstrologyApp {
   }
 
   renderGallery() {
-    if (!this.galleryPhotoGrid) return;
-    this.galleryPhotoGrid.innerHTML = "";
-
-    this.data.gallery.forEach(item => {
-      const el = document.createElement("div");
-      el.className = "gallery-photo-item";
-      el.innerHTML = `
-        <img src="${item.img}" alt="${item.caption}" loading="lazy">
-      `;
-      this.galleryPhotoGrid.appendChild(el);
-    });
+    // Gallery removed as requested
   }
 
   openServiceModal(serviceId) {
