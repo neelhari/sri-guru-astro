@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shri Gurudatta Astroved | Ancient Wisdom. Clearer Guidance.</title>
+  <meta name="description" content="Personalized Vedic astrology guidance based on traditional systems and 15+ years of experience. Services include Horoscope Analysis, Marriage Matching, Muhurtham, Vastu, and Homam.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shri Gurudatta Astroved | 15+ Years of Vedic Astrology Guidance">
+  <meta property="og:description" content="Traditional Vedic astrology, Bhrigu Nandi Nadi, KP System, and spiritual guidance in Palnadu, Andhra Pradesh.">
+  <meta property="og:image" content="image.png">
+
+  <!-- Google Fonts: Cormorant Garamond & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 4-Second Dynamic Splash Screen (9:16 Responsive Video) -->
+  <div class="splash-screen-overlay" id="splashScreen">
+    <div class="splash-video-wrapper">
+      <video id="splashVideo" autoplay muted playsinline preload="auto">
+        <source src="splashscreen.mp4" type="video/mp4">
+      </video>
+    </div>
+    <button class="splash-skip-btn" id="splashSkipBtn" aria-label="Skip Splash Screen">
+      <span>Skip</span> &rarr;
+    </button>
+  </div>
+
+  <!-- Header & Navigation (Dark Midnight Navy) -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="#hero" class="brand-link" aria-label="Shri Gurudatta Astroved Home">
+        <img src="image.png" alt="Shri Gurudatta Astroved Emblem" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-name">Shri Gurudatta</span>
+          <span class="brand-sub">Astroved</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="services.html" class="nav-item">Services</a>
+        <a href="systems.html" class="nav-item">Astrology Systems</a>
+        <a href="gallery.html" class="nav-item">Gallery</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+
+      <!-- Header Action -->
+      <div class="header-actions">
+        <a href="https://wa.me/919876543210" class="btn-header-wa dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+          </svg>
+          <span>Talk on WhatsApp</span>
+        </a>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <div class="brand-text">
+          <span class="brand-name">Shri Gurudatta</span>
+          <span class="brand-sub">Astroved</span>
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link active">Home</a>
+        <a href="about.html" class="mobile-nav-link">About Guruji</a>
+        <a href="services.html" class="mobile-nav-link">Astrology Services</a>
+        <a href="systems.html" class="mobile-nav-link">Astrology Systems</a>
+        <a href="gallery.html" class="mobile-nav-link">Sacred Gallery</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+      <div class="drawer-footer">
+        <a href="#" class="btn-gold-pill dynamic-wa-link full-width" target="_blank" rel="noopener noreferrer">
+          Talk on WhatsApp
+        </a>
+        <a href="tel:+919876543210" class="btn-outline-pill dynamic-call-link full-width">
+          Call Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- 1. HERO SECTION (Clean, Vibrant, Mobile-First - Unblocked Deity Artwork) -->
+    <section class="section-hero" id="hero">
+      <div class="container hero-layout">
+        <div class="hero-visual-mobile">
+          <img src="hero_dattatreya.jpg" alt="Lord Dattatreya Sacred Celestial Artwork - Shri Gurudatta Astroved" class="hero-dattatreya-img">
+        </div>
+
+        <div class="hero-left">
+          <div class="hero-badge">
+            <span class="badge-spark">✦</span>
+            <span>15+ YEARS OF EXPERIENCE</span>
+          </div>
+
+          <h1 class="hero-title">
+            Ancient Wisdom.<br>
+            <span class="hero-title-highlight">Clearer Guidance.</span>
+          </h1>
+
+          <p class="hero-desc">
+            Personalized Vedic astrology guidance based on traditional systems and practical life solutions.
+          </p>
+
+          <div class="hero-btn-row">
+            <a href="#" class="btn-gold-pill dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+              <span>Talk on WhatsApp</span>
+              <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="#services" class="btn-outline-pill">
+              <span>Explore Services</span>
+            </a>
+          </div>
+
+          <div class="hero-pillars">
+            <div class="pillar-item">
+              <span class="pillar-icon">🔥</span>
+              <span class="pillar-text">Vedic Tradition</span>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-icon">👤</span>
+              <span class="pillar-text">Personal Guidance</span>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-icon">🌿</span>
+              <span class="pillar-text">Practical Remedies</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. EXPLORE OUR ASTROLOGY SERVICES (Luminous Warm Ivory Canvas) -->
+    <section class="section-services-light" id="services">
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <span class="section-tag-gold">EXPLORE OUR</span>
+            <h2 class="section-title-dark">Astrology Services</h2>
+            <p class="section-subtitle-dark">Find the right guidance for every stage of your life.</p>
+          </div>
+          <a href="#contact" class="link-view-all">View All Services &rarr;</a>
+        </div>
+
+        <!-- Horizontal Swipeable Cards on Mobile, Multi-col Grid on Desktop -->
+        <div class="services-cards-grid" id="servicesCardsContainer">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 15+ YEARS OF ASTROLOGY EXPERIENCE (Dark Celestial Navy) -->
+    <section class="section-trust-dark" id="trust">
+      <div class="container">
+        <div class="trust-center-heading">
+          <h2 class="trust-large-title">
+            <span class="gold-num">15+</span> Years<br>
+            <span class="trust-sub-heading">of Astrology Experience</span>
+          </h2>
+          <p class="trust-desc-text">
+            Guiding individuals and families with authentic Vedic astrology, personalized insights, and practical spiritual solutions.
+          </p>
+        </div>
+
+        <div class="trust-pillars-row">
+          <div class="trust-pill-box">
+            <div class="trust-glyph-circle">✦</div>
+            <h4>Authentic Astrology</h4>
+          </div>
+          <div class="trust-pill-box">
+            <div class="trust-glyph-circle">👤</div>
+            <h4>Personal Guidance</h4>
+          </div>
+          <div class="trust-pill-box">
+            <div class="trust-glyph-circle">🔒</div>
+            <h4>Privacy & Confidentiality</h4>
+          </div>
+          <div class="trust-pill-box">
+            <div class="trust-glyph-circle">🌿</div>
+            <h4>Practical Remedies</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. OUR ASTROLOGY SYSTEMS (Luminous Warm Ivory) -->
+    <section class="section-systems-light" id="systems">
+      <div class="container">
+        <div class="center-heading-light">
+          <span class="section-tag-gold">OUR ASTROLOGY SYSTEMS</span>
+          <h2 class="section-title-dark">Time-Tested Traditional Knowledge</h2>
+          <p class="section-subtitle-dark">We follow authentic and well-established astrology systems to provide accurate insights.</p>
+        </div>
+
+        <div class="systems-cards-grid" id="systemsCardsContainer">
+          <!-- Dynamically populated via app.js with images -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. "BEFORE YOU CONNECT" PREPARATION BLOCK (Warm Parchment Card) -->
+    <section class="section-connect-guide" id="before-connect">
+      <div class="container">
+        <div class="guide-parchment-card">
+          <div class="guide-top-bar">
+            <span class="guide-bullet">✦</span>
+            <div>
+              <span class="guide-tag">CONSULTATION PREPARATION</span>
+              <h3 class="guide-title-text">Before You Connect with Guruji</h3>
+            </div>
+          </div>
+          <p class="guide-desc">
+            To ensure the highest accuracy for your birth-chart calculations, please keep these 3 details ready:
+          </p>
+
+          <div class="guide-tri-grid">
+            <div class="tri-card">
+              <span class="tri-num">01</span>
+              <h4>Date of Birth</h4>
+              <p>Exact Day, Month & Year</p>
+            </div>
+            <div class="tri-card">
+              <span class="tri-num">02</span>
+              <h4>Exact Birth Time</h4>
+              <p>Precise hour & minute from birth records</p>
+            </div>
+            <div class="tri-card">
+              <span class="tri-num">03</span>
+              <h4>Place of Birth</h4>
+              <p>Town/Village, District & State</p>
+            </div>
+          </div>
+          <div class="guide-note">
+            <p><em>No online forms required. Simply share these details during your direct WhatsApp or phone consultation.</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. MEET YOUR ASTROLOGER (Warm Ivory / Light Parchment) -->
+    <section class="section-astrologer-light" id="about">
+      <div class="container">
+        <div class="astrologer-card-layout">
+          <div class="astrologer-photo-side">
+            <div class="astrologer-frame">
+              <img src="astrologer_portrait.jpg" alt="Shri Gurudatta Astroved Senior Astrologer" class="astrologer-img">
+              <div class="watch-intro-tag">
+                <span>✦ Traditional Vedic Scholar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="astrologer-info-side">
+            <span class="section-tag-gold">MEET YOUR ASTROLOGER</span>
+            <h2 class="section-title-dark">Shri Gurudatta Astroved</h2>
+            <p class="astrologer-experience-badge">15+ Years of Dedicated Astrology Experience</p>
+            <p class="astrologer-bio-text">
+              Guiding people with authentic Vedic astrology and personalized solutions for a better tomorrow. With over 15 years of experience, we provide authentic astrological guidance to help you make informed decisions. Our approach is a blend of traditional Vedic systems, combined with practical remedies for real-life situations.
+            </p>
+
+            <div class="astrologer-checklist">
+              <div class="check-item">
+                <span class="check-icon">✔</span>
+                <span>Vedic Astrology</span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✔</span>
+                <span>Bhrigu Nandi Nadi</span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✔</span>
+                <span>KP System</span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✔</span>
+                <span>Numerology</span>
+              </div>
+            </div>
+
+            <div class="astrologer-cta-row">
+              <a href="#" class="btn-gold-pill dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+                <span>Talk on WhatsApp</span>
+              </a>
+              <a href="tel:+919876543210" class="btn-outline-pill-dark dynamic-call-link">
+                <span>Call Now</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SPIRITUAL SERVICES (Dark Midnight Navy with Sacred Fire) -->
+    <section class="section-spiritual-dark" id="spiritual">
+      <div class="container">
+        <div class="spiritual-layout">
+          <div class="spiritual-left-altar">
+            <img src="homam_fire.jpg" alt="Sacred Vedic Homam Yajna Fire Altar" class="homam-altar-img">
+          </div>
+
+          <div class="spiritual-right-content">
+            <span class="section-tag-gold">SPIRITUAL SERVICES</span>
+            <h2 class="spiritual-main-title">Homam &bull; Japam &bull; Puja &bull; Vastu</h2>
+            <p class="spiritual-tagline">For peace, prosperity, and positive cosmic energy in life.</p>
+            
+            <div class="spiritual-four-grid">
+              <div class="spiritual-icon-box" onclick="app.openServiceModal('homam-puja')">
+                <span class="spiritual-glyph">🔥</span>
+                <span>Homam</span>
+              </div>
+              <div class="spiritual-icon-box" onclick="app.openServiceModal('homam-puja')">
+                <span class="spiritual-glyph">🕉️</span>
+                <span>Japam</span>
+              </div>
+              <div class="spiritual-icon-box" onclick="app.openServiceModal('homam-puja')">
+                <span class="spiritual-glyph">🪔</span>
+                <span>Puja</span>
+              </div>
+              <div class="spiritual-icon-box" onclick="app.openServiceModal('vastu')">
+                <span class="spiritual-glyph">🏛️</span>
+                <span>Vastu</span>
+              </div>
+            </div>
+
+            <div class="spiritual-action-btn-wrap">
+              <button class="btn-gold-pill" onclick="app.openServiceModal('homam-puja')">
+                <span>Explore Spiritual Services</span> &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SACRED GALLERY (Luminous Warm Ivory) -->
+    <section class="section-gallery-light" id="gallery">
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <span class="section-tag-gold">MOMENTS OF GUIDANCE</span>
+            <h2 class="section-title-dark">Sacred Gallery</h2>
+            <p class="section-subtitle-dark">A glimpse into our spiritual, consultation, and Vedic sessions.</p>
+          </div>
+        </div>
+
+        <div class="gallery-photo-grid" id="galleryPhotoGrid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FINAL CTA BANNER (Golden Sunset Mountain Canvas) -->
+    <section class="section-final-golden-banner">
+      <div class="container">
+        <div class="golden-banner-card">
+          <h2 class="golden-banner-title">Looking for Personal Guidance?</h2>
+          <p class="golden-banner-subtitle">
+            Connect with Shri Gurudatta Astroved and get expert advice for a brighter future.
+          </p>
+          <div class="golden-banner-buttons">
+            <a href="#" class="btn-gold-pill dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+              </svg>
+              <span>Talk on WhatsApp</span>
+            </a>
+            <a href="tel:+919876543210" class="btn-navy-pill dynamic-call-link">
+              <span>Call Now</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CONTACT & FOOTER (Dark Midnight Navy) -->
+    <section class="section-contact-dark" id="contact">
+      <div class="container">
+        <div class="footer-columns-grid">
+          <!-- Col 1: Brand -->
+          <div class="footer-brand-col">
+            <div class="footer-brand-header">
+              <img src="image.png" alt="Shri Gurudatta Astroved" class="footer-crest">
+              <div>
+                <h3 class="footer-title">Shri Gurudatta</h3>
+                <span class="footer-subtitle">Astroved</span>
+              </div>
+            </div>
+            <p class="footer-bio-text">
+              Providing authentic Vedic astrology guidance with 15+ years of experience. Personalized insights for a better tomorrow.
+            </p>
+          </div>
+
+          <!-- Col 2: Quick Links -->
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#systems">Astrology Systems</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Services -->
+          <div class="footer-links-col">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('general-prediction')">General Prediction</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('horoscope-analysis')">Horoscope Analysis</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('astro-counselling')">Astro Counselling</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('muhurtham')">Muhurtham</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('marriage-matching')">Marriage Matching</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('baby-naming')">Baby Naming</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('marriage-counselling')">Marriage Counselling</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('homam-puja')">Homam / Japam / Puja</a></li>
+              <li><a href="javascript:void(0)" onclick="app.openServiceModal('vastu')">Vastu Services</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Contact -->
+          <div class="footer-contact-col">
+            <h4>Contact Us</h4>
+            <div class="footer-contact-items">
+              <p class="contact-location-item">
+                <span class="contact-icon">📍</span>
+                <span id="contactAddress">Kesanupalli Village, Dachepalli Mandal, Palnadu District, Andhra Pradesh – 522414</span>
+              </p>
+              <p>
+                <span class="contact-icon">📞</span>
+                <a href="tel:+919876543210" class="dynamic-call-link" id="contactPhoneDisplay">+91 98765 43210</a>
+              </p>
+              <p>
+                <span class="contact-icon">💬</span>
+                <a href="#" class="dynamic-wa-link" id="contactWaDisplay" target="_blank" rel="noopener noreferrer">+91 98765 43210</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved.</p>
+          <p class="footer-locale">Palnadu, Andhra Pradesh &bull; English Edition</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Service Detail Modal / Dynamic Slide-in View -->
+  <div class="service-modal-backdrop" id="serviceModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close service details">&times;</button>
+      <div class="modal-body" id="modalBody">
+        <!-- Injected via JavaScript based on selected service -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Discreet Mobile Fixed Bottom Action Bar -->
+  <aside class="mobile-bottom-bar" aria-label="Quick contact actions">
+    <div class="bottom-bar-container">
+      <a href="#" class="bottom-action-btn wa-action dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+        </svg>
+        <span>WhatsApp</span>
+      </a>
+
+      <a href="tel:+919876543210" class="bottom-action-btn call-action dynamic-call-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        <span>Call Now</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Floating WhatsApp Quick Button -->
+  <a href="https://wa.me/919876543210?text=Hello%20Guruji%2C%20I%20would%20like%20to%20consult%20regarding%20astrology%20guidance." class="floating-whatsapp-btn dynamic-wa-link" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Consultation">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+    </svg>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
