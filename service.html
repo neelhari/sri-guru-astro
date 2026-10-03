@@ -13,10 +13,6 @@
   
   <link rel="stylesheet" href="styles.css?v=25">
   <style>
-    body {
-      padding-top: 80px; /* Offset for fixed header */
-    }
-
     .service-detail-section {
       padding: 30px 20px 80px;
       max-width: 1140px;
@@ -28,19 +24,6 @@
       grid-template-columns: 1fr 1.15fr;
       gap: 40px;
       align-items: start;
-    }
-
-    @media (max-width: 850px) {
-      body {
-        padding-top: 75px;
-      }
-      .service-detail-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-      .service-gallery-wrap {
-        position: static;
-      }
     }
 
     .service-gallery-wrap {
@@ -262,6 +245,26 @@
       justify-content: center;
       gap: 8px;
       box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+
+    @media (max-width: 850px) {
+      .service-detail-section {
+        padding: 16px 14px 60px;
+      }
+      .service-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .service-gallery-wrap {
+        position: static !important;
+        top: auto !important;
+      }
+      .service-content-card {
+        padding: 24px 18px;
+      }
+      .service-title-h1 {
+        font-size: 1.85rem;
+      }
     }
   </style>
 </head>
