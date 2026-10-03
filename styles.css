@@ -1397,11 +1397,13 @@ img {
   margin-bottom: 12px;
 }
 
-.footer-crest {
+.footer-crest,
+.footer-logo {
   width: 42px;
   height: 42px;
   border-radius: 50%;
   border: 1px solid var(--gold-primary);
+  object-fit: cover;
 }
 
 .footer-title {
