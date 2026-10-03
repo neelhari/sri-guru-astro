@@ -145,29 +145,48 @@ async function fetchTablesFromSupabase() {
   const businessRow = settings.find(s => s.key === 'business');
   const business = businessRow ? businessRow.value : {};
 
-  // Map database format to frontend schema
-  const formattedServices = services.map(s => ({
-    id: s.id,
-    title: s.title,
-    shortDesc: s.short_desc,
-    headline: s.headline,
-    explanation: s.explanation,
-    img: s.image_url || (Array.isArray(s.images) && s.images[0]) || 'service_general.jpg',
-    images: Array.isArray(s.images) ? s.images : [s.image_url],
-    pageUrl: s.page_url,
-    waMessage: s.wa_message
-  }));
+  function parseImageList(imgs, fallbackImg) {
+    if (Array.isArray(imgs)) return imgs.filter(Boolean);
+    if (typeof imgs === 'string' && imgs.trim()) {
+      try {
+        const parsed = JSON.parse(imgs);
+        if (Array.isArray(parsed)) return parsed.filter(Boolean);
+      } catch (e) {
+        return [imgs];
+      }
+    }
+    return fallbackImg ? [fallbackImg] : [];
+  }
 
-  const formattedProducts = products.map(p => ({
-    id: p.id,
-    title: p.title,
-    shortDesc: p.short_desc,
-    specs: p.specs,
-    img: p.image_url || (Array.isArray(p.images) && p.images[0]) || 'product_rudraksha.jpg',
-    images: Array.isArray(p.images) ? p.images : [p.image_url],
-    pageUrl: p.page_url,
-    waMessage: p.wa_message
-  }));
+  // Map database format to frontend schema
+  const formattedServices = services.map(s => {
+    const imgList = parseImageList(s.images, s.image_url || 'service_general.jpg');
+    return {
+      id: s.id,
+      title: s.title,
+      shortDesc: s.short_desc,
+      headline: s.headline,
+      explanation: s.explanation,
+      img: (imgList && imgList[0]) || s.image_url || 'service_general.jpg',
+      images: imgList.length > 0 ? imgList : ['service_general.jpg'],
+      pageUrl: s.page_url,
+      waMessage: s.wa_message
+    };
+  });
+
+  const formattedProducts = products.map(p => {
+    const imgList = parseImageList(p.images, p.image_url || 'product_yantra.jpg');
+    return {
+      id: p.id,
+      title: p.title,
+      shortDesc: p.short_desc,
+      specs: p.specs,
+      img: (imgList && imgList[0]) || p.image_url || 'product_yantra.jpg',
+      images: imgList.length > 0 ? imgList : ['product_yantra.jpg'],
+      pageUrl: p.page_url,
+      waMessage: p.wa_message
+    };
+  });
 
   const formattedBanners = banners.map(b => ({
     id: b.id,

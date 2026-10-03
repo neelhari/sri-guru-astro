@@ -37,6 +37,9 @@ async function verifyAdminAuth() {
     return false;
   }
 
+  // Token exists: keep overlay hidden so refresh never flashes or prompts login
+  if (overlay) overlay.classList.add("hidden");
+
   // 1. Direct Supabase Cloud Auth user check
   try {
     const res = await fetch(`${SUPABASE_AUTH_URL}/user`, {
@@ -48,7 +51,6 @@ async function verifyAdminAuth() {
     if (res.ok) {
       const user = await res.json();
       if (user && user.id) {
-        if (overlay) overlay.classList.add("hidden");
         return true;
       }
     }
@@ -62,11 +64,15 @@ async function verifyAdminAuth() {
       headers: { "Authorization": `Bearer ${token}` }
     });
     if (res.ok) {
-      if (overlay) overlay.classList.add("hidden");
       return true;
     }
   } catch (e) {
     console.warn("Auth check network error:", e);
+  }
+
+  // Keep user signed in on this device if token exists
+  if (token && token.length > 20) {
+    return true;
   }
 
   clearAdminToken();
@@ -275,6 +281,29 @@ async function loadAdminData() {
   if (!Array.isArray(siteData.services)) siteData.services = [];
   if (!Array.isArray(siteData.products)) siteData.products = [];
   if (!Array.isArray(siteData.banners)) siteData.banners = [];
+
+  // Parse images JSON strings from database into arrays so multi-image uploads persist
+  siteData.services.forEach(s => {
+    if (typeof s.images === 'string' && s.images.trim().startsWith('[')) {
+      try { s.images = JSON.parse(s.images); } catch(e) {}
+    }
+    if (!Array.isArray(s.images)) {
+      s.images = (s.img || s.image_url) ? [s.img || s.image_url] : ['service_general.jpg'];
+    }
+    s.images = s.images.filter(Boolean);
+    if (s.images.length === 0) s.images = ['service_general.jpg'];
+  });
+
+  siteData.products.forEach(p => {
+    if (typeof p.images === 'string' && p.images.trim().startsWith('[')) {
+      try { p.images = JSON.parse(p.images); } catch(e) {}
+    }
+    if (!Array.isArray(p.images)) {
+      p.images = (p.img || p.image_url) ? [p.img || p.image_url] : ['product_yantra.jpg'];
+    }
+    p.images = p.images.filter(Boolean);
+    if (p.images.length === 0) p.images = ['product_yantra.jpg'];
+  });
 }
 
 // Direct Supabase Postgres Synchronization
