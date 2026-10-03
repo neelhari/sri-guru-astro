@@ -586,8 +586,12 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Shri Gurudatta Astroved Server running at http://localhost:${PORT}`);
-  console.log(`Supabase Tables Direct Sync: ENABLED`);
-  console.log(`Cloudinary Cloud: ${CLOUDINARY_CLOUD}`);
-});
+if (require.main === module) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Shri Gurudatta Astroved Server running at http://localhost:${PORT}`);
+    console.log(`Supabase Tables Direct Sync: ENABLED`);
+    console.log(`Cloudinary Cloud: ${CLOUDINARY_CLOUD}`);
+  });
+}
+
+module.exports = server;
