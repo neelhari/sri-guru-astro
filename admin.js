@@ -486,9 +486,7 @@ window.openEditServiceModal = function(index) {
   const modalTitle = document.getElementById("serviceModalTitle");
   const indexInput = document.getElementById("serviceEditIndex");
   const titleInput = document.getElementById("serviceInputTitle");
-  const shortDescInput = document.getElementById("serviceInputShortDesc");
   const explInput = document.getElementById("serviceInputExplanation");
-  const waInput = document.getElementById("serviceInputWa");
 
   indexInput.value = index;
 
@@ -496,16 +494,12 @@ window.openEditServiceModal = function(index) {
     const s = siteData.services[index];
     modalTitle.textContent = `Edit Service: ${s.title}`;
     titleInput.value = s.title || "";
-    shortDescInput.value = s.shortDesc || "";
-    explInput.value = s.explanation || s.headline || "";
-    waInput.value = s.waMessage || "";
-    currentServiceImages = s.images ? [...s.images] : [s.img || "service_general.jpg"];
+    explInput.value = s.explanation || s.desc || s.shortDesc || "";
+    currentServiceImages = (s.images && s.images.length > 0) ? [...s.images] : [s.img || "service_general.jpg"];
   } else {
     modalTitle.textContent = "Add New Service";
     titleInput.value = "";
-    shortDescInput.value = "";
     explInput.value = "";
-    waInput.value = "Hello Guruji, I would like to consult regarding this service.";
     currentServiceImages = ["service_general.jpg"];
   }
 
@@ -935,26 +929,29 @@ function bindAdminEvents() {
     const idx = parseInt(document.getElementById("serviceEditIndex").value, 10);
     const title = document.getElementById("serviceInputTitle").value.trim();
     if (!title) {
-      alert("Please enter a service title.");
+      alert("Please enter a service name.");
       return;
     }
 
-    const shortDesc = document.getElementById("serviceInputShortDesc").value.trim();
     const explanation = document.getElementById("serviceInputExplanation").value.trim();
-    const waMessage = document.getElementById("serviceInputWa").value.trim();
     const images = currentServiceImages.length > 0 ? [...currentServiceImages] : ["service_general.jpg"];
-
     const serviceId = (idx >= 0 && siteData.services[idx].id) ? siteData.services[idx].id : title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+    // Auto-generate short description from explanation or title
+    let shortDesc = explanation.split("\n")[0].trim();
+    if (shortDesc.length > 130) shortDesc = shortDesc.substring(0, 127) + "...";
+    if (!shortDesc) shortDesc = "Vedic astrological consultation & personal remedial guidance with Guruji.";
+
     const serviceObj = {
       id: serviceId,
       title,
       shortDesc,
-      explanation,
+      explanation: explanation || shortDesc,
       headline: title,
       img: images[0],
       images: images,
-      pageUrl: (idx >= 0 && siteData.services[idx].pageUrl && siteData.services[idx].pageUrl !== "services.html") ? siteData.services[idx].pageUrl : `service.html?id=${serviceId}`,
-      waMessage: waMessage || "Hello Guruji, I would like to consult regarding this service."
+      pageUrl: `service.html?id=${serviceId}`,
+      waMessage: `Hello Guruji, I would like to consult regarding ${title}.`
     };
 
     if (idx >= 0) {

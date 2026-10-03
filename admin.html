@@ -1236,31 +1236,22 @@
       <div class="admin-modal-body">
         <input type="hidden" id="serviceEditIndex" value="-1">
 
+        <!-- Field 1: Service Name -->
         <div class="form-group">
-          <label class="form-label">Service Title</label>
-          <input type="text" class="form-input" id="serviceInputTitle" placeholder="e.g. Complete Horoscope Analysis">
+          <label class="form-label">1. Service Name <span style="color: #DC2626;">*</span></label>
+          <input type="text" class="form-input" id="serviceInputTitle" placeholder="e.g. Raghuvansh or Complete Horoscope Analysis" required>
         </div>
 
+        <!-- Field 2: Photo / Images -->
         <div class="form-group">
-          <label class="form-label">Short Description (Single Line on Card)</label>
-          <input type="text" class="form-input" id="serviceInputShortDesc" placeholder="e.g. Detailed analysis of your birth chart across 12 houses.">
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Detailed Explanation</label>
-          <textarea class="form-textarea" id="serviceInputExplanation" placeholder="Full guidance details for consultation..."></textarea>
-        </div>
-
-        <!-- Multiple Images Section -->
-        <div class="form-group">
-          <label class="form-label">Multiple Images (Cover + Gallery)</label>
+          <label class="form-label">2. Service Photo</label>
           <div class="file-upload-box" id="serviceUploadBox">
             <input type="file" id="serviceFileInput" accept="image/*" multiple style="display: none;">
-            <span>📷 Click to Upload Image(s) from Device</span>
+            <span>📷 Click to Upload Photo from Device</span>
           </div>
 
           <div class="form-group" style="margin-top: 8px;">
-            <label style="font-size: 0.78rem; color: var(--admin-text-muted);">Or add image filename / URL:</label>
+            <label style="font-size: 0.78rem; color: var(--admin-text-muted);">Or enter image filename / link:</label>
             <div style="display: flex; gap: 8px;">
               <input type="text" class="form-input" id="serviceManualImgInput" placeholder="e.g. service_general.jpg or https://...">
               <button class="btn-add-new" id="btnAddServiceImgManual" type="button" style="padding: 8px 14px;">Add</button>
@@ -1270,9 +1261,10 @@
           <div class="images-preview-strip" id="serviceImagesStrip"></div>
         </div>
 
+        <!-- Field 3: Service Description -->
         <div class="form-group">
-          <label class="form-label">WhatsApp Pre-filled Message</label>
-          <input type="text" class="form-input" id="serviceInputWa" placeholder="e.g. Hello Guruji, I would like to consult...">
+          <label class="form-label">3. Service Description</label>
+          <textarea class="form-textarea" id="serviceInputExplanation" rows="4" placeholder="Describe this consultation, what guidance is provided, and who it is suitable for..."></textarea>
         </div>
       </div>
 

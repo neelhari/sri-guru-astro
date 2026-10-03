@@ -649,7 +649,7 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
     const homeServices = (this.data.services || []).slice(0, 6);
 
     homeServices.forEach((service, index) => {
-      const pageUrl = (service.pageUrl && service.pageUrl !== "services.html") ? service.pageUrl : (serviceUrls[service.id] || `service.html?id=${service.id}`);
+      const pageUrl = `service.html?id=${service.id}`;
       const card = document.createElement("a");
       card.href = pageUrl;
       const animClass = index % 2 === 0 ? "anim-slide-right" : "anim-slide-left";
@@ -681,21 +681,9 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
     if (!this.servicesHubGrid) return;
     this.servicesHubGrid.innerHTML = "";
 
-    const serviceUrls = {
-      "general-prediction": "service-general-prediction.html",
-      "horoscope-analysis": "service-horoscope-analysis.html",
-      "astro-counselling": "service-astro-counselling.html",
-      "muhurtham": "service-muhurtham.html",
-      "marriage-matching": "service-marriage-matching.html",
-      "baby-naming": "service-baby-naming.html",
-      "marriage-counselling": "service-marriage-counselling.html",
-      "homam-puja": "service-homam-puja.html",
-      "vastu": "service-vastu.html"
-    };
-
     const services = this.data.services || [];
     services.forEach(service => {
-      const pageUrl = (service.pageUrl && service.pageUrl !== "services.html") ? service.pageUrl : (serviceUrls[service.id] || `service.html?id=${service.id}`);
+      const pageUrl = `service.html?id=${service.id}`;
       const coverImg = (service.images && service.images.length > 0) ? service.images[0] : (service.img || "service_general.jpg");
 
       const card = document.createElement("div");

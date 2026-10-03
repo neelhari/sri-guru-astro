@@ -11,10 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=23">
+  <link rel="stylesheet" href="styles.css?v=25">
   <style>
+    body {
+      padding-top: 80px; /* Offset for fixed header */
+    }
+
     .service-detail-section {
-      padding: 50px 20px 80px;
+      padding: 30px 20px 80px;
       max-width: 1140px;
       margin: 0 auto;
     }
@@ -27,15 +31,18 @@
     }
 
     @media (max-width: 850px) {
+      body {
+        padding-top: 75px;
+      }
       .service-detail-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 25px;
       }
     }
 
     .service-gallery-wrap {
       position: sticky;
-      top: 90px;
+      top: 95px;
     }
 
     .service-main-img-box {
@@ -92,9 +99,15 @@
     .service-content-card {
       background: #FFFFFF;
       border-radius: 16px;
-      padding: 36px 32px;
+      padding: 36px 30px;
       border: 1px solid #E2E8F0;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    @media (max-width: 600px) {
+      .service-content-card {
+        padding: 24px 18px;
+      }
     }
 
     .service-badge-pill {
@@ -108,7 +121,7 @@
       font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .service-title-h1 {
@@ -118,6 +131,13 @@
       color: #0F172A;
       line-height: 1.2;
       margin: 0 0 16px;
+      word-break: break-word;
+    }
+
+    @media (max-width: 600px) {
+      .service-title-h1 {
+        font-size: 1.85rem;
+      }
     }
 
     .service-lead-text {
@@ -141,9 +161,9 @@
     }
 
     .service-desc-body {
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       color: #334155;
-      line-height: 1.7;
+      line-height: 1.75;
       white-space: pre-line;
       margin-bottom: 24px;
     }
@@ -157,10 +177,10 @@
     .service-coverage-list li {
       position: relative;
       padding-left: 26px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-size: 0.94rem;
       color: #334155;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .service-coverage-list li::before {
@@ -170,11 +190,12 @@
       top: 0;
       color: #C89D46;
       font-weight: bold;
+      font-size: 1.1rem;
     }
 
     .service-cta-box {
       margin-top: 32px;
-      padding: 24px;
+      padding: 26px;
       background: linear-gradient(135deg, #081225 0%, #11203E 100%);
       border-radius: 14px;
       border: 1px solid rgba(200, 157, 70, 0.4);
@@ -183,7 +204,7 @@
 
     .service-cta-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       color: #E6CA65;
       margin: 0 0 8px;
       font-weight: 700;
@@ -205,12 +226,12 @@
     .btn-service-book {
       flex: 1;
       min-width: 170px;
-      padding: 12px 20px;
+      padding: 13px 20px;
       background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
       color: #FFFFFF;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       border-radius: 8px;
       text-align: center;
       display: inline-flex;
@@ -225,12 +246,12 @@
     .btn-service-wa {
       flex: 1;
       min-width: 170px;
-      padding: 12px 20px;
+      padding: 13px 20px;
       background: #25D366;
       color: #FFFFFF;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       border-radius: 8px;
       text-align: center;
       display: inline-flex;
@@ -331,7 +352,7 @@
         <h3 class="service-section-heading">About This Consultation</h3>
         <div class="service-desc-body" id="serviceExplanation"></div>
 
-        <div id="serviceCoverageWrap" style="display: none;">
+        <div id="serviceCoverageWrap">
           <h3 class="service-section-heading">What This Consultation Covers</h3>
           <ul class="service-coverage-list" id="serviceCoverageList"></ul>
         </div>
@@ -340,9 +361,9 @@
           <h4 class="service-cta-title">Personalized Guidance by Guruji</h4>
           <p class="service-cta-subtitle">Connect with Shri Gurudatta Astroved with your birth details for clear, authentic Vedic predictions.</p>
           <div class="service-cta-actions">
-            <a href="contact.html" class="btn-service-book" id="serviceBookBtn">
+            <button type="button" class="btn-service-book" id="btnOpenBookingModal">
               📋 Book Consultation
-            </a>
+            </button>
             <a href="https://wa.me/919063862498" class="btn-service-wa dynamic-wa-link" id="serviceWaBtn" target="_blank" rel="noopener noreferrer">
               💬 Consult on WhatsApp
             </a>
@@ -352,6 +373,52 @@
 
     </div>
   </main>
+
+  <!-- Consultation Booking Modal Popup -->
+  <div class="booking-modal-overlay" id="bookingModalOverlay">
+    <div class="booking-modal-card">
+      <button class="booking-modal-close" id="btnCloseBookingModal" aria-label="Close modal">&times;</button>
+      
+      <div class="booking-header">
+        <h3 class="booking-title">Consultation Booking Form</h3>
+        <p class="booking-subtitle">Fill out your information below to submit directly via WhatsApp.</p>
+      </div>
+
+      <form id="modalBookingForm" class="booking-form-grid" onsubmit="return false;">
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingName">Name <span class="required-star">*</span></label>
+          <input type="text" id="modalBookingName" class="booking-input" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingPhone">Phone Number <span class="required-star">*</span></label>
+          <input type="tel" id="modalBookingPhone" class="booking-input" placeholder="Enter phone number with country code" required>
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingEmail">Email</label>
+          <input type="email" id="modalBookingEmail" class="booking-input" placeholder="Enter email address">
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingService">Selected Service</label>
+          <input type="text" id="modalBookingService" class="booking-input" readonly style="background: rgba(255,255,255,0.06); font-weight: 600; color: #E6CA65;">
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingMessage">Birth Details / Query (Optional)</label>
+          <textarea id="modalBookingMessage" class="booking-textarea" rows="2" placeholder="Date of birth, time, place or specific questions..."></textarea>
+        </div>
+
+        <button type="button" class="booking-btn-submit" id="btnSubmitModalBooking">
+          <span>Submit directly via WhatsApp</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- Global Footer -->
   <footer class="site-footer">
@@ -466,15 +533,26 @@
       document.title = `${currentService.title} | Shri Gurudatta Astroved`;
       document.getElementById("breadcrumbTitle").textContent = currentService.title;
       document.getElementById("serviceTitle").textContent = currentService.title;
-      document.getElementById("serviceShortDesc").textContent = currentService.shortDesc || "";
-      document.getElementById("serviceExplanation").textContent = currentService.explanation || currentService.desc || currentService.shortDesc || "Comprehensive Vedic astrological consultation with personalized insights and remedies.";
+      document.getElementById("serviceShortDesc").textContent = currentService.shortDesc || "Personalized Vedic Astrology Guidance & Remedies";
+      
+      const fullDesc = currentService.explanation || currentService.desc || currentService.shortDesc || 
+        "Comprehensive classical Vedic astrological consultation with Guruji. Provides deep insights into your natal chart, life cycles, current planetary transitions, and auspicious spiritual remedial guidance.";
+      
+      document.getElementById("serviceExplanation").textContent = fullDesc;
 
-      // Populate Coverage
-      if (Array.isArray(currentService.coverage) && currentService.coverage.length > 0) {
-        const list = document.getElementById("serviceCoverageList");
-        list.innerHTML = currentService.coverage.map(c => `<li>${c}</li>`).join("");
-        document.getElementById("serviceCoverageWrap").style.display = "block";
-      }
+      // Ensure What This Consultation Covers ALWAYS has meaningful points!
+      const defaultCoverage = [
+        "In-depth analysis of birth chart (Kundali / Jathakam) and planetary alignments",
+        "Examination of current Mahadasha, Antardasha, and transit (Gocharam) influences",
+        "Clear clarity on career, health, family peace, and upcoming opportunities",
+        "Personalized traditional Vedic remedies, mantra japas, and spiritual guidance"
+      ];
+      const coverageItems = (Array.isArray(currentService.coverage) && currentService.coverage.length > 0)
+        ? currentService.coverage
+        : defaultCoverage;
+      
+      const list = document.getElementById("serviceCoverageList");
+      list.innerHTML = coverageItems.map(c => `<li>${c}</li>`).join("");
 
       // Populate Multiple Images
       const images = (currentService.images && currentService.images.length > 0) 
@@ -508,6 +586,86 @@
       const waMsg = currentService.waMessage || `Hello Guruji, I would like to consult regarding ${currentService.title}.`;
       const waUrl = `https://wa.me/91${waNumber.replace(/^91/, '')}?text=${encodeURIComponent(waMsg)}`;
       document.getElementById("serviceWaBtn").href = waUrl;
+
+      // Booking Modal Events
+      const modalOverlay = document.getElementById("bookingModalOverlay");
+      const btnOpenBooking = document.getElementById("btnOpenBookingModal");
+      const btnCloseBooking = document.getElementById("btnCloseBookingModal");
+      const modalServiceInput = document.getElementById("modalBookingService");
+
+      if (modalServiceInput) modalServiceInput.value = currentService.title;
+
+      if (btnOpenBooking && modalOverlay) {
+        btnOpenBooking.addEventListener("click", () => {
+          modalOverlay.classList.add("active");
+          document.body.style.overflow = "hidden";
+        });
+      }
+
+      const closeModal = () => {
+        if (modalOverlay) {
+          modalOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      };
+
+      if (btnCloseBooking) btnCloseBooking.addEventListener("click", closeModal);
+      if (modalOverlay) {
+        modalOverlay.addEventListener("click", (e) => {
+          if (e.target === modalOverlay) closeModal();
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      // Submit Booking Form
+      const btnSubmit = document.getElementById("btnSubmitModalBooking");
+      if (btnSubmit) {
+        btnSubmit.addEventListener("click", () => {
+          const name = document.getElementById("modalBookingName")?.value.trim();
+          const phone = document.getElementById("modalBookingPhone")?.value.trim();
+          const email = document.getElementById("modalBookingEmail")?.value.trim();
+          const message = document.getElementById("modalBookingMessage")?.value.trim();
+
+          if (!name || !phone) {
+            alert("Please enter both your Name and Phone Number.");
+            return;
+          }
+
+          // Save to Supabase Cloud Table
+          fetch("https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1/consultation_bookings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "sb_publishable_WbNQPT0IvbNpeYqCDrU_SA_BPKbvUrL",
+              "Prefer": "return=minimal"
+            },
+            body: JSON.stringify({ name, phone, email, service: currentService.title, message })
+          }).catch(e => console.warn("Supabase lead error:", e));
+
+          // Also try local API
+          fetch("/api/bookings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, phone, email, service: currentService.title, message })
+          }).catch(e => {});
+
+          // Open WhatsApp with formatted lead
+          const cleanNum = waNumber.replace(/^91/, '');
+          const waLeadText = 
+`*New Consultation Booking Request*
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+🔮 *Service:* ${currentService.title}
+${email ? `📧 *Email:* ${email}\n` : ''}${message ? `📝 *Query/Birth Details:* ${message}\n` : ''}
+Hello Guruji, I have submitted my consultation booking details above for ${currentService.title}. Please confirm my appointment timing.`;
+
+          window.open(`https://wa.me/91${cleanNum}?text=${encodeURIComponent(waLeadText)}`, "_blank");
+          closeModal();
+        });
+      }
     });
   </script>
 </body>
