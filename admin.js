@@ -560,10 +560,25 @@ window.removeServiceImage = function(idx) {
   renderServiceImageChips();
 };
 
-window.deleteService = function(index) {
-  if (confirm(`Are you sure you want to delete "${siteData.services[index].title}"?`)) {
+window.deleteService = async function(index) {
+  const item = siteData.services[index];
+  if (!item) return;
+  if (confirm(`Are you sure you want to delete "${item.title}"?`)) {
     siteData.services.splice(index, 1);
     renderAdminServices();
+
+    // Directly delete from Supabase REST API in background
+    if (item.id) {
+      const token = getAdminToken();
+      fetch(`https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1/services?id=eq.${encodeURIComponent(item.id)}`, {
+        method: "DELETE",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${token || SUPABASE_ANON_KEY}`
+        }
+      }).catch(e => console.warn("Supabase service delete notice:", e));
+    }
+
     saveAllData("Service deleted successfully!");
   }
 };
@@ -660,10 +675,25 @@ window.removeProductImage = function(idx) {
   renderProductImageChips();
 };
 
-window.deleteProduct = function(index) {
-  if (confirm(`Are you sure you want to delete "${siteData.products[index].title}"?`)) {
+window.deleteProduct = async function(index) {
+  const item = siteData.products[index];
+  if (!item) return;
+  if (confirm(`Are you sure you want to delete "${item.title}"?`)) {
     siteData.products.splice(index, 1);
     renderAdminProducts();
+
+    // Directly delete from Supabase REST API in background
+    if (item.id) {
+      const token = getAdminToken();
+      fetch(`https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1/products?id=eq.${encodeURIComponent(item.id)}`, {
+        method: "DELETE",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${token || SUPABASE_ANON_KEY}`
+        }
+      }).catch(e => console.warn("Supabase product delete notice:", e));
+    }
+
     saveAllData("Product deleted successfully!");
   }
 };
@@ -744,10 +774,25 @@ function closeBannerModal() {
   if (modal) modal.classList.remove("active");
 }
 
-window.deleteBanner = function(index) {
-  if (confirm(`Are you sure you want to delete banner "${siteData.banners[index].title}"?`)) {
+window.deleteBanner = async function(index) {
+  const item = siteData.banners[index];
+  if (!item) return;
+  if (confirm(`Are you sure you want to delete banner "${item.title}"?`)) {
     siteData.banners.splice(index, 1);
     renderAdminBanners();
+
+    // Directly delete from Supabase REST API in background
+    if (item.id) {
+      const token = getAdminToken();
+      fetch(`https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1/banners?id=eq.${encodeURIComponent(item.id)}`, {
+        method: "DELETE",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${token || SUPABASE_ANON_KEY}`
+        }
+      }).catch(e => console.warn("Supabase banner delete notice:", e));
+    }
+
     saveAllData("Banner deleted successfully!");
   }
 };

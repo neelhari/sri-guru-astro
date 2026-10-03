@@ -226,74 +226,134 @@ async function saveTablesToSupabase(data) {
     );
   }
 
-  // 2. Save Banners
-  if (Array.isArray(data.banners) && data.banners.length > 0) {
-    const bannerRows = data.banners.map((b, idx) => ({
-      id: b.id || `banner-${idx + 1}`,
-      title: b.title,
-      button_text: b.buttonText || 'Book Consultation',
-      image_url: b.img || 'astrologer_portrait.jpg',
-      wa_message: b.waMessage || '',
-      display_order: idx + 1,
-      is_active: true,
-      updated_at: new Date().toISOString()
-    }));
-    promises.push(
-      fetch(`${SUPABASE_URL}/rest/v1/banners`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(bannerRows)
-      })
-    );
+  // 2. Save Banners & cleanup removed
+  if (Array.isArray(data.banners)) {
+    const keepBannerIds = data.banners.map(b => b.id).filter(Boolean);
+    try {
+      const existingRes = await fetch(`${SUPABASE_URL}/rest/v1/banners?select=id`, {
+        headers: { 'apikey': SUPABASE_SECRET, 'Authorization': `Bearer ${SUPABASE_SECRET}` }
+      });
+      if (existingRes.ok) {
+        const existing = await existingRes.json();
+        for (const item of existing) {
+          if (!keepBannerIds.includes(item.id)) {
+            await fetch(`${SUPABASE_URL}/rest/v1/banners?id=eq.${encodeURIComponent(item.id)}`, {
+              method: 'DELETE',
+              headers: { 'apikey': SUPABASE_SECRET, 'Authorization': `Bearer ${SUPABASE_SECRET}` }
+            });
+          }
+        }
+      }
+    } catch (e) {}
+
+    if (data.banners.length > 0) {
+      const bannerRows = data.banners.map((b, idx) => ({
+        id: b.id || `banner-${idx + 1}`,
+        title: b.title,
+        button_text: b.buttonText || 'Book Consultation',
+        image_url: b.img || 'astrologer_portrait.jpg',
+        wa_message: b.waMessage || '',
+        display_order: idx + 1,
+        is_active: true,
+        updated_at: new Date().toISOString()
+      }));
+      promises.push(
+        fetch(`${SUPABASE_URL}/rest/v1/banners`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(bannerRows)
+        })
+      );
+    }
   }
 
-  // 3. Save Services
-  if (Array.isArray(data.services) && data.services.length > 0) {
-    const serviceRows = data.services.map((s, idx) => ({
-      id: s.id || `service-${idx + 1}`,
-      title: s.title,
-      short_desc: s.shortDesc || '',
-      headline: s.headline || '',
-      explanation: s.explanation || '',
-      images: JSON.stringify(s.images || [s.img]),
-      image_url: s.img || '',
-      page_url: s.pageUrl || '',
-      wa_message: s.waMessage || '',
-      display_order: idx + 1,
-      is_active: true,
-      updated_at: new Date().toISOString()
-    }));
-    promises.push(
-      fetch(`${SUPABASE_URL}/rest/v1/services`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(serviceRows)
-      })
-    );
+  // 3. Save Services & cleanup removed
+  if (Array.isArray(data.services)) {
+    const keepServiceIds = data.services.map(s => s.id).filter(Boolean);
+    try {
+      const existingRes = await fetch(`${SUPABASE_URL}/rest/v1/services?select=id`, {
+        headers: { 'apikey': SUPABASE_SECRET, 'Authorization': `Bearer ${SUPABASE_SECRET}` }
+      });
+      if (existingRes.ok) {
+        const existing = await existingRes.json();
+        for (const item of existing) {
+          if (!keepServiceIds.includes(item.id)) {
+            await fetch(`${SUPABASE_URL}/rest/v1/services?id=eq.${encodeURIComponent(item.id)}`, {
+              method: 'DELETE',
+              headers: { 'apikey': SUPABASE_SECRET, 'Authorization': `Bearer ${SUPABASE_SECRET}` }
+            });
+          }
+        }
+      }
+    } catch (e) {}
+
+    if (data.services.length > 0) {
+      const serviceRows = data.services.map((s, idx) => ({
+        id: s.id || `service-${idx + 1}`,
+        title: s.title,
+        short_desc: s.shortDesc || '',
+        headline: s.headline || '',
+        explanation: s.explanation || '',
+        images: JSON.stringify(s.images || [s.img]),
+        image_url: s.img || '',
+        page_url: s.pageUrl || '',
+        wa_message: s.waMessage || '',
+        display_order: idx + 1,
+        is_active: true,
+        updated_at: new Date().toISOString()
+      }));
+      promises.push(
+        fetch(`${SUPABASE_URL}/rest/v1/services`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(serviceRows)
+        })
+      );
+    }
   }
 
-  // 4. Save Products
-  if (Array.isArray(data.products) && data.products.length > 0) {
-    const productRows = data.products.map((p, idx) => ({
-      id: p.id || `product-${idx + 1}`,
-      title: p.title,
-      short_desc: p.shortDesc || '',
-      specs: p.specs || '',
-      images: JSON.stringify(p.images || [p.img]),
-      image_url: p.img || '',
-      page_url: p.pageUrl || '',
-      wa_message: p.waMessage || '',
-      display_order: idx + 1,
-      is_active: true,
-      updated_at: new Date().toISOString()
-    }));
-    promises.push(
-      fetch(`${SUPABASE_URL}/rest/v1/products`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(productRows)
-      })
-    );
+  // 4. Save Products & cleanup removed
+  if (Array.isArray(data.products)) {
+    const keepProductIds = data.products.map(p => p.id).filter(Boolean);
+    try {
+      const existingRes = await fetch(`${SUPABASE_URL}/rest/v1/products?select=id`, {
+        headers: { 'apikey': SUPABASE_SECRET, 'Authorization': `Bearer ${SUPABASE_SECRET}` }
+      });
+      if (existingRes.ok) {
+        const existing = await existingRes.json();
+        for (const item of existing) {
+          if (!keepProductIds.includes(item.id)) {
+            await fetch(`${SUPABASE_URL}/rest/v1/products?id=eq.${encodeURIComponent(item.id)}`, {
+              method: 'DELETE',
+              headers: { 'apikey': SUPABASE_SECRET, 'Authorization': `Bearer ${SUPABASE_SECRET}` }
+            });
+          }
+        }
+      }
+    } catch (e) {}
+
+    if (data.products.length > 0) {
+      const productRows = data.products.map((p, idx) => ({
+        id: p.id || `product-${idx + 1}`,
+        title: p.title,
+        short_desc: p.shortDesc || '',
+        specs: p.specs || '',
+        images: JSON.stringify(p.images || [p.img]),
+        image_url: p.img || '',
+        page_url: p.pageUrl || '',
+        wa_message: p.waMessage || '',
+        display_order: idx + 1,
+        is_active: true,
+        updated_at: new Date().toISOString()
+      }));
+      promises.push(
+        fetch(`${SUPABASE_URL}/rest/v1/products`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(productRows)
+        })
+      );
+    }
   }
 
   const results = await Promise.all(promises);
