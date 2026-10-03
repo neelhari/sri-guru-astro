@@ -195,6 +195,19 @@ function setupLoginEvents() {
     });
   }
 
+  const btnTogglePwd = document.getElementById("btnTogglePassword");
+  if (btnTogglePwd && pwdInput) {
+    btnTogglePwd.addEventListener("click", () => {
+      if (pwdInput.type === "password") {
+        pwdInput.type = "text";
+        btnTogglePwd.textContent = "🙈 Hide Password";
+      } else {
+        pwdInput.type = "password";
+        btnTogglePwd.textContent = "👁️ Show Password";
+      }
+    });
+  }
+
   if (btnLogout) {
     btnLogout.addEventListener("click", () => {
       if (confirm("Are you sure you want to log out of the Admin Panel?")) {
@@ -632,6 +645,8 @@ window.deleteBanner = function(index) {
     renderAdminBanners();
     saveAllData("Banner deleted successfully!");
   }
+};
+
 // ----------------------------------------------------
 // TAB 4: CONSULTATION LEADS MANAGEMENT
 // ----------------------------------------------------
