@@ -393,10 +393,12 @@ const server = http.createServer((req, res) => {
       req.on('end', async () => {
         try {
           const parsed = JSON.parse(body);
-          const formattedJson = JSON.stringify(parsed, null, 2);
-
-          // 1. Write to local file mirror
-          fs.writeFileSync(DATA_FILE, formattedJson, 'utf8');
+          // 1. Write to local file mirror (safely catch if filesystem is read-only on Vercel)
+          try {
+            fs.writeFileSync(DATA_FILE, formattedJson, 'utf8');
+          } catch (fsErr) {
+            console.warn('Local file write skipped (read-only filesystem on Vercel):', fsErr.message);
+          }
 
           // 2. Write directly to Supabase Postgres Tables
           const dbSynced = await saveTablesToSupabase(parsed);

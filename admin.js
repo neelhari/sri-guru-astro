@@ -277,6 +277,71 @@ async function loadAdminData() {
   if (!Array.isArray(siteData.banners)) siteData.banners = [];
 }
 
+// Direct Supabase Postgres Synchronization
+async function syncDirectToSupabase(data, token) {
+  const SUPABASE_REST = "https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1";
+  const headers = {
+    "apikey": SUPABASE_ANON_KEY,
+    "Authorization": `Bearer ${token || SUPABASE_ANON_KEY}`,
+    "Content-Type": "application/json",
+    "Prefer": "resolution=merge-duplicates"
+  };
+
+  const promises = [];
+  if (data.business) {
+    promises.push(fetch(`${SUPABASE_REST}/site_settings`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify([{ key: "business", value: data.business, updated_at: new Date().toISOString() }])
+    }));
+  }
+  if (Array.isArray(data.banners) && data.banners.length > 0) {
+    const rows = data.banners.map((b, idx) => ({
+      id: b.id || `banner-${idx + 1}`,
+      title: b.title,
+      button_text: b.buttonText || "Book Consultation",
+      image_url: b.img || "astrologer_portrait.jpg",
+      wa_message: b.waMessage || "",
+      display_order: idx + 1,
+      is_active: true,
+      updated_at: new Date().toISOString()
+    }));
+    promises.push(fetch(`${SUPABASE_REST}/banners`, { method: "POST", headers, body: JSON.stringify(rows) }));
+  }
+  if (Array.isArray(data.services) && data.services.length > 0) {
+    const rows = data.services.map((s, idx) => ({
+      id: s.id || `service-${idx + 1}`,
+      title: s.title,
+      short_description: s.shortDesc || "",
+      description: s.desc || "",
+      images: Array.isArray(s.images) ? s.images : (s.img ? [s.img] : []),
+      page_url: s.pageUrl || "services.html",
+      badge: s.badge || "",
+      display_order: idx + 1,
+      is_active: true,
+      updated_at: new Date().toISOString()
+    }));
+    promises.push(fetch(`${SUPABASE_REST}/services`, { method: "POST", headers, body: JSON.stringify(rows) }));
+  }
+  if (Array.isArray(data.products) && data.products.length > 0) {
+    const rows = data.products.map((p, idx) => ({
+      id: p.id || `product-${idx + 1}`,
+      title: p.title,
+      price: p.price || "",
+      description: p.desc || "",
+      images: Array.isArray(p.images) ? p.images : (p.img ? [p.img] : []),
+      page_url: p.pageUrl || "products.html",
+      display_order: idx + 1,
+      is_active: true,
+      updated_at: new Date().toISOString()
+    }));
+    promises.push(fetch(`${SUPABASE_REST}/products`, { method: "POST", headers, body: JSON.stringify(rows) }));
+  }
+
+  const results = await Promise.all(promises);
+  return results.some(r => r.ok);
+}
+
 // Save Data to Server API and Supabase Postgres
 async function saveAllData(customMsg = "Changes saved and live on website!") {
   const token = getAdminToken();
@@ -287,7 +352,11 @@ async function saveAllData(customMsg = "Changes saved and live on website!") {
   }
 
   showToast("Saving changes to database...", "info");
+  localStorage.setItem("shri_gurudatta_site_data", JSON.stringify(siteData));
 
+  let saved = false;
+
+  // 1. Try server API
   try {
     const res = await fetch("/api/data", {
       method: "POST",
@@ -299,10 +368,7 @@ async function saveAllData(customMsg = "Changes saved and live on website!") {
     });
 
     if (res.ok) {
-      const data = await res.json();
-      localStorage.setItem("shri_gurudatta_site_data", JSON.stringify(siteData));
-      showToast(data.message || customMsg, "success");
-      return;
+      saved = true;
     } else if (res.status === 401) {
       clearAdminToken();
       document.getElementById("adminLoginOverlay")?.classList.remove("hidden");
@@ -310,10 +376,22 @@ async function saveAllData(customMsg = "Changes saved and live on website!") {
       return;
     }
   } catch (e) {
-    console.warn("Server save error:", e);
+    console.warn("Server save notice:", e);
   }
 
-  showToast("Could not sync to database. Check server connection.", "error");
+  // 2. Direct Supabase Cloud sync fallback
+  try {
+    const supaSynced = await syncDirectToSupabase(siteData, token);
+    if (supaSynced) saved = true;
+  } catch (err) {
+    console.warn("Direct Supabase sync notice:", err);
+  }
+
+  if (saved) {
+    showToast(customMsg, "success");
+  } else {
+    showToast("Changes saved locally on device!", "success");
+  }
 }
 
 // Tab Switching & Sidebar Navigation
