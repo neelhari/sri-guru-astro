@@ -737,16 +737,37 @@ async function loadAndRenderBookings() {
 
   container.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--admin-text-muted);">Loading consultation inquiries...</div>`;
 
+  let bookings = null;
+
+  // 1. Fetch directly from Supabase Cloud Database Table
   try {
-    const res = await fetch("/api/bookings", {
-      headers: { "Authorization": `Bearer ${token}` }
-    });
-    if (res.ok) {
-      const bookings = await res.json();
-      if (!Array.isArray(bookings) || bookings.length === 0) {
-        container.innerHTML = `<div style="text-align: center; padding: 40px; background: #FFFFFF; border: 1px dashed var(--admin-border); border-radius: 12px; color: var(--admin-text-muted);">No consultation inquiries received yet. Inquiries submitted from website forms will appear here in real time.</div>`;
-        return;
+    const supaRes = await fetch("https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1/consultation_bookings?select=*&order=created_at.desc", {
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${token}`
       }
+    });
+    if (supaRes.ok) {
+      bookings = await supaRes.json();
+    }
+  } catch (e) {
+    console.warn("Direct Supabase bookings fetch error:", e);
+  }
+
+  // 2. Fallback to /api/bookings
+  if (!bookings) {
+    try {
+      const res = await fetch("/api/bookings", {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      if (res.ok) bookings = await res.json();
+    } catch (e) {}
+  }
+
+  if (!Array.isArray(bookings) || bookings.length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 40px; background: #FFFFFF; border: 1px dashed var(--admin-border); border-radius: 12px; color: var(--admin-text-muted);">No consultation inquiries received yet. Inquiries submitted from website forms will appear here in real time.</div>`;
+    return;
+  }
 
       container.innerHTML = "";
       bookings.forEach((b) => {
@@ -800,10 +821,6 @@ async function loadAndRenderBookings() {
         `;
         container.appendChild(item);
       });
-    }
-  } catch (e) {
-    container.innerHTML = `<div style="text-align: center; padding: 20px; color: #DC2626;">Failed to load inquiries: ${e.message}</div>`;
-  }
 }
 
 // ----------------------------------------------------

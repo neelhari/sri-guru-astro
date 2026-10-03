@@ -497,12 +497,27 @@ class AstrologyApp {
       return;
     }
 
-    // 1. Post lead to /api/bookings (Supabase + local fallback)
-    fetch("/api/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, phone, email, service, message })
-    }).catch(e => console.warn("Booking API record error:", e));
+    // 1. Post lead directly to Supabase Cloud Database Table
+    try {
+      fetch("https://vbfdimlkbilkdakjbfjg.supabase.co/rest/v1/consultation_bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable_WbNQPT0IvbNpeYqCDrU_SA_BPKbvUrL",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({ name, phone, email, service, message })
+      }).catch(err => console.warn("Supabase lead direct error:", err));
+    } catch (e) {}
+
+    // 2. Also post to local /api/bookings
+    try {
+      fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, email, service, message })
+      }).catch(e => console.warn("Booking API record notice:", e));
+    } catch (e) {}
 
     // 2. Open WhatsApp directly with formatted message to Guruji
     const rawNumber = (this.data && this.data.business && this.data.business.whatsappRaw) || "9063862498";
