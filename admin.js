@@ -25,6 +25,9 @@ function clearAdminToken() {
   sessionStorage.removeItem("guru_admin_token");
 }
 
+const SUPABASE_AUTH_URL = "https://vbfdimlkbilkdakjbfjg.supabase.co/auth/v1";
+const SUPABASE_ANON_KEY = "sb_publishable_WbNQPT0IvbNpeYqCDrU_SA_BPKbvUrL";
+
 async function verifyAdminAuth() {
   const token = getAdminToken();
   const overlay = document.getElementById("adminLoginOverlay");
@@ -34,6 +37,26 @@ async function verifyAdminAuth() {
     return false;
   }
 
+  // 1. Direct Supabase Cloud Auth user check
+  try {
+    const res = await fetch(`${SUPABASE_AUTH_URL}/user`, {
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    if (res.ok) {
+      const user = await res.json();
+      if (user && user.id) {
+        if (overlay) overlay.classList.add("hidden");
+        return true;
+      }
+    }
+  } catch (e) {
+    console.warn("Direct Supabase user verification error:", e);
+  }
+
+  // 2. Fallback to /api/auth/verify
   try {
     const res = await fetch("/api/auth/verify", {
       headers: { "Authorization": `Bearer ${token}` }
@@ -46,6 +69,7 @@ async function verifyAdminAuth() {
     console.warn("Auth check network error:", e);
   }
 
+  clearAdminToken();
   if (overlay) overlay.classList.remove("hidden");
   return false;
 }
@@ -76,8 +100,8 @@ function setupLoginEvents() {
     const email = emailInput ? emailInput.value.trim() : "";
     const password = pwdInput ? pwdInput.value.trim() : "";
 
-    if (!password) {
-      errorMsg.textContent = "Please enter your password.";
+    if (!email || !password) {
+      errorMsg.textContent = "Please enter both email and password.";
       errorMsg.style.display = "block";
       return;
     }
@@ -86,34 +110,66 @@ function setupLoginEvents() {
     btnLogin.disabled = true;
     btnLogin.textContent = "Logging in...";
 
+    let authToken = null;
+    let authError = "";
+
+    // 1. Authenticate directly with Supabase Cloud Auth
     try {
-      const res = await fetch("/api/auth/login", {
+      const supaRes = await fetch(`${SUPABASE_AUTH_URL}/token?grant_type=password`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_ANON_KEY
+        },
         body: JSON.stringify({ email, password })
       });
 
-      const data = await res.json();
-      if (res.ok && data.success && data.token) {
-        setAdminToken(data.token, rememberCheckbox ? rememberCheckbox.checked : true);
-        if (pwdInput) pwdInput.value = "";
-        overlay.classList.add("hidden");
-        showToast("Welcome to Shri Gurudatta Admin Panel!", "success");
-        await loadAdminData();
-        renderAdminServices();
-        renderAdminProducts();
-        renderAdminBanners();
-        populateSettings();
+      const supaData = await supaRes.json();
+      if (supaRes.ok && supaData.access_token) {
+        authToken = supaData.access_token;
       } else {
-        errorMsg.textContent = data.error || "Invalid email or password. Please try again.";
-        errorMsg.style.display = "block";
+        authError = supaData.error_description || supaData.msg || "Invalid email or password";
       }
-    } catch (err) {
-      errorMsg.textContent = "Server unreachable. Make sure local server is running.";
+    } catch (e) {
+      console.warn("Direct Supabase login error:", e);
+    }
+
+    // 2. If direct Supabase didn't connect, try /api/auth/login
+    if (!authToken && !authError) {
+      try {
+        const res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok && data.success && data.token) {
+          authToken = data.token;
+        } else {
+          authError = data.error || "Invalid credentials.";
+        }
+      } catch (err) {
+        authError = "Connection failed. Please check internet connection.";
+      }
+    }
+
+    btnLogin.disabled = false;
+    btnLogin.textContent = "Sign In";
+
+    if (authToken) {
+      setAdminToken(authToken, rememberCheckbox ? rememberCheckbox.checked : true);
+      if (pwdInput) pwdInput.value = "";
+      overlay.classList.add("hidden");
+      showToast("Welcome to Shri Gurudatta Admin Panel!", "success");
+      await loadAdminData();
+      renderAdminServices();
+      renderAdminProducts();
+      renderAdminBanners();
+      loadAndRenderBookings();
+      populateSettings();
+    } else {
+      errorMsg.textContent = authError || "Invalid email or password. Please try again.";
       errorMsg.style.display = "block";
-    } finally {
-      btnLogin.disabled = false;
-      btnLogin.textContent = "Sign In";
     }
   }
 

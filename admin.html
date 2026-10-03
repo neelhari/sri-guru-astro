@@ -18,6 +18,8 @@
       --admin-text-main: #0F172A;
       --admin-text-muted: #64748B;
       --admin-text-sub: #475569;
+      --admin-primary: #D97706;
+      --admin-primary-hover: #B45309;
       --admin-gold: #C89D46;
       --admin-gold-hover: #B88934;
       --admin-gold-light: #FDF9F0;
@@ -895,22 +897,25 @@
 
     .btn-login-submit {
       width: 100%;
-      padding: 13px 20px;
-      background: linear-gradient(135deg, var(--admin-primary) 0%, #92400E 100%);
-      color: #FFFFFF;
-      font-size: 0.95rem;
-      font-weight: 600;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #D97706 0%, #B45309 100%) !important;
+      color: #FFFFFF !important;
+      font-size: 1rem;
+      font-weight: 700;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      display: block;
+      text-align: center;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25);
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+      letter-spacing: 0.5px;
     }
 
     .btn-login-submit:hover {
-      background: linear-gradient(135deg, #92400E 0%, #78350F 100%);
+      background: linear-gradient(135deg, #B45309 0%, #92400E 100%) !important;
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(180, 83, 9, 0.35);
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.45);
     }
 
     .sidebar-logout-btn {
