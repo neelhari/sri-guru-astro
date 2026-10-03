@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Shri Gurudatta Astroved</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=22">
+  <style>
+    :root {
+      --admin-bg: #F8FAFC;
+      --admin-surface: #FFFFFF;
+      --admin-sidebar-bg: #FFFFFF;
+      --admin-border: #E2E8F0;
+      --admin-border-focus: #C89D46;
+      --admin-text-main: #0F172A;
+      --admin-text-muted: #64748B;
+      --admin-text-sub: #475569;
+      --admin-gold: #C89D46;
+      --admin-gold-hover: #B88934;
+      --admin-gold-light: #FDF9F0;
+      --admin-green: #10B981;
+      --admin-red: #EF4444;
+      --sidebar-width: 260px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body.admin-body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text-main);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Overall App Layout */
+    .admin-app-layout {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ----------------------------------------------------
+       LEFT SIDEBAR (Option Selection)
+       ---------------------------------------------------- */
+    .admin-sidebar {
+      width: var(--sidebar-width);
+      background: var(--admin-sidebar-bg);
+      border-right: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .sidebar-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--admin-gold);
+      object-fit: cover;
+    }
+
+    .sidebar-brand-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .sidebar-brand-sub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--admin-gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-badge {
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* Sidebar Navigation Menu */
+    .sidebar-nav {
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .sidebar-section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--admin-text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 10px 12px 4px;
+    }
+
+    .sidebar-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--admin-text-sub);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .sidebar-nav-item .nav-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .sidebar-nav-item:hover {
+      background: #F1F5F9;
+      color: var(--admin-text-main);
+    }
+
+    .sidebar-nav-item.active {
+      background: var(--admin-gold-light);
+      color: #9A7228;
+      border-color: rgba(200, 157, 70, 0.3);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(200, 157, 70, 0.1);
+    }
+
+    .sidebar-nav-item.active .nav-icon {
+      transform: scale(1.1);
+    }
+
+    /* Sidebar Footer Links */
+    .sidebar-footer {
+      padding: 16px 14px;
+      border-top: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #FAFAFA;
+    }
+
+    .sidebar-link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      border-radius: 6px;
+      color: var(--admin-text-sub);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-link-btn:hover {
+      background: #E2E8F0;
+      color: var(--admin-text-main);
+    }
+
+    .sidebar-link-btn .ext-icon {
+      font-size: 0.8rem;
+      color: var(--admin-text-muted);
+    }
+
+    /* ----------------------------------------------------
+       RIGHT MAIN CONTENT AREA
+       ---------------------------------------------------- */
+    .admin-main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 100vh;
+      background: var(--admin-bg);
+    }
+
+    /* Topbar */
+    .admin-topbar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--admin-border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sidebar-toggle-btn {
+      display: none;
+      background: #F1F5F9;
+      border: 1px solid var(--admin-border);
+      color: var(--admin-text-main);
+      padding: 7px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .topbar-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar-page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    .topbar-breadcrumb {
+      font-size: 0.78rem;
+      color: var(--admin-text-muted);
+      margin-top: 2px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-save-master {
+      background: linear-gradient(135deg, #DFB25A 0%, #B88934 100%);
+      color: #081020;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(200, 157, 70, 0.25);
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-save-master:hover {
+      box-shadow: 0 4px 14px rgba(200, 157, 70, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Panels Container */
+    .admin-panels-wrap {
+      padding: 32px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Content Headers */
+    .panel-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .panel-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      margin: 0;
+    }
+
+    .panel-subtitle {
+      font-size: 0.92rem;
+      color: var(--admin-text-muted);
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+
+    .btn-add-new {
+      background: #FFFFFF;
+      color: #9A7228;
+      border: 1.5px solid var(--admin-gold);
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      font-family: inherit;
+    }
+
+    .btn-add-new:hover {
+      background: var(--admin-gold);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(200, 157, 70, 0.25);
+    }
+
+    /* ----------------------------------------------------
+       CARDS GRID (Services & Products on White Background)
+       ---------------------------------------------------- */
+    .items-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 720px) {
+      .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1120px) {
+      .items-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .admin-item-card {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .admin-item-card:hover {
+      border-color: var(--admin-gold);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .admin-card-media {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #F1F5F9;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .admin-card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.82);
+      color: #F8FAFC;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .admin-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .admin-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      margin: 0 0 8px 0;
+      line-height: 1.25;
+    }
+
+    .admin-card-desc {
+      font-size: 0.88rem;
+      color: var(--admin-text-sub);
+      line-height: 1.5;
+      margin: 0 0 18px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .admin-card-actions {
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid var(--admin-border);
+      padding-top: 14px;
+    }
+
+    .btn-action-edit {
+      flex: 1;
+      background: #F8FAFC;
+      color: var(--admin-text-main);
+      border: 1px solid var(--admin-border);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-action-edit:hover {
+      background: var(--admin-gold);
+      color: #FFFFFF;
+      border-color: var(--admin-gold);
+    }
+
+    .btn-action-delete {
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FECACA;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-action-delete:hover {
+      background: #DC2626;
+      color: #FFFFFF;
+      border-color: #DC2626;
+    }
+
+    /* ----------------------------------------------------
+       SETTINGS PANEL (Contact & Payments)
+       ---------------------------------------------------- */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    @media (min-width: 860px) {
+      .settings-grid {
+        grid-template-columns: 1.5fr 1fr;
+      }
+    }
+
+    .settings-box {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .qr-preview-box {
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      padding: 16px;
+      border-radius: 10px;
+      max-width: 200px;
+      margin: 12px auto;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .qr-preview-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ----------------------------------------------------
+       FORM CONTROLS (Clean, Light Theme)
+       ---------------------------------------------------- */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--admin-text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input,
+    .form-textarea {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: var(--admin-text-main);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--admin-border-focus);
+      box-shadow: 0 0 0 3px rgba(200, 157, 70, 0.15);
+    }
+
+    .form-textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    /* Multi-Image Upload Area */
+    .file-upload-box {
+      border: 2px dashed #CBD5E1;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      background: #F8FAFC;
+      color: var(--admin-text-sub);
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .file-upload-box:hover {
+      border-color: var(--admin-gold);
+      background: var(--admin-gold-light);
+      color: #9A7228;
+    }
+
+    .images-preview-strip {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .img-chip {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--admin-border);
+      background: #F1F5F9;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .img-chip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .img-chip-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      background: rgba(220, 38, 38, 0.92);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: bold;
+      transition: transform 0.15s ease;
+    }
+
+    .img-chip-remove:hover {
+      transform: scale(1.15);
+    }
+
+    /* ----------------------------------------------------
+       MODAL FORMS (Clean White Background)
+       ---------------------------------------------------- */
+    .admin-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .admin-modal-backdrop.active {
+      display: flex;
+    }
+
+    .admin-modal-card {
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 680px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalSlide 0.25s ease;
+    }
+
+    @keyframes modalSlide {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .admin-modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FAFAFA;
+    }
+
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      margin: 0;
+    }
+
+    .modal-close-btn {
+      background: #F1F5F9;
+      border: 1px solid var(--admin-border);
+      color: var(--admin-text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #E2E8F0;
+      color: var(--admin-text-main);
+    }
+
+    .admin-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .admin-modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--admin-border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: #FAFAFA;
+    }
+
+    .btn-admin-cancel {
+      background: #FFFFFF;
+      color: var(--admin-text-sub);
+      border: 1px solid var(--admin-border);
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-admin-cancel:hover {
+      background: #F1F5F9;
+      color: var(--admin-text-main);
+    }
+
+    /* Notification Toast */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1px solid var(--admin-gold);
+      padding: 14px 22px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .admin-toast.success {
+      border-color: #10B981;
+    }
+
+    /* ----------------------------------------------------
+       RESPONSIVE COLLAPSIBLE SIDEBAR
+       ---------------------------------------------------- */
+    @media (max-width: 991px) {
+      .admin-sidebar {
+        transform: translateX(-100%);
+      }
+
+      .admin-sidebar.mobile-open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .admin-main-content {
+        margin-left: 0;
+      }
+
+      .sidebar-toggle-btn {
+        display: flex;
+      }
+
+      .admin-panels-wrap {
+        padding: 20px;
+      }
+    }
+
+    /* ----------------------------------------------------
+       ADMIN LOGIN SCREEN OVERLAY
+       ---------------------------------------------------- */
+    .admin-login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .admin-login-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .admin-login-modal {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--admin-border);
+      padding: 36px 32px;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .login-brand-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .login-modal-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--admin-primary);
+      margin: 0 auto 12px;
+      display: block;
+      box-shadow: 0 4px 12px rgba(180, 83, 9, 0.15);
+    }
+
+    .login-modal-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--admin-text-main);
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .login-modal-subtitle {
+      font-size: 0.86rem;
+      color: var(--admin-text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .btn-login-submit {
+      width: 100%;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, var(--admin-primary) 0%, #92400E 100%);
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25);
+    }
+
+    .btn-login-submit:hover {
+      background: linear-gradient(135deg, #92400E 0%, #78350F 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(180, 83, 9, 0.35);
+    }
+
+    .sidebar-logout-btn {
+      width: 100%;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #FEF2F2;
+      border: 1px solid #FEE2E2;
+      border-radius: 8px;
+      color: #DC2626;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-logout-btn:hover {
+      background: #FEE2E2;
+      border-color: #FECACA;
+      color: #B91C1C;
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <!-- ==============================================
+       ADMIN LOGIN SCREEN OVERLAY (Secures Portal)
+       ============================================== -->
+  <div class="admin-login-overlay" id="adminLoginOverlay">
+    <div class="admin-login-modal">
+      <div class="login-brand-header">
+        <img src="image.png" alt="Shri Gurudatta Logo" class="login-modal-logo">
+        <h2 class="login-modal-title">Admin Sign In</h2>
+        <p class="login-modal-subtitle">Sign in to manage services, products, banners, and website settings.</p>
+      </div>
+
+      <form id="adminLoginForm" onsubmit="return false;">
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label" for="adminEmailInput">Email Address</label>
+          <input type="email" id="adminEmailInput" class="form-input" placeholder="Enter your email" required autocomplete="username" autofocus>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label" for="adminPasswordInput">Password</label>
+          <input type="password" id="adminPasswordInput" class="form-input" placeholder="Enter your password" required autocomplete="current-password">
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--admin-text-muted); cursor: pointer;">
+            <input type="checkbox" id="rememberMeCheckbox" checked style="width: 16px; height: 16px; accent-color: var(--admin-primary); cursor: pointer;">
+            Keep me signed in on this device
+          </label>
+        </div>
+
+        <button type="button" class="btn-login-submit" id="btnLoginSubmit">
+          Sign In
+        </button>
+
+        <div id="loginErrorMessage" style="color: #DC2626; font-size: 0.85rem; margin-top: 14px; display: none; text-align: center; font-weight: 500;"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="admin-app-layout">
+    
+    <!-- ==============================================
+         LEFT SIDEBAR NAVIGATION (Select Options)
+         ============================================== -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <!-- Sidebar Header / Brand -->
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand" target="_blank">
+          <img src="image.png" alt="Shri Gurudatta Logo" class="sidebar-logo">
+          <div class="sidebar-brand-text">
+            <span class="sidebar-brand-title">Shri Gurudatta</span>
+            <span class="sidebar-brand-sub">Astroved</span>
+          </div>
+        </a>
+        <span class="sidebar-badge">ADMIN</span>
+      </div>
+
+      <!-- Navigation Options -->
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">MAIN SECTIONS</div>
+        
+        <button class="sidebar-nav-item tab-btn active" data-tab="tab-services" id="sideNavServices">
+          <span class="nav-icon">🔮</span>
+          <span class="nav-label">Astrology Services</span>
+        </button>
+
+        <button class="sidebar-nav-item tab-btn" data-tab="tab-products" id="sideNavProducts">
+          <span class="nav-icon">📿</span>
+          <span class="nav-label">Astro Products</span>
+        </button>
+
+        <button class="sidebar-nav-item tab-btn" data-tab="tab-banners" id="sideNavBanners">
+          <span class="nav-icon">🖼️</span>
+          <span class="nav-label">Homepage Banners</span>
+        </button>
+
+        <button class="sidebar-nav-item tab-btn" data-tab="tab-bookings" id="sideNavBookings">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Consultation Leads</span>
+        </button>
+
+        <button class="sidebar-nav-item tab-btn" data-tab="tab-settings" id="sideNavSettings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Contact &amp; Payments</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer Links -->
+      <div class="sidebar-footer">
+        <div class="sidebar-section-label">WEBSITE PREVIEWS</div>
+        <a href="index.html" class="sidebar-link-btn" target="_blank">
+          <span>🌐 Live Website</span>
+          <span class="ext-icon">↗</span>
+        </a>
+        <a href="products.html" class="sidebar-link-btn" target="_blank">
+          <span>📿 Products Page</span>
+          <span class="ext-icon">↗</span>
+        </a>
+        <button class="sidebar-logout-btn" id="btnAdminLogout">
+          <span>🚪 Log Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ==============================================
+         RIGHT MAIN CONTENT
+         ============================================== -->
+    <div class="admin-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle navigation">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <div class="topbar-title-wrap">
+            <h1 class="topbar-page-title" id="topbarTitle">Astrology Services</h1>
+            <span class="topbar-breadcrumb">Admin Dashboard &bull; Manage Services</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="btn-save-master" id="btnMasterSave">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span>Save All Live</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Panels Wrap -->
+      <main class="admin-panels-wrap">
+        
+        <!-- TAB 1: SERVICES -->
+        <section class="tab-panel active" id="tab-services">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Manage Services</h2>
+              <p class="panel-subtitle">Add or edit your consultations, upload multiple images, and adjust descriptions.</p>
+            </div>
+            <button class="btn-add-new" id="btnAddNewService">
+              <span>+ Add New Service</span>
+            </button>
+          </div>
+
+          <div class="items-grid" id="servicesGrid">
+            <!-- Rendered dynamically via admin.js -->
+          </div>
+        </section>
+
+        <!-- TAB 2: PRODUCTS -->
+        <section class="tab-panel" id="tab-products">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Manage Astro Products</h2>
+              <p class="panel-subtitle">Simple product cards with images, clean description, and direct WhatsApp ordering.</p>
+            </div>
+            <button class="btn-add-new" id="btnAddNewProduct">
+              <span>+ Add New Product</span>
+            </button>
+          </div>
+
+          <div class="items-grid" id="productsGrid">
+            <!-- Rendered dynamically via admin.js -->
+          </div>
+        </section>
+
+        <!-- TAB 3: HOMEPAGE BANNERS -->
+        <section class="tab-panel" id="tab-banners">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Homepage Consultation &amp; Ad Banners</h2>
+              <p class="panel-subtitle">Manage the featured consultation banners &amp; special announcement/ad banners on your homepage.</p>
+            </div>
+            <button class="btn-add-new" id="btnAddNewBanner">
+              <span>+ Add New Banner</span>
+            </button>
+          </div>
+
+          <div class="items-grid" id="bannersGrid">
+            <!-- Rendered dynamically via admin.js -->
+          </div>
+        </section>
+
+        <!-- TAB 4: CONSULTATION LEADS & INQUIRIES -->
+        <section class="tab-panel" id="tab-bookings">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Consultation Inquiries &amp; Leads</h2>
+              <p class="panel-subtitle">All client inquiries submitted via WhatsApp booking forms on the website.</p>
+            </div>
+            <button class="btn-action-edit" id="btnRefreshBookings" style="padding: 10px 18px; font-weight: 600;">
+              <span>🔄 Refresh Leads</span>
+            </button>
+          </div>
+
+          <div id="bookingsListContainer" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Rendered dynamically via admin.js -->
+          </div>
+        </section>
+
+        <!-- TAB 5: CONTACT & PAYMENTS -->
+        <section class="tab-panel" id="tab-settings">
+          <div class="panel-header-row">
+            <div>
+              <h2 class="panel-title">Contact &amp; Payment Settings</h2>
+              <p class="panel-subtitle">Update your WhatsApp number, GPay, UPI ID, address, timings, and payment QR code.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="settings-box">
+              <div class="form-group">
+                <label class="form-label">WhatsApp Number (For Direct Chats &amp; Orders)</label>
+                <input type="text" class="form-input" id="settingWhatsapp" placeholder="e.g. 9063862498">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Google Pay / PhonePe Number</label>
+                <input type="text" class="form-input" id="settingGpay" placeholder="e.g. 7675966942">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">UPI ID for Direct Transfers</label>
+                <input type="text" class="form-input" id="settingUpi" placeholder="e.g. 7675966942@ybl">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Display Phone Number (Formatted)</label>
+                <input type="text" class="form-input" id="settingPhoneDisplay" placeholder="+91 90638 62498 / +91 76759 66942">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Center Address</label>
+                <textarea class="form-textarea" id="settingAddress" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Consultation Hours</label>
+                <input type="text" class="form-input" id="settingTimings">
+              </div>
+
+              <button class="btn-save-master" id="btnSaveSettings" style="width: 100%; justify-content: center; margin-top: 8px;">
+                Save Contact &amp; Payment Settings
+              </button>
+            </div>
+
+            <div class="settings-box" style="align-items: center; text-align: center;">
+              <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; margin: 0; color: var(--admin-text-main);">
+                Payment QR Code
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--admin-text-muted); margin: 4px 0 16px;">
+                Displayed on the Contact Page for consultation payments &amp; dakshina.
+              </p>
+
+              <div class="qr-preview-box">
+                <img src="payment_qr.png" id="qrPreviewImg" alt="Payment QR Code">
+              </div>
+
+              <div class="file-upload-box" id="qrUploadBox" style="width: 100%; margin-top: 14px;">
+                <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
+                <span>📷 Click to Upload New QR Code</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       MODAL FOR SERVICE EDIT / ADD
+       ============================================== -->
+  <div class="admin-modal-backdrop" id="serviceModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="modal-title" id="serviceModalTitle">Edit Service</h3>
+        <button class="modal-close-btn" id="btnCloseServiceModal">&times;</button>
+      </div>
+
+      <div class="admin-modal-body">
+        <input type="hidden" id="serviceEditIndex" value="-1">
+
+        <div class="form-group">
+          <label class="form-label">Service Title</label>
+          <input type="text" class="form-input" id="serviceInputTitle" placeholder="e.g. Complete Horoscope Analysis">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Short Description (Single Line on Card)</label>
+          <input type="text" class="form-input" id="serviceInputShortDesc" placeholder="e.g. Detailed analysis of your birth chart across 12 houses.">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Detailed Explanation</label>
+          <textarea class="form-textarea" id="serviceInputExplanation" placeholder="Full guidance details for consultation..."></textarea>
+        </div>
+
+        <!-- Multiple Images Section -->
+        <div class="form-group">
+          <label class="form-label">Multiple Images (Cover + Gallery)</label>
+          <div class="file-upload-box" id="serviceUploadBox">
+            <input type="file" id="serviceFileInput" accept="image/*" multiple style="display: none;">
+            <span>📷 Click to Upload Image(s) from Device</span>
+          </div>
+
+          <div class="form-group" style="margin-top: 8px;">
+            <label style="font-size: 0.78rem; color: var(--admin-text-muted);">Or add image filename / URL:</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" class="form-input" id="serviceManualImgInput" placeholder="e.g. service_general.jpg or https://...">
+              <button class="btn-add-new" id="btnAddServiceImgManual" type="button" style="padding: 8px 14px;">Add</button>
+            </div>
+          </div>
+
+          <div class="images-preview-strip" id="serviceImagesStrip"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">WhatsApp Pre-filled Message</label>
+          <input type="text" class="form-input" id="serviceInputWa" placeholder="e.g. Hello Guruji, I would like to consult...">
+        </div>
+      </div>
+
+      <div class="admin-modal-footer">
+        <button class="btn-admin-cancel" id="btnCancelService">Cancel</button>
+        <button class="btn-save-master" id="btnSaveService">Save Service</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       MODAL FOR PRODUCT EDIT / ADD
+       ============================================== -->
+  <div class="admin-modal-backdrop" id="productModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="modal-title" id="productModalTitle">Edit Astro Product</h3>
+        <button class="modal-close-btn" id="btnCloseProductModal">&times;</button>
+      </div>
+
+      <div class="admin-modal-body">
+        <input type="hidden" id="productEditIndex" value="-1">
+
+        <div class="form-group">
+          <label class="form-label">Product Name / Title</label>
+          <input type="text" class="form-input" id="productInputTitle" placeholder="e.g. Yantras & Mantra-Energized Pendant">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Single-Line Description</label>
+          <input type="text" class="form-input" id="productInputShortDesc" placeholder="e.g. Sacred geometric energy plates & wearable golden kavach...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Product Specifications / Full Details</label>
+          <textarea class="form-textarea" id="productInputSpecs" placeholder="Vedic specifications, materials, and benefits..."></textarea>
+        </div>
+
+        <!-- Multiple Images Section -->
+        <div class="form-group">
+          <label class="form-label">Product Images (Main Photo + Closeups)</label>
+          <div class="file-upload-box" id="productUploadBox">
+            <input type="file" id="productFileInput" accept="image/*" multiple style="display: none;">
+            <span>📷 Click to Upload Product Image(s)</span>
+          </div>
+
+          <div class="form-group" style="margin-top: 8px;">
+            <label style="font-size: 0.78rem; color: var(--admin-text-muted);">Or add image filename / URL:</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" class="form-input" id="productManualImgInput" placeholder="e.g. product_yantra.jpg or https://...">
+              <button class="btn-add-new" id="btnAddProductImgManual" type="button" style="padding: 8px 14px;">Add</button>
+            </div>
+          </div>
+
+          <div class="images-preview-strip" id="productImagesStrip"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">WhatsApp Order Message</label>
+          <input type="text" class="form-input" id="productInputWa" placeholder="e.g. Hello Guruji, I would like to order...">
+        </div>
+      </div>
+
+      <div class="admin-modal-footer">
+        <button class="btn-admin-cancel" id="btnCancelProduct">Cancel</button>
+        <button class="btn-save-master" id="btnSaveProduct">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       MODAL FOR BANNER EDIT / ADD
+       ============================================== -->
+  <div class="admin-modal-backdrop" id="bannerModal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 class="modal-title" id="bannerModalTitle">Edit Homepage Banner</h3>
+        <button class="modal-close-btn" id="btnCloseBannerModal">&times;</button>
+      </div>
+
+      <div class="admin-modal-body">
+        <input type="hidden" id="bannerEditIndex" value="-1">
+
+        <div class="form-group">
+          <label class="form-label">Banner Title</label>
+          <input type="text" class="form-input" id="bannerInputTitle" placeholder="e.g. Shri GuruDatta Consultation or Special Puja Offer">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Button Text</label>
+          <input type="text" class="form-input" id="bannerInputButtonText" placeholder="e.g. Book Consultation">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Banner Background Image (Uploaded to Cloudinary)</label>
+          <div class="file-upload-box" id="bannerUploadBox">
+            <input type="file" id="bannerFileInput" accept="image/*" style="display: none;">
+            <span>📷 Click to Upload Banner Image (Cloudinary)</span>
+          </div>
+
+          <div class="form-group" style="margin-top: 8px;">
+            <label style="font-size: 0.78rem; color: var(--admin-text-muted);">Or enter image filename / URL:</label>
+            <input type="text" class="form-input" id="bannerInputImg" placeholder="e.g. astrologer_portrait.jpg or https://res.cloudinary.com/...">
+          </div>
+
+          <div style="margin-top: 8px; width: 100%; aspect-ratio: 16/9; max-height: 150px; border-radius: 8px; overflow: hidden; border: 1px solid var(--admin-border); background: #F1F5F9;">
+            <img id="bannerPreviewImg" src="astrologer_portrait.jpg" alt="Banner Preview" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">WhatsApp Pre-filled Message / Consultation Action</label>
+          <input type="text" class="form-input" id="bannerInputWa" placeholder="e.g. Hello Guruji, I would like to book a Shri GuruDatta Consultation.">
+        </div>
+      </div>
+
+      <div class="admin-modal-footer">
+        <button class="btn-admin-cancel" id="btnCancelBanner">Cancel</button>
+        <button class="btn-save-master" id="btnSaveBanner">Save Banner</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">Changes saved successfully!</span>
+  </div>
+
+  <script src="admin.js?v=2"></script>
+</body>
+</html>

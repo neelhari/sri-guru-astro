@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Astro Product Details | Shri Gurudatta Astroved</title>
+  <meta name="description" id="metaDescription" content="Authentic, mantra-energized Vedic Astro Product by Shri Gurudatta Astroved. Consecrated through traditional Vedic Prana Pratishtha.">
+
+  <!-- Google Fonts: Cormorant Garamond & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=21">
+  <style>
+    .product-empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .product-empty-state h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="index.html" class="brand-link" aria-label="Shri Gurudatta Astroved Home">
+        <img src="image.png" alt="Shri Gurudatta Astroved Emblem" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-name">Shri Gurudatta</span>
+          <span class="brand-sub">Astroved</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="services.html" class="nav-item">Services</a>
+        <a href="products.html" class="nav-item active">Astro Products</a>
+        <a href="systems.html" class="nav-item">Astrology Systems</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+
+      <!-- Header Action -->
+      <div class="header-actions">
+        <a href="https://wa.me/919063862498" class="btn-header-wa dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+          </svg>
+          <span>Talk on WhatsApp</span>
+        </a>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <div class="brand-text">
+          <span class="brand-name">Shri Gurudatta</span>
+          <span class="brand-sub">Astroved</span>
+        </div>
+        <button class="drawer-close" id="drawerClose">&times;</button>
+      </div>
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="about.html" class="mobile-nav-link">About Guruji</a>
+        <a href="services.html" class="mobile-nav-link">Astrology Services</a>
+        <a href="products.html" class="mobile-nav-link active">Astro Products</a>
+        <a href="systems.html" class="mobile-nav-link">Astrology Systems</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+      <div class="drawer-footer">
+        <a href="https://wa.me/919063862498" class="btn-gold-pill dynamic-wa-link full-width" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+        <a href="tel:+917675966942" class="btn-outline-pill dynamic-call-link full-width">Call Now</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="product-simple-page">
+    <div class="container product-simple-container" id="productContainer">
+      
+      <!-- 1. Multiple Product Images at Top -->
+      <div class="product-gallery-view">
+        <div class="product-main-image-box">
+          <img id="mainProductImg" src="product_yantra.jpg" alt="Astro Product" class="detail-banner-img">
+        </div>
+        <div class="product-thumb-strip" id="productThumbStrip">
+          <!-- Thumbnails rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- 2. Product Title -->
+      <h1 class="product-simple-title" id="productTitle">Astro Product</h1>
+
+      <!-- 3. Description & Specifications -->
+      <p class="product-simple-desc" id="productDesc">
+        Authentic consecrated Vedic spiritual remedy article.
+      </p>
+
+      <!-- 4. Action Buttons -->
+      <div class="product-simple-btn-row">
+        <a href="#" id="productWaBtn" class="btn-gold-pill dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+          <span>Order on WhatsApp</span>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <a href="products.html" class="btn-outline-pill-dark">
+          &larr; Back to Products
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Solid Clean Footer -->
+  <footer class="section-contact-dark">
+    <div class="container">
+      <div class="footer-columns-grid">
+        <div class="footer-brand-col">
+          <div class="footer-brand-header">
+            <img src="image.png" alt="Shri Gurudatta Astroved" class="footer-crest">
+            <div>
+              <h3 class="footer-title">Shri Gurudatta</h3>
+              <span class="footer-subtitle">Astroved</span>
+            </div>
+          </div>
+          <p class="footer-bio-text">
+            Providing authentic Vedic astrology guidance with 15+ years of experience. Personalized insights for a better tomorrow.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Astro Products</a></li>
+            <li><a href="systems.html">Astrology Systems</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Astro Products</h4>
+          <ul id="footerProductsList">
+            <li><a href="product-yantras-pendants.html">Yantras &amp; Pendants</a></li>
+            <li><a href="product-energized-malas.html">Mantra-Energized Malalu</a></li>
+            <li><a href="product-pasupata-kankanam.html">Pasupata Kankanalu</a></li>
+            <li><a href="product-customized-remedy-kits.html">Customized Remedy Kits</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-col">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-items">
+            <p class="contact-location-item">
+              <span class="contact-icon">📍</span>
+              <span id="footerAddressText">Kesanupalli Village, Dachepalli Mandal, Palnadu District, AP – 522414</span>
+            </p>
+            <p>
+              <span class="contact-icon">📞</span>
+              <a href="tel:+917675966942" class="dynamic-call-link" id="footerPhoneText">+91 76759 66942 / +91 90638 62498</a>
+            </p>
+            <p>
+              <span class="contact-icon">💬</span>
+              <a href="https://wa.me/919063862498" class="dynamic-wa-link" target="_blank" rel="noopener noreferrer">+91 90638 62498</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved. &bull; <a href="admin.html" style="color: #DFB25A; text-decoration: none;">Admin Portal</a></p>
+        <p class="footer-locale">Palnadu, Andhra Pradesh &bull; English Edition</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic single-product loader supporting multiple images and WhatsApp ordering
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Mobile Drawer Toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const drawerClose = document.getElementById("drawerClose");
+      const drawerOverlay = document.getElementById("drawerOverlay");
+      const mobileDrawer = document.getElementById("mobileDrawer");
+
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener("click", () => mobileDrawer.classList.add("active"));
+      }
+      if (drawerClose && mobileDrawer) {
+        drawerClose.addEventListener("click", () => mobileDrawer.classList.remove("active"));
+      }
+      if (drawerOverlay && mobileDrawer) {
+        drawerOverlay.addEventListener("click", () => mobileDrawer.classList.remove("active"));
+      }
+
+      // Load Site Data
+      let siteData = null;
+      try {
+        const res = await fetch("/api/data");
+        if (res.ok) siteData = await res.json();
+      } catch (e) {}
+
+      if (!siteData) {
+        const cached = localStorage.getItem("shri_gurudatta_site_data");
+        if (cached) {
+          try { siteData = JSON.parse(cached); } catch (e) {}
+        }
+      }
+
+      if (!siteData) {
+        try {
+          const resFallback = await fetch("site_data.json");
+          if (resFallback.ok) siteData = await resFallback.json();
+        } catch (e) {}
+      }
+
+      const products = siteData && siteData.products ? siteData.products : [];
+      const business = siteData && siteData.business ? siteData.business : { whatsappRaw: "9063862498" };
+
+      // Parse ID from URL parameter
+      const params = new URLSearchParams(window.location.search);
+      let prodId = params.get("id");
+
+      let currentProduct = null;
+      if (prodId) {
+        currentProduct = products.find(p => p.id === prodId || (p.title && p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === prodId));
+      }
+
+      if (!currentProduct && products.length > 0) {
+        currentProduct = products[0];
+      }
+
+      if (!currentProduct) {
+        document.getElementById("productContainer").innerHTML = `
+          <div class="product-empty-state">
+            <h2>Product Not Found</h2>
+            <p>Please browse all our items in the catalog.</p>
+            <a href="products.html" class="btn-gold-pill" style="margin-top: 16px;">View All Products</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Populate Title, Meta & Desc
+      document.title = `${currentProduct.title} | Shri Gurudatta Astroved`;
+      document.getElementById("productTitle").textContent = currentProduct.title;
+      
+      const fullText = currentProduct.specs || currentProduct.shortDesc || "Authentic consecrated Vedic spiritual remedy article.";
+      document.getElementById("productDesc").textContent = fullText;
+
+      // Populate Multiple Images
+      const images = (currentProduct.images && currentProduct.images.length > 0) 
+        ? currentProduct.images 
+        : [currentProduct.img || "product_yantra.jpg"];
+
+      const mainImg = document.getElementById("mainProductImg");
+      mainImg.src = images[0];
+      mainImg.alt = currentProduct.title;
+
+      const thumbStrip = document.getElementById("productThumbStrip");
+      thumbStrip.innerHTML = "";
+
+      images.forEach((imgSrc, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `thumb-btn ${idx === 0 ? 'active' : ''}`;
+        btn.innerHTML = `<img src="${imgSrc}" alt="${currentProduct.title} photo ${idx + 1}" onerror="this.src='product_yantra.jpg'">`;
+        btn.addEventListener("click", () => {
+          mainImg.src = imgSrc;
+          document.querySelectorAll(".thumb-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+        thumbStrip.appendChild(btn);
+      });
+
+      // Populate WhatsApp Order Button
+      const waNumber = business.whatsappRaw || "9063862498";
+      const waMsg = currentProduct.waMessage || `Hello Guruji, I would like to order the ${currentProduct.title}.`;
+      const waUrl = `https://wa.me/91${waNumber.replace(/^91/, '')}?text=${encodeURIComponent(waMsg)}`;
+      document.getElementById("productWaBtn").href = waUrl;
+    });
+  </script>
+</body>
+</html>

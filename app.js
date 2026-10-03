@@ -1,16 +1,20 @@
 /**
  * Shri Gurudatta Astroved - Dynamic Application Engine
- * Renders the exact visual cards, systems, and handles WhatsApp deep-links and modal drawers.
+ * Renders the exact visual cards, systems, products, and handles WhatsApp deep-links and modal drawers.
+ * Dynamically synchronized with site_data.json and Admin Panel.
  */
 
 const DEFAULT_SITE_DATA = {
   business: {
     name: "Shri GuruDatta Astroved",
-    experience: "15 Years",
-    tagline: "Vedic Astrology & Personal Guidance",
-    phoneDisplay: "+91 98765 43210",
-    phoneRaw: "919876543210",
-    whatsappRaw: "919876543210",
+    experience: "15+ Years",
+    tagline: "Rewriting your Luck Through Astrology",
+    phoneDisplay: "+91 90638 62498 / +91 76759 66942",
+    phoneRaw: "917675966942",
+    whatsappRaw: "9063862498",
+    gpayNumber: "7675966942",
+    upiId: "7675966942@ybl",
+    qrImage: "payment_qr.png",
     address: "Kesanupalli village, Dachepalli mandal, Palnadu district – 522414",
     timings: "Morning: 09:00 AM – 01:00 PM | Evening: 04:00 PM – 08:30 PM"
   },
@@ -19,6 +23,7 @@ const DEFAULT_SITE_DATA = {
     {
       id: "general-prediction",
       img: "service_general.jpg",
+      images: ["service_general.jpg", "service_horoscope.jpg"],
       title: "General Prediction",
       shortDesc: "Guidance for your present phase, planetary transits, and future trends.",
       headline: "Clarity on Your Current Phase & Future Path",
@@ -30,12 +35,14 @@ const DEFAULT_SITE_DATA = {
         "Practical remedies and precautions for difficult transits"
       ],
       suitableFor: "Anyone seeking general clarity, feeling stuck at life crossroads, or planning major personal decisions.",
-      waMessage: "Hello, I would like to know more about General Prediction guidance."
+      pageUrl: "service-general-prediction.html",
+      waMessage: "Hello Guruji, I would like to know more about General Prediction guidance."
     },
     {
       id: "horoscope-analysis",
       img: "service_horoscope.jpg",
-      title: "Compleat Horoscope ఎనాలిసిస్",
+      images: ["service_horoscope.jpg", "service_general.jpg"],
+      title: "Complete Horoscope Analysis",
       shortDesc: "Detailed analysis of your birth chart across 12 houses and planetary yogas.",
       headline: "Understand Your Life Through Your Birth Chart",
       explanation: "A deep, multi-system examination of your natal chart combining Parashari Vedic Astrology, KP Sub-lords, and Nadi principles to uncover your true strengths, life challenges, and destiny blueprint.",
@@ -46,12 +53,14 @@ const DEFAULT_SITE_DATA = {
         "Personalized gemstone and Vedic remedial guidance"
       ],
       suitableFor: "Individuals wanting an exhaustive, lifelong roadmap of their chart and planetary influences.",
-      waMessage: "Hello, I would like to know more about Compleat Horoscope ఎనాలిసిస్."
+      pageUrl: "service-horoscope-analysis.html",
+      waMessage: "Hello Guruji, I would like to know more about Complete Horoscope Analysis."
     },
     {
       id: "astro-counselling",
       img: "service_general.jpg",
-      title: "Astro counseling",
+      images: ["service_general.jpg", "service_marriage.jpg"],
+      title: "Astro Counselling",
       shortDesc: "Personal guidance for life matters, career transitions, and emotional peace.",
       headline: "Calm, Honest Perspective in Times of Uncertainty",
       explanation: "Personalized counselling that merges astrological insights with practical wisdom to help you overcome confusion, manage emotional stress, and make informed choices with calm confidence.",
@@ -62,12 +71,14 @@ const DEFAULT_SITE_DATA = {
         "Spiritual rituals and mindset alignment remedies"
       ],
       suitableFor: "Those navigating stressful life transitions, career burnout, or complex personal dilemmas.",
-      waMessage: "Hello, I would like to seek Astro counseling for personal guidance."
+      pageUrl: "service-astro-counselling.html",
+      waMessage: "Hello Guruji, I would like to seek Astro Counselling for personal guidance."
     },
     {
       id: "muhurtham",
       img: "service_muhurtham.jpg",
-      title: "ముహూర్తం",
+      images: ["service_muhurtham.jpg", "service_marriage.jpg"],
+      title: "Auspicious Muhurtham",
       shortDesc: "Find the right auspicious time for weddings, housewarmings, and new ventures.",
       headline: "Harness Auspicious Celestial Alignments for Sacred Milestones",
       explanation: "Classical Panchanga analysis (Tithi, Vara, Nakshatra, Yoga, Karana) to pinpoint the exact, most fortified moments for your life events, shielding you from malefic planetary influences.",
@@ -78,12 +89,14 @@ const DEFAULT_SITE_DATA = {
         "Namakaranam and Aksharabhyasam auspicious dates"
       ],
       suitableFor: "Families and entrepreneurs preparing for milestone events, constructions, or ceremonies.",
-      waMessage: "Hello, I need assistance in finding an auspicious ముహూర్తం."
+      pageUrl: "service-muhurtham.html",
+      waMessage: "Hello Guruji, I need assistance in finding an Auspicious Muhurtham."
     },
     {
       id: "marriage-matching",
       img: "service_marriage.jpg",
-      title: "వివాహ పొంతన",
+      images: ["service_marriage.jpg", "service_muhurtham.jpg"],
+      title: "Marriage Matching",
       shortDesc: "Compatibility analysis for a happy, prosperous, and harmonious future.",
       headline: "Deep Compatibility Analysis for a Blessed Union",
       explanation: "Beyond superficial Guna Milan scores, we conduct an extensive cross-chart compatibility test focusing on emotional bond, longevity, health, financial prosperity, and mutual growth.",
@@ -94,12 +107,14 @@ const DEFAULT_SITE_DATA = {
         "Dasha agreement for synchronized marital bliss and family prosperity"
       ],
       suitableFor: "Parents, brides, and grooms seeking authentic compatibility before solemnizing marriage.",
-      waMessage: "Hello, I would like to know more about వివాహ పొంతన consultation."
+      pageUrl: "service-marriage-matching.html",
+      waMessage: "Hello Guruji, I would like to know more about Marriage Matching consultation."
     },
     {
       id: "baby-naming",
       img: "service_muhurtham.jpg",
-      title: "Names for new born baby",
+      images: ["service_muhurtham.jpg", "service_general.jpg"],
+      title: "Names for New Born Baby",
       shortDesc: "Auspicious starting syllables based on Janma Nakshatra and Numerology.",
       headline: "Blessed First Steps: Astrological & Numerological Naming",
       explanation: "Selecting the ideal starting sound (Akshara) based on the child's Janma Nakshatra and birth Pada, harmonized with positive numerological vibrations for lifetime prosperity and good health.",
@@ -110,11 +125,13 @@ const DEFAULT_SITE_DATA = {
         "Guidance on first rituals (Namakarana Muhurtham)"
       ],
       suitableFor: "New parents looking for traditional Vedic and numerologically aligned names for their baby.",
-      waMessage: "Hello, I would like guidance for Names for new born baby."
+      pageUrl: "service-baby-naming.html",
+      waMessage: "Hello Guruji, I would like guidance for Names for New Born Baby."
     },
     {
       id: "marriage-counselling",
       img: "service_marriage.jpg",
+      images: ["service_marriage.jpg", "service_general.jpg"],
       title: "Marriage Counselling",
       shortDesc: "Resolving marital discord and misunderstandings through astrological clarity.",
       headline: "Restoring Balance and Harmony in Marital Life",
@@ -126,12 +143,14 @@ const DEFAULT_SITE_DATA = {
         "Objective, constructive guidance for both partners"
       ],
       suitableFor: "Couples facing persistent misunderstandings, family tension, or relationship friction.",
-      waMessage: "Hello, I would like to consult regarding Marriage Counselling."
+      pageUrl: "service-marriage-counselling.html",
+      waMessage: "Hello Guruji, I would like to consult regarding Marriage Counselling."
     },
     {
       id: "homam-puja",
       img: "homam_fire.jpg",
-      title: "Homam/ Japam / puja services",
+      images: ["homam_fire.jpg"],
+      title: "Homam / Japam / Puja Services",
       shortDesc: "Authentic Vedic rituals and fire ceremonies to pacify planetary doshas.",
       headline: "Sacred Vedic Rituals for Spiritual Elevation & Protection",
       explanation: "Properly conducted traditional Homams and Mantra Japas performed with strict adherence to Shastric injunctions, clear sankalpa, and sacred Vedic chanting for you and your family.",
@@ -142,12 +161,14 @@ const DEFAULT_SITE_DATA = {
         "Sankalpa-based remote or in-person guidance and prasadam"
       ],
       suitableFor: "Individuals seeking spiritual remedies, removal of obstinate obstacles, or health protection.",
-      waMessage: "Hello, I would like to enquire about Homam/ Japam / puja services."
+      pageUrl: "service-homam-puja.html",
+      waMessage: "Hello Guruji, I would like to enquire about Homam / Japam / Puja Services."
     },
     {
       id: "vastu",
       img: "service_horoscope.jpg",
-      title: "Vastu services",
+      images: ["service_horoscope.jpg"],
+      title: "Vastu Services",
       shortDesc: "Spatial energy alignment for homes, plots, and commercial properties.",
       headline: "Align Your Living & Working Spaces with Cosmic Harmony",
       explanation: "Vedic Vastu Shastra principles to optimize directional energies (Pancha Bhoota balance), promoting prosperity, health, and peaceful living in your residence or commercial property.",
@@ -158,7 +179,51 @@ const DEFAULT_SITE_DATA = {
         "Non-destructive corrective remedies and energetic balancing"
       ],
       suitableFor: "Homeowners, plot buyers, builders, and business owners looking for harmonious spatial energy.",
-      waMessage: "Hello, I would like to enquire about Vastu services consultation."
+      pageUrl: "service-vastu.html",
+      waMessage: "Hello Guruji, I would like to enquire about Vastu Services consultation."
+    }
+  ],
+
+  products: [
+    {
+      id: "yantras-pendants",
+      img: "product_yantra.jpg",
+      images: ["product_yantra.jpg", "product_yantra_closeup.jpg"],
+      title: "Yantras & Mantra-Energized Pendant",
+      shortDesc: "Sacred geometric energy plates & wearable golden kavach for wealth, health, and negative energy shield.",
+      specs: "Authentic sacred geometric energy plates & wearable golden kavach consecrated through traditional Vedic Prana Pratishtha. Consecrated with 108 Shastric Beeja Mantras to shield against negative energies, promote financial growth, and bestow family harmony.",
+      pageUrl: "product-yantras-pendants.html",
+      waMessage: "Hello Guruji, I would like to enquire about Yantras & Mantra-Energized Pendants."
+    },
+    {
+      id: "energized-malas",
+      img: "product_mala.jpg",
+      images: ["product_mala.jpg", "product_mala_closeup.jpg"],
+      title: "Mantra-Energized Malalu",
+      shortDesc: "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for japa, peace, and spiritual power.",
+      specs: "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for daily japa, inner tranquility, and spiritual focus. Each bead is cleansed and energized with specific Beeja Mantras by Guruji.",
+      pageUrl: "product-energized-malas.html",
+      waMessage: "Hello Guruji, I would like to enquire about Mantra-Energized Malalu."
+    },
+    {
+      id: "pasupata-kankanam",
+      img: "product_kankanam.jpg",
+      images: ["product_kankanam.jpg", "product_kankanam_closeup.jpg"],
+      title: "Pasupata Kankanalu",
+      shortDesc: "Sacred consecrated copper-silver wristband infused with Pasupata Astra mantra for unassailable protection.",
+      specs: "Sacred consecrated copper-silver wristband infused with the powerful Pasupata Astra mantra for unassailable protection, dispelling fear, negative influences, and evil eye. Handcrafted in pure copper and sacred metals.",
+      pageUrl: "product-pasupata-kankanam.html",
+      waMessage: "Hello Guruji, I would like to enquire about Pasupata Kankanalu Protection Bangle."
+    },
+    {
+      id: "customized-remedy-kits",
+      img: "product_remedy_kit.jpg",
+      images: ["product_remedy_kit.jpg", "product_remedy_kit_closeup.jpg"],
+      title: "Customized Remedy Kits",
+      shortDesc: "Individualized planetary pacification puja box tailored to your horoscope for career, marriage, and health obstacles.",
+      specs: "Individualized planetary pacification puja box tailored directly to your horoscope for overcoming obstacles in career, marriage delays, and health issues. Includes consecrated planetary yantras, dhoop, and custom herbs.",
+      pageUrl: "product-customized-remedy-kits.html",
+      waMessage: "Hello Guruji, I would like to enquire about Customized Remedy Kits."
     }
   ],
 
@@ -185,20 +250,84 @@ const DEFAULT_SITE_DATA = {
     }
   ],
 
-  gallery: [
-    { img: "homam_fire.jpg", caption: "Sacred Vedic Homam Ritual" },
-    { img: "astrologer_portrait.jpg", caption: "Personal Consultation Session" },
-    { img: "service_marriage.jpg", caption: "Auspicious Wedding Rites" },
-    { img: "service_horoscope.jpg", caption: "Classical Birth Chart Calculations" }
+  banners: [
+    {
+      id: "banner-1",
+      title: "Shri GuruDatta Consultation",
+      buttonText: "Book Consultation",
+      img: "astrologer_portrait.jpg",
+      waMessage: "Hello Guruji, I would like to book a Shri GuruDatta Consultation."
+    },
+    {
+      id: "banner-2",
+      title: "Vedic & Nadi Consultation",
+      buttonText: "Take Consultation",
+      img: "service_horoscope.jpg",
+      waMessage: "Hello Guruji, I would like to take Vedic & Nadi Consultation."
+    }
   ]
 };
 
 class AstrologyApp {
   constructor() {
-    this.data = this.loadData();
+    this.data = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
     this.initElements();
     this.initSplashScreen();
     this.bindEvents();
+    
+    // Load fresh data from API / LocalStorage then render
+    this.initDataAndRender();
+  }
+
+  async initDataAndRender() {
+    // 1. Try local storage cache
+    const cached = localStorage.getItem("shri_gurudatta_site_data");
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (parsed && parsed.business) this.data = parsed;
+      } catch (e) {}
+    }
+
+    // 2. Fetch live data from /api/data, Supabase Storage, or site_data.json
+    try {
+      const res = await fetch("/api/data", { cache: "no-store" });
+      if (res.ok) {
+        const liveData = await res.json();
+        if (liveData && liveData.business) {
+          this.data = liveData;
+          localStorage.setItem("shri_gurudatta_site_data", JSON.stringify(liveData));
+        }
+      } else {
+        throw new Error("Local API unavailable");
+      }
+    } catch (e) {
+      try {
+        // Direct Supabase Storage CDN fetch
+        const resSupa = await fetch("https://vbfdimlkbilkdakjbfjg.supabase.co/storage/v1/object/public/site_data/site_data.json");
+        if (resSupa.ok) {
+          const liveData = await resSupa.json();
+          if (liveData && liveData.business) {
+            this.data = liveData;
+            localStorage.setItem("shri_gurudatta_site_data", JSON.stringify(liveData));
+          }
+        } else {
+          throw new Error("Supabase storage error");
+        }
+      } catch (errSupa) {
+        try {
+          const resFallback = await fetch("site_data.json");
+          if (resFallback.ok) {
+            const liveData = await resFallback.json();
+            if (liveData && liveData.business) {
+              this.data = liveData;
+              localStorage.setItem("shri_gurudatta_site_data", JSON.stringify(liveData));
+            }
+          }
+        } catch (err) {}
+      }
+    }
+
     this.renderAll();
   }
 
@@ -232,27 +361,11 @@ class AstrologyApp {
     }
   }
 
-  loadData() {
-    // Clear any obsolete localStorage cache so fresh service names and addresses always render
-    localStorage.removeItem("shri_gurudatta_site_data");
-    return JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-  }
-
-  saveData() {
-    localStorage.setItem("shri_gurudatta_site_data", JSON.stringify(this.data));
-    this.renderAll();
-  }
-
-  resetData() {
-    this.data = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-    localStorage.removeItem("shri_gurudatta_site_data");
-    this.renderAll();
-  }
-
   initElements() {
     this.servicesCardsContainer = document.getElementById("servicesCardsContainer");
+    this.servicesHubGrid = document.getElementById("servicesHubGrid");
     this.systemsCardsContainer = document.getElementById("systemsCardsContainer");
-    this.galleryPhotoGrid = document.getElementById("galleryPhotoGrid");
+    this.productsDirectGrids = document.querySelectorAll(".products-direct-grid");
 
     this.serviceModal = document.getElementById("serviceModal");
     this.modalBody = document.getElementById("modalBody");
@@ -292,63 +405,212 @@ class AstrologyApp {
       });
     }
 
+    // Consultation Booking Modal Events
+    const closeBookingBtn = document.getElementById("btnCloseBookingModal");
+    if (closeBookingBtn) {
+      closeBookingBtn.addEventListener("click", () => this.closeBookingModal());
+    }
+    const bookingOverlay = document.getElementById("bookingModalOverlay");
+    if (bookingOverlay) {
+      bookingOverlay.addEventListener("click", (e) => {
+        if (e.target === bookingOverlay) this.closeBookingModal();
+      });
+    }
+
+    // Modal Booking Form Submission
+    const btnSubmitModal = document.getElementById("btnSubmitModalBooking");
+    if (btnSubmitModal) {
+      btnSubmitModal.addEventListener("click", () => {
+        const name = document.getElementById("modalBookingName")?.value.trim() || "";
+        const phone = document.getElementById("modalBookingPhone")?.value.trim() || "";
+        const email = document.getElementById("modalBookingEmail")?.value.trim() || "";
+        const service = document.getElementById("modalBookingService")?.value || "";
+        const message = document.getElementById("modalBookingMessage")?.value.trim() || "";
+        this.handleBookingSubmission(name, phone, email, service, message);
+      });
+    }
+
+    // Inline Booking Form Submission (Homepage below Personal Guidance)
+    const btnSubmitInline = document.getElementById("btnSubmitInlineBooking");
+    if (btnSubmitInline) {
+      btnSubmitInline.addEventListener("click", () => {
+        const name = document.getElementById("inlineBookingName")?.value.trim() || "";
+        const phone = document.getElementById("inlineBookingPhone")?.value.trim() || "";
+        const email = document.getElementById("inlineBookingEmail")?.value.trim() || "";
+        const service = document.getElementById("inlineBookingService")?.value || "";
+        const message = document.getElementById("inlineBookingMessage")?.value.trim() || "";
+        this.handleBookingSubmission(name, phone, email, service, message);
+      });
+    }
+
+    // Contact Page Booking Form Submission
+    const btnSubmitContact = document.getElementById("btnSubmitContactBooking");
+    if (btnSubmitContact) {
+      btnSubmitContact.addEventListener("click", () => {
+        const name = document.getElementById("contactBookingName")?.value.trim() || "";
+        const phone = document.getElementById("contactBookingPhone")?.value.trim() || "";
+        const email = document.getElementById("contactBookingEmail")?.value.trim() || "";
+        const service = document.getElementById("contactBookingService")?.value || "";
+        const message = document.getElementById("contactBookingMessage")?.value.trim() || "";
+        this.handleBookingSubmission(name, phone, email, service, message);
+      });
+    }
+
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         this.closeServiceModal();
+        this.closeBookingModal();
         this.toggleMobileDrawer(false);
       }
     });
   }
 
-  generateWaLink(message = "Hello Guruji, I would like to consult regarding astrology guidance.") {
-    const rawNumber = this.data.business.whatsappRaw || "919876543210";
-    return `https://wa.me/${rawNumber}?text=${encodeURIComponent(message)}`;
-  }
+  openBookingModal(preselectedService = "") {
+    const modal = document.getElementById("bookingModalOverlay");
+    if (!modal) return;
 
-  toggleMobileDrawer(show) {
-    if (this.mobileDrawer) {
-      this.mobileDrawer.classList.toggle("active", show);
-      this.mobileDrawer.setAttribute("aria-hidden", !show);
-      document.body.style.overflow = show ? "hidden" : "";
-    }
-  }
-
-  toggleAdminPanel(show) {
-    if (this.adminPanel) {
-      if (show) {
-        this.adminWaInput.value = this.data.business.whatsappRaw;
-        this.adminPhoneInput.value = this.data.business.phoneDisplay;
-        this.adminAddressInput.value = this.data.business.address;
+    if (preselectedService) {
+      const select = document.getElementById("modalBookingService");
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.toLowerCase().includes(preselectedService.toLowerCase()) ||
+              preselectedService.toLowerCase().includes(select.options[i].text.toLowerCase())) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
       }
-      this.adminPanel.classList.toggle("active", show);
-      this.adminPanel.setAttribute("aria-hidden", !show);
     }
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  closeBookingModal() {
+    const modal = document.getElementById("bookingModalOverlay");
+    if (modal) modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  handleBookingSubmission(name, phone, email, service, message) {
+    if (!name || !phone) {
+      alert("Please provide both your Name and Phone Number.");
+      return;
+    }
+
+    // 1. Post lead to /api/bookings (Supabase + local fallback)
+    fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, phone, email, service, message })
+    }).catch(e => console.warn("Booking API record error:", e));
+
+    // 2. Open WhatsApp directly with formatted message to Guruji
+    const rawNumber = (this.data && this.data.business && this.data.business.whatsappRaw) || "9063862498";
+    const cleanNum = rawNumber.replace(/^91/, '');
+
+    const waText = 
+`*New Consultation Booking Request*
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+🔮 *Service:* ${service || 'Astrology Consultation'}
+${email ? `📧 *Email:* ${email}\n` : ''}${message ? `📝 *Query/Birth Details:* ${message}\n` : ''}
+Hello Guruji, I have submitted my consultation booking details above. Please confirm my appointment timing.`;
+
+    const waUrl = `https://wa.me/91${cleanNum}?text=${encodeURIComponent(waText)}`;
+    window.open(waUrl, "_blank");
+
+    this.closeBookingModal();
+  }
+
+  toggleMobileDrawer(open) {
+    if (!this.mobileDrawer) return;
+    if (open) {
+      this.mobileDrawer.classList.add("active");
+      this.mobileDrawer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    } else {
+      this.mobileDrawer.classList.remove("active");
+      this.mobileDrawer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+  }
+
+  generateWaLink(customMessage) {
+    const rawNumber = this.data.business.whatsappRaw || "9063862498";
+    const cleanNum = rawNumber.replace(/^91/, '');
+    const defaultMsg = "Hello Guruji, I would like to consult regarding astrology guidance.";
+    const text = encodeURIComponent(customMessage || defaultMsg);
+    return `https://wa.me/91${cleanNum}?text=${text}`;
   }
 
   renderAll() {
-    this.updateContactLinks();
+    this.updateGlobalContactInfo();
+    this.renderBanners();
     this.renderServices();
+    this.renderServicesHub();
+    this.renderProducts();
     this.renderSystems();
-    this.renderGallery();
   }
 
-  updateContactLinks() {
-    const defaultWaUrl = this.generateWaLink();
-    const telUrl = `tel:+${this.data.business.phoneRaw}`;
+  renderBanners() {
+    const container = document.getElementById("featuredBannersGrid");
+    if (!container) return;
 
-    document.querySelectorAll(".dynamic-wa-link").forEach(el => el.setAttribute("href", defaultWaUrl));
-    document.querySelectorAll(".dynamic-call-link").forEach(el => el.setAttribute("href", telUrl));
+    const banners = this.data.banners || DEFAULT_SITE_DATA.banners || [];
+    if (banners.length === 0) return;
+
+    container.innerHTML = "";
+    banners.forEach(b => {
+      const card = document.createElement("div");
+      card.className = "consult-banner-card";
+
+      const escapedTitle = (b.title || "Consultation").replace(/'/g, "\\'");
+
+      card.innerHTML = `
+        <img src="${b.img || 'astrologer_portrait.jpg'}" alt="${b.title}" class="consult-banner-img" loading="lazy" onerror="this.src='astrologer_portrait.jpg'">
+        <div class="consult-banner-center-content">
+          <h3 class="consult-banner-title">${b.title}</h3>
+          <button type="button" class="btn-banner-white" onclick="app.openBookingModal('${escapedTitle}')">
+            ${b.buttonText || "Book Consultation"}
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  updateGlobalContactInfo() {
+    const b = this.data.business || {};
+    const defaultWa = this.generateWaLink();
+    const cleanPhone = (b.phoneRaw || "917675966942").replace(/^91/, '');
+    const telUrl = `tel:+91${cleanPhone}`;
+
+    // Update all dynamic WhatsApp links
+    document.querySelectorAll(".dynamic-wa-link").forEach(link => {
+      // Retain custom prefilled message if already present in href, else apply live default
+      const currentHref = link.getAttribute("href");
+      if (currentHref && currentHref.includes("text=")) {
+        const textParam = currentHref.split("text=")[1];
+        link.href = `https://wa.me/91${(b.whatsappRaw || "9063862498").replace(/^91/, '')}?text=${textParam}`;
+      } else {
+        link.href = defaultWa;
+      }
+    });
+
+    // Update all dynamic Call links
+    document.querySelectorAll(".dynamic-call-link").forEach(link => {
+      link.href = telUrl;
+    });
 
     if (this.contactPhoneDisplay) {
-      this.contactPhoneDisplay.textContent = this.data.business.phoneDisplay;
-      this.contactPhoneDisplay.setAttribute("href", telUrl);
+      this.contactPhoneDisplay.textContent = b.phoneDisplay || "+91 90638 62498 / +91 76759 66942";
     }
     if (this.contactWaDisplay) {
-      this.contactWaDisplay.textContent = this.data.business.phoneDisplay;
-      this.contactWaDisplay.setAttribute("href", defaultWaUrl);
+      this.contactWaDisplay.textContent = "+91 " + (b.whatsappRaw || "9063862498");
+      this.contactWaDisplay.href = defaultWa;
     }
-    if (this.contactAddress) {
-      this.contactAddress.innerHTML = this.data.business.address.replace(/\n/g, "<br>");
+    if (this.contactAddress && b.address) {
+      this.contactAddress.innerHTML = b.address.replace(/\n/g, "<br>");
     }
   }
 
@@ -368,21 +630,26 @@ class AstrologyApp {
       "vastu": "service-vastu.html"
     };
 
-    this.data.services.forEach((service, index) => {
-      const pageUrl = serviceUrls[service.id] || "services.html";
+    // Display exactly 6 service cards on the homepage, followed by See More Services
+    const homeServices = (this.data.services || []).slice(0, 6);
+
+    homeServices.forEach((service, index) => {
+      const pageUrl = service.pageUrl || serviceUrls[service.id] || "services.html";
       const card = document.createElement("a");
       card.href = pageUrl;
       const animClass = index % 2 === 0 ? "anim-slide-right" : "anim-slide-left";
       card.className = `service-tall-card ${animClass}`;
 
+      const coverImg = (service.images && service.images.length > 0) ? service.images[0] : (service.img || "service_general.jpg");
+
       card.innerHTML = `
         <div class="service-tall-img-wrap">
-          <img src="${service.img}" alt="${service.title}" class="service-tall-thumb" loading="lazy">
+          <img src="${coverImg}" alt="${service.title}" class="service-tall-thumb" loading="lazy" onerror="this.src='service_general.jpg'">
           <span class="service-number-pill">0${index + 1}</span>
         </div>
         <div class="service-tall-body">
           <h3 class="service-tall-title">${service.title}</h3>
-          <p class="service-tall-desc">${service.shortDesc}</p>
+          <p class="service-tall-desc">${service.shortDesc || ""}</p>
           <div class="service-tall-link-row">
             <span>Explore Guidance</span>
             <span>&rarr;</span>
@@ -393,6 +660,66 @@ class AstrologyApp {
     });
 
     this.initScrollAnimations();
+  }
+
+  renderServicesHub() {
+    if (!this.servicesHubGrid) return;
+    this.servicesHubGrid.innerHTML = "";
+
+    const services = this.data.services || [];
+    services.forEach(service => {
+      const pageUrl = service.pageUrl || "services.html";
+      const coverImg = (service.images && service.images.length > 0) ? service.images[0] : (service.img || "service_general.jpg");
+
+      const card = document.createElement("div");
+      card.className = "service-hub-card";
+      card.innerHTML = `
+        <div class="hub-card-img-wrap">
+          <img src="${coverImg}" alt="${service.title}" class="hub-card-img" loading="lazy" onerror="this.src='service_general.jpg'">
+          <span class="hub-badge">🌟 Guidance</span>
+        </div>
+        <div class="hub-card-body">
+          <h3 class="hub-card-title">${service.title}</h3>
+          <p class="hub-card-desc">${service.shortDesc || ""}</p>
+          <div class="hub-card-footer">
+            <a href="${pageUrl}" class="btn-hub-view">View Details &rarr;</a>
+          </div>
+        </div>
+      `;
+      this.servicesHubGrid.appendChild(card);
+    });
+  }
+
+  renderProducts() {
+    const grids = document.querySelectorAll(".products-direct-grid");
+    if (!grids || grids.length === 0) return;
+
+    const products = this.data.products || [];
+    if (products.length === 0) return;
+
+    grids.forEach(grid => {
+      grid.innerHTML = "";
+      products.forEach(prod => {
+        const card = document.createElement("a");
+        // Link to dedicated product.html?id=... (or static product file if preferred)
+        card.href = `product.html?id=${prod.id}`;
+        card.className = "product-direct-card";
+        card.setAttribute("aria-label", prod.title);
+
+        const coverImg = (prod.images && prod.images.length > 0) ? prod.images[0] : (prod.img || "product_yantra.jpg");
+
+        card.innerHTML = `
+          <div class="product-direct-img-wrap">
+            <img src="${coverImg}" alt="${prod.title}" class="product-direct-thumb" loading="lazy" onerror="this.src='product_yantra.jpg'">
+          </div>
+          <div class="product-direct-info">
+            <span class="product-direct-name">${prod.title}</span>
+            <span class="product-direct-arrow" aria-hidden="true">&rarr;</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    });
   }
 
   initScrollAnimations() {
@@ -417,7 +744,8 @@ class AstrologyApp {
     if (!this.systemsCardsContainer) return;
     this.systemsCardsContainer.innerHTML = "";
 
-    this.data.systems.forEach(sys => {
+    const systems = this.data.systems || DEFAULT_SITE_DATA.systems;
+    systems.forEach(sys => {
       const card = document.createElement("div");
       card.className = "system-grid-card";
       card.innerHTML = `
@@ -433,28 +761,28 @@ class AstrologyApp {
     });
   }
 
-  renderGallery() {
-    // Gallery removed as requested
-  }
-
   openServiceModal(serviceId) {
-    const service = this.data.services.find(s => s.id === serviceId);
+    const service = (this.data.services || []).find(s => s.id === serviceId);
     if (!service || !this.serviceModal || !this.modalBody) return;
 
     const specificWaLink = this.generateWaLink(service.waMessage);
-    const telUrl = `tel:+${this.data.business.phoneRaw}`;
-    const bulletsHtml = service.coverage.map(item => `<li>${item}</li>`).join("");
+    const telUrl = `tel:+${this.data.business.phoneRaw || '917675966942'}`;
+    const bulletsHtml = (service.coverage || []).map(item => `<li>${item}</li>`).join("");
 
     this.modalBody.innerHTML = `
       <div class="modal-header-tag">SERVICE DETAILS</div>
       <h2 class="modal-title">${service.title}</h2>
-      <p class="modal-lead">${service.explanation}</p>
+      <p class="modal-lead">${service.explanation || service.shortDesc || ''}</p>
 
-      <h3 class="modal-section-title">What This Consultation Covers</h3>
-      <ul class="modal-bullets">${bulletsHtml}</ul>
+      ${bulletsHtml ? `
+        <h3 class="modal-section-title">What This Consultation Covers</h3>
+        <ul class="modal-bullets">${bulletsHtml}</ul>
+      ` : ''}
 
-      <h3 class="modal-section-title">Who Is This For?</h3>
-      <p style="font-size: 0.9rem; margin-bottom: 20px;">${service.suitableFor}</p>
+      ${service.suitableFor ? `
+        <h3 class="modal-section-title">Who Is This For?</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 20px;">${service.suitableFor}</p>
+      ` : ''}
 
       <div class="modal-action-box">
         <h4>Connect with Shri Gurudatta Astroved</h4>

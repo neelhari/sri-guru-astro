@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
 
@@ -48,6 +48,7 @@
         <a href="index.html" class="nav-item active">Home</a>
         <a href="about.html" class="nav-item">About</a>
         <a href="services.html" class="nav-item">Services</a>
+        <a href="products.html" class="nav-item">Astro Products</a>
         <a href="systems.html" class="nav-item">Astrology Systems</a>
         <a href="contact.html" class="nav-item">Contact</a>
       </nav>
@@ -84,6 +85,7 @@
         <a href="index.html" class="mobile-nav-link active">Home</a>
         <a href="about.html" class="mobile-nav-link">About Guruji</a>
         <a href="services.html" class="mobile-nav-link">Astrology Services</a>
+        <a href="products.html" class="mobile-nav-link">Astro Products</a>
         <a href="systems.html" class="mobile-nav-link">Astrology Systems</a>
         <a href="contact.html" class="mobile-nav-link">Contact</a>
       </nav>
@@ -113,8 +115,8 @@
           </div>
 
           <h1 class="hero-title">
-            Ancient Wisdom.<br>
-            <span class="hero-title-highlight">Clearer Guidance.</span>
+            Rewriting your Luck<br>
+            <span class="hero-title-highlight">Through Astrology</span>
           </h1>
 
           <p class="hero-desc">
@@ -154,7 +156,7 @@
     <!-- 1.5 FEATURED CONSULTATION BANNERS (Clean Natural Image, Centered Title & Button) -->
     <section class="section-featured-banners-light">
       <div class="container">
-        <div class="featured-banners-grid">
+        <div class="featured-banners-grid" id="featuredBannersGrid">
           <!-- Banner Card 1: Shri GuruDatta Consultation -->
           <div class="consult-banner-card">
             <img src="astrologer_portrait.jpg" alt="Shri GuruDatta Consultation" class="consult-banner-img">
@@ -194,7 +196,77 @@
 
         <!-- Vertical One-by-One 75% Image / 25% Text Stack with Alternating Scroll Animations -->
         <div class="services-vertical-stack" id="servicesCardsContainer">
-          <!-- Dynamically populated via app.js -->
+          <!-- Dynamically populated via app.js with exactly 6 service cards -->
+        </div>
+
+        <!-- See More Services Action Button -->
+        <div class="services-see-more-row" style="text-align: center; margin-top: 36px;">
+          <a href="services.html" class="btn-gold-pill">
+            <span>See More Services</span> &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.5 CONSECRATED ASTRO PRODUCTS (Placed Immediately After Services) -->
+    <section class="section-products-home" id="products">
+      <div class="container">
+        <div class="section-heading-row" style="margin-bottom: 28px;">
+          <div>
+            <span class="section-tag-gold">SACRED CONSECRATIONS</span>
+            <h2 class="section-title-dark">Astro Products</h2>
+            <p class="section-subtitle-dark">Mantra-energized spiritual tools and remedy articles consecrated with Prana Pratishtha.</p>
+          </div>
+          <a href="products.html" class="link-view-all">View All Products &rarr;</a>
+        </div>
+
+        <!-- Minimalist Direct Cards: Image + Product Name with Arrow Beside it (No extra lines) -->
+        <div class="products-direct-grid" id="productsHomeGrid">
+          
+          <!-- Product 1: Yantras & Mantra-Energized Pendant -->
+          <a href="product-yantras-pendants.html" class="product-direct-card" aria-label="Yantras and Mantra-Energized Pendant">
+            <div class="product-direct-img-wrap">
+              <img src="product_yantra.jpg" alt="Vedic Sri Yantra and Mantra-Energized Pendant" class="product-direct-thumb" loading="lazy">
+            </div>
+            <div class="product-direct-info">
+              <span class="product-direct-name">Yantras &amp; Mantra-Energized Pendant</span>
+              <span class="product-direct-arrow" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Product 2: Mantra-Energized Malalu -->
+          <a href="product-energized-malas.html" class="product-direct-card" aria-label="Mantra-Energized Malalu">
+            <div class="product-direct-img-wrap">
+              <img src="product_mala.jpg" alt="Sacred Rudraksha and Spatik Mantra-Energized Malalu" class="product-direct-thumb" loading="lazy">
+            </div>
+            <div class="product-direct-info">
+              <span class="product-direct-name">Mantra-Energized Malalu</span>
+              <span class="product-direct-arrow" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Product 3: Pasupata Kankanalu -->
+          <a href="product-pasupata-kankanam.html" class="product-direct-card" aria-label="Pasupata Kankanalu Protection Bangle">
+            <div class="product-direct-img-wrap">
+              <img src="product_kankanam.jpg" alt="Sacred Pasupata Kankanam Protection Bangle" class="product-direct-thumb" loading="lazy">
+            </div>
+            <div class="product-direct-info">
+              <span class="product-direct-name">Pasupata Kankanalu</span>
+              <span class="product-direct-arrow" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Product 4: Customized Remedy Kits -->
+          <a href="product-customized-remedy-kits.html" class="product-direct-card" aria-label="Customized Remedy Kits">
+            <div class="product-direct-img-wrap">
+              <img src="product_remedy_kit.jpg" alt="Customized Vedic Spiritual Remedy Kit" class="product-direct-thumb" loading="lazy">
+            </div>
+            <div class="product-direct-info">
+              <span class="product-direct-name">Customized Remedy Kits</span>
+              <span class="product-direct-arrow" aria-hidden="true">&rarr;</span>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>
@@ -341,6 +413,7 @@
       </div>
     </section>
 
+
     <!-- 7. SPIRITUAL SERVICES (Full-Bleed Edge-to-Edge Panoramic Banner) -->
     <section class="section-spiritual-dark" id="spiritual">
       <!-- Full-Bleed Top Banner with zero blue gaps or filters -->
@@ -401,6 +474,63 @@
               <span>Call Now</span>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9.5 CONSULTATION BOOKING FORM (Mobile & Desktop Friendly, Matches Reference Form) -->
+    <section class="booking-form-section" id="bookingSection">
+      <div class="container">
+        <div class="booking-form-card" data-aos="fade-up">
+          <div class="booking-header">
+            <h3 class="booking-title">Consultation Booking Form</h3>
+            <p class="booking-subtitle">Fill out your information below to submit directly via WhatsApp.</p>
+          </div>
+
+          <form id="inlineBookingForm" class="booking-form-grid" onsubmit="return false;">
+            <div class="booking-field-group">
+              <label class="booking-label" for="inlineBookingName">Name <span class="required-star">*</span></label>
+              <input type="text" id="inlineBookingName" class="booking-input" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="booking-field-group">
+              <label class="booking-label" for="inlineBookingPhone">Phone Number <span class="required-star">*</span></label>
+              <input type="tel" id="inlineBookingPhone" class="booking-input" placeholder="Enter phone number with country code" required>
+            </div>
+
+            <div class="booking-field-group">
+              <label class="booking-label" for="inlineBookingEmail">Email</label>
+              <input type="email" id="inlineBookingEmail" class="booking-input" placeholder="Enter email address">
+            </div>
+
+            <div class="booking-field-group">
+              <label class="booking-label" for="inlineBookingService">Select Service <span class="required-star">*</span></label>
+              <select id="inlineBookingService" class="booking-select" required>
+                <option value="General Prediction">General Prediction</option>
+                <option value="Complete Horoscope Analysis" selected>Complete Horoscope Analysis</option>
+                <option value="Astro Counselling">Astro Counselling</option>
+                <option value="Muhurtham Selection">Muhurtham Selection</option>
+                <option value="Career & Business Astrology">Career & Business Astrology</option>
+                <option value="Marriage & Matchmaking">Marriage & Matchmaking</option>
+                <option value="Prashna Shastra">Prashna Shastra</option>
+                <option value="Spiritual Homam & Pooja Vidhi">Spiritual Homam & Pooja Vidhi</option>
+                <option value="Gemstone & Yantra Consultation">Gemstone & Yantra Consultation</option>
+                <option value="Sacred Astro Product Order">Sacred Astro Product Order</option>
+              </select>
+            </div>
+
+            <div class="booking-field-group">
+              <label class="booking-label" for="inlineBookingMessage">Birth Details / Query (Optional)</label>
+              <textarea id="inlineBookingMessage" class="booking-textarea" rows="2" placeholder="Date of birth, time, place or specific questions..."></textarea>
+            </div>
+
+            <button type="submit" class="booking-btn-submit" id="btnSubmitInlineBooking">
+              <span>Submit directly via WhatsApp</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
     </section>
@@ -472,7 +602,7 @@
         </div>
 
         <div class="footer-bottom-bar">
-          <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved.</p>
+          <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved. &bull; <a href="admin.html" style="color: #DFB25A; text-decoration: none;">Admin Portal</a></p>
           <p class="footer-locale">Palnadu, Andhra Pradesh &bull; English Edition</p>
         </div>
       </div>
@@ -493,9 +623,65 @@
   <a href="https://wa.me/919876543210?text=Hello%20Guruji%2C%20I%20would%20like%20to%20consult%20regarding%20astrology%20guidance." class="floating-whatsapp-btn dynamic-wa-link" target="_blank" rel="noopener noreferrer" aria-label="Direct WhatsApp Consultation">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
-    </svg>
-  </a>
+  <!-- ==============================================
+       CONSULTATION BOOKING MODAL POPUP (Triggered on Banner / Card Click)
+       ============================================== -->
+  <div class="booking-modal-overlay" id="bookingModalOverlay">
+    <div class="booking-modal-card">
+      <button class="booking-modal-close" id="btnCloseBookingModal" aria-label="Close modal">&times;</button>
+      
+      <div class="booking-header">
+        <h3 class="booking-title">Consultation Booking Form</h3>
+        <p class="booking-subtitle">Fill out your information below to submit directly via WhatsApp.</p>
+      </div>
 
-  <script src="app.js?v=8"></script>
+      <form id="modalBookingForm" class="booking-form-grid" onsubmit="return false;">
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingName">Name <span class="required-star">*</span></label>
+          <input type="text" id="modalBookingName" class="booking-input" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingPhone">Phone Number <span class="required-star">*</span></label>
+          <input type="tel" id="modalBookingPhone" class="booking-input" placeholder="Enter phone number with country code" required>
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingEmail">Email</label>
+          <input type="email" id="modalBookingEmail" class="booking-input" placeholder="Enter email address">
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingService">Select Service <span class="required-star">*</span></label>
+          <select id="modalBookingService" class="booking-select" required>
+            <option value="General Prediction">General Prediction</option>
+            <option value="Complete Horoscope Analysis" selected>Complete Horoscope Analysis</option>
+            <option value="Astro Counselling">Astro Counselling</option>
+            <option value="Muhurtham Selection">Muhurtham Selection</option>
+            <option value="Career & Business Astrology">Career & Business Astrology</option>
+            <option value="Marriage & Matchmaking">Marriage & Matchmaking</option>
+            <option value="Prashna Shastra">Prashna Shastra</option>
+            <option value="Spiritual Homam & Pooja Vidhi">Spiritual Homam & Pooja Vidhi</option>
+            <option value="Gemstone & Yantra Consultation">Gemstone & Yantra Consultation</option>
+            <option value="Sacred Astro Product Order">Sacred Astro Product Order</option>
+          </select>
+        </div>
+
+        <div class="booking-field-group">
+          <label class="booking-label" for="modalBookingMessage">Birth Details / Query (Optional)</label>
+          <textarea id="modalBookingMessage" class="booking-textarea" rows="2" placeholder="Date of birth, time, place or specific questions..."></textarea>
+        </div>
+
+        <button type="submit" class="booking-btn-submit" id="btnSubmitModalBooking">
+          <span>Submit directly via WhatsApp</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js?v=11"></script>
 </body>
 </html>

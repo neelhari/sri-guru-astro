@@ -1,0 +1,190 @@
+{
+  "business": {
+    "name": "Shri GuruDatta Astroved"
+  },
+  "banners": [
+    {
+      "id": "banner-1",
+      "title": "Shri GuruDatta Consultation",
+      "buttonText": "Book Consultation",
+      "img": "astrologer_portrait.jpg",
+      "waMessage": "Hello Guruji, I would like to book a Shri GuruDatta Consultation."
+    },
+    {
+      "id": "banner-2",
+      "title": "Vedic & Nadi Consultation",
+      "buttonText": "Take Consultation",
+      "img": "service_horoscope.jpg",
+      "waMessage": "Hello Guruji, I would like to take Vedic & Nadi Consultation."
+    }
+  ],
+  "services": [
+    {
+      "id": "general-prediction",
+      "title": "General Prediction",
+      "shortDesc": "Guidance for your present phase, planetary transits, and future trends.",
+      "headline": "Clarity on Your Current Phase & Future Path",
+      "explanation": "A holistic reading of your birth chart to understand your current life cycle, planetary transits (Gocharam), and what the coming months hold for health, career, and personal peace.",
+      "img": "service_general.jpg",
+      "images": [
+        "service_general.jpg"
+      ],
+      "pageUrl": "service-general-prediction.html",
+      "waMessage": "Hello Guruji, I would like to know more about General Prediction guidance."
+    },
+    {
+      "id": "horoscope-analysis",
+      "title": "Complete Horoscope Analysis",
+      "shortDesc": "Detailed analysis of your birth chart across 12 houses and planetary yogas.",
+      "headline": "Understand Your Life Through Your Birth Chart",
+      "explanation": "A deep, multi-system examination of your natal chart combining Parashari Vedic Astrology, KP Sub-lords, and Nadi principles to uncover your true strengths, life challenges, and destiny blueprint.",
+      "img": "service_horoscope.jpg",
+      "images": [
+        "service_horoscope.jpg"
+      ],
+      "pageUrl": "service-horoscope-analysis.html",
+      "waMessage": "Hello Guruji, I would like to know more about Complete Horoscope Analysis."
+    },
+    {
+      "id": "astro-counselling",
+      "title": "Astro Counselling",
+      "shortDesc": "Personal guidance for life matters, career transitions, and emotional peace.",
+      "headline": "Calm, Honest Perspective in Times of Uncertainty",
+      "explanation": "Personalized counselling that merges astrological insights with practical wisdom to help you overcome confusion, manage emotional stress, and make informed choices with calm confidence.",
+      "img": "service_general.jpg",
+      "images": [
+        "service_general.jpg"
+      ],
+      "pageUrl": "service-astro-counselling.html",
+      "waMessage": "Hello Guruji, I would like to seek Astro Counselling for personal guidance."
+    },
+    {
+      "id": "muhurtham",
+      "title": "Auspicious Muhurtham",
+      "shortDesc": "Find the right auspicious time for weddings, housewarmings, and new ventures.",
+      "headline": "Harness Auspicious Celestial Alignments for Sacred Milestones",
+      "explanation": "Classical Panchanga analysis (Tithi, Vara, Nakshatra, Yoga, Karana) to pinpoint the exact, most fortified moments for your life events, shielding you from malefic planetary influences.",
+      "img": "service_muhurtham.jpg",
+      "images": [
+        "service_muhurtham.jpg"
+      ],
+      "pageUrl": "service-muhurtham.html",
+      "waMessage": "Hello Guruji, I need assistance in finding an Auspicious Muhurtham."
+    },
+    {
+      "id": "marriage-matching",
+      "title": "Marriage Matching",
+      "shortDesc": "Compatibility analysis for a happy, prosperous, and harmonious future.",
+      "headline": "Deep Compatibility Analysis for a Blessed Union",
+      "explanation": "Beyond superficial Guna Milan scores, we conduct an extensive cross-chart compatibility test focusing on emotional bond, longevity, health, financial prosperity, and mutual growth.",
+      "img": "service_marriage.jpg",
+      "images": [
+        "service_marriage.jpg"
+      ],
+      "pageUrl": "service-marriage-matching.html",
+      "waMessage": "Hello Guruji, I would like to know more about Marriage Matching consultation."
+    },
+    {
+      "id": "baby-naming",
+      "title": "Names for New Born Baby",
+      "shortDesc": "Auspicious starting syllables based on Janma Nakshatra and Numerology.",
+      "headline": "Blessed First Steps: Astrological & Numerological Naming",
+      "explanation": "Selecting the ideal starting sound (Akshara) based on the child's Janma Nakshatra and birth Pada, harmonized with positive numerological vibrations for lifetime prosperity and good health.",
+      "img": "service_muhurtham.jpg",
+      "images": [
+        "service_muhurtham.jpg"
+      ],
+      "pageUrl": "service-baby-naming.html",
+      "waMessage": "Hello Guruji, I would like guidance for Names for New Born Baby."
+    },
+    {
+      "id": "marriage-counselling",
+      "title": "Marriage Counselling",
+      "shortDesc": "Resolving marital discord and misunderstandings through astrological clarity.",
+      "headline": "Restoring Balance and Harmony in Marital Life",
+      "explanation": "An insightful evaluation of both spouses' horoscopes to understand conflicting planetary energies and provide realistic, peaceful remedies for mutual understanding.",
+      "img": "service_marriage.jpg",
+      "images": [
+        "service_marriage.jpg"
+      ],
+      "pageUrl": "service-marriage-counselling.html",
+      "waMessage": "Hello Guruji, I would like to consult regarding Marriage Counselling."
+    },
+    {
+      "id": "homam-puja",
+      "title": "Homam / Japam / Puja Services",
+      "shortDesc": "Authentic Vedic rituals and fire ceremonies to pacify planetary doshas.",
+      "headline": "Sacred Vedic Rituals for Spiritual Elevation & Protection",
+      "explanation": "Properly conducted traditional Homams and Mantra Japas performed with strict adherence to Shastric injunctions, clear sankalpa, and sacred Vedic chanting for you and your family.",
+      "img": "homam_fire.jpg",
+      "images": [
+        "homam_fire.jpg"
+      ],
+      "pageUrl": "service-homam-puja.html",
+      "waMessage": "Hello Guruji, I would like to enquire about Homam / Japam / Puja Services."
+    },
+    {
+      "id": "vastu",
+      "title": "Vastu Services",
+      "shortDesc": "Spatial energy alignment for homes, plots, and commercial properties.",
+      "headline": "Align Your Living & Working Spaces with Cosmic Harmony",
+      "explanation": "Vedic Vastu Shastra principles to optimize directional energies (Pancha Bhoota balance), promoting prosperity, health, and peaceful living in your residence or commercial property.",
+      "img": "service_horoscope.jpg",
+      "images": [
+        "service_horoscope.jpg"
+      ],
+      "pageUrl": "service-vastu.html",
+      "waMessage": "Hello Guruji, I would like to enquire about Vastu Services consultation."
+    }
+  ],
+  "products": [
+    {
+      "id": "yantras-pendants",
+      "title": "Yantras & Mantra-Energized Pendant",
+      "shortDesc": "Sacred geometric energy plates & wearable golden kavach for wealth, health, and negative energy shield.",
+      "specs": "Authentic sacred geometric energy plates & wearable golden kavach consecrated through traditional Vedic Prana Pratishtha. Consecrated with 108 Shastric Beeja Mantras to shield against negative energies, promote financial growth, and bestow family harmony.",
+      "img": "product_yantra.jpg",
+      "images": [
+        "product_yantra.jpg"
+      ],
+      "pageUrl": "product-yantras-pendants.html",
+      "waMessage": "Hello Guruji, I would like to enquire about Yantras & Mantra-Energized Pendants."
+    },
+    {
+      "id": "energized-malas",
+      "title": "Mantra-Energized Malalu",
+      "shortDesc": "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for japa, peace, and spiritual power.",
+      "specs": "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for daily japa, inner tranquility, and spiritual focus. Each bead is cleansed and energized with specific Beeja Mantras by Guruji.",
+      "img": "product_mala.jpg",
+      "images": [
+        "product_mala.jpg"
+      ],
+      "pageUrl": "product-energized-malas.html",
+      "waMessage": "Hello Guruji, I would like to enquire about Mantra-Energized Malalu."
+    },
+    {
+      "id": "pasupata-kankanam",
+      "title": "Pasupata Kankanalu",
+      "shortDesc": "Sacred consecrated copper-silver wristband infused with Pasupata Astra mantra for unassailable protection.",
+      "specs": "Sacred consecrated copper-silver wristband infused with the powerful Pasupata Astra mantra for unassailable protection, dispelling fear, negative influences, and evil eye. Handcrafted in pure copper and sacred metals.",
+      "img": "product_kankanam.jpg",
+      "images": [
+        "product_kankanam.jpg"
+      ],
+      "pageUrl": "product-pasupata-kankanam.html",
+      "waMessage": "Hello Guruji, I would like to enquire about Pasupata Kankanalu Protection Bangle."
+    },
+    {
+      "id": "customized-remedy-kits",
+      "title": "Customized Remedy Kits",
+      "shortDesc": "Individualized planetary pacification puja box tailored to your horoscope for career, marriage, and health obstacles.",
+      "specs": "Individualized planetary pacification puja box tailored directly to your horoscope for overcoming obstacles in career, marriage delays, and health issues. Includes consecrated planetary yantras, dhoop, and custom herbs.",
+      "img": "product_remedy_kit.jpg",
+      "images": [
+        "product_remedy_kit.jpg"
+      ],
+      "pageUrl": "product-customized-remedy-kits.html",
+      "waMessage": "Hello Guruji, I would like to enquire about Customized Remedy Kits."
+    }
+  ]
+}
