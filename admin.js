@@ -312,11 +312,13 @@ async function syncDirectToSupabase(data, token) {
     const rows = data.services.map((s, idx) => ({
       id: s.id || `service-${idx + 1}`,
       title: s.title,
-      short_description: s.shortDesc || "",
-      description: s.explanation || s.desc || s.shortDesc || "",
-      images: Array.isArray(s.images) ? s.images : (s.img ? [s.img] : []),
+      short_desc: s.shortDesc || "",
+      explanation: s.explanation || s.desc || s.shortDesc || "",
+      headline: s.headline || s.title,
+      images: JSON.stringify(Array.isArray(s.images) ? s.images : (s.img ? [s.img] : [])),
+      image_url: (s.images && s.images[0]) || s.img || "service_general.jpg",
       page_url: s.pageUrl || `service.html?id=${s.id || ''}`,
-      badge: s.badge || "",
+      wa_message: s.waMessage || `Hello Guruji, I would like to consult regarding ${s.title}.`,
       display_order: idx + 1,
       is_active: true,
       updated_at: new Date().toISOString()
@@ -327,10 +329,12 @@ async function syncDirectToSupabase(data, token) {
     const rows = data.products.map((p, idx) => ({
       id: p.id || `product-${idx + 1}`,
       title: p.title,
-      price: p.price || "",
-      description: p.desc || "",
-      images: Array.isArray(p.images) ? p.images : (p.img ? [p.img] : []),
-      page_url: p.pageUrl || "products.html",
+      short_desc: p.shortDesc || "",
+      specs: p.specs || p.desc || "",
+      images: JSON.stringify(Array.isArray(p.images) ? p.images : (p.img ? [p.img] : [])),
+      image_url: (p.images && p.images[0]) || p.img || "product_yantra.jpg",
+      page_url: p.pageUrl || `product.html?id=${p.id || ''}`,
+      wa_message: p.waMessage || "Hello Guruji, I would like to order this Astro Product.",
       display_order: idx + 1,
       is_active: true,
       updated_at: new Date().toISOString()
@@ -1127,13 +1131,11 @@ function handleFileUpload(file) {
             resolve(data.url || data.filename);
             return;
           }
-        } else if (res.status === 401) {
-          clearAdminToken();
-          document.getElementById("adminLoginOverlay")?.classList.remove("hidden");
-          showToast("Session expired. Please log in to upload.", "info");
+        } else {
+          console.warn("Upload endpoint returned status:", res.status);
         }
       } catch (err) {
-        console.warn("Upload API unavailable, using base64 data URL:", err);
+        console.warn("Upload API unavailable, using local image preview:", err);
       }
 
       // Fallback to base64 data URL

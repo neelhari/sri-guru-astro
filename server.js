@@ -33,7 +33,8 @@ const CLOUDINARY_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUDINARY_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 // Supabase Credentials
-const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://vbfdimlkbilkdakjbfjg.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_WbNQPT0IvbNpeYqCDrU_SA_BPKbvUrL';
 const SUPABASE_SECRET = process.env.SUPABASE_SECRET_KEY;
 
 // Verify authentic Supabase Auth user token
@@ -45,7 +46,7 @@ async function verifyAuth(req) {
   try {
     const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
       headers: {
-        'apikey': SUPABASE_SECRET,
+        'apikey': SUPABASE_PUBLISHABLE_KEY,
         'Authorization': `Bearer ${token}`
       }
     });
@@ -310,7 +311,7 @@ const server = http.createServer((req, res) => {
         const authRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
           method: 'POST',
           headers: {
-            'apikey': SUPABASE_SECRET,
+            'apikey': SUPABASE_PUBLISHABLE_KEY,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ email, password })
