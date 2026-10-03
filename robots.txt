@@ -5,4 +5,4 @@ Disallow: /admin.js
 Disallow: /api/
 Disallow: /bookings.json
 
-Sitemap: https://sri-guru-astro.vercel.app/sitemap.xml
+Sitemap: https://www.shrigurudattaastroved.com/sitemap.xml
