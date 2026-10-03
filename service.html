@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Service Details | Shri Gurudatta Astroved</title>
+  <meta name="description" id="metaDescription" content="Personalized Vedic Astrology Consultation by Shri Gurudatta Astroved. Authentic guidance for life, career, marriage, and remedies.">
+
+  <!-- Google Fonts: Cormorant Garamond & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=23">
+  <style>
+    .service-detail-section {
+      padding: 50px 20px 80px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 850px) {
+      .service-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    .service-gallery-wrap {
+      position: sticky;
+      top: 90px;
+    }
+
+    .service-main-img-box {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(200, 157, 70, 0.35);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+      background: #081225;
+      aspect-ratio: 4 / 3;
+    }
+
+    .service-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .service-thumb-strip {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .service-thumb-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      padding: 0;
+      background: #081225;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .service-thumb-btn.active {
+      border-color: #C89D46;
+      box-shadow: 0 0 10px rgba(200, 157, 70, 0.5);
+    }
+
+    .service-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-content-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 36px 32px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .service-badge-pill {
+      display: inline-block;
+      padding: 5px 14px;
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .service-title-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+
+    .service-lead-text {
+      font-size: 1.05rem;
+      color: #475569;
+      line-height: 1.65;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 20px;
+    }
+
+    .service-section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0F172A;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-desc-body {
+      font-size: 0.96rem;
+      color: #334155;
+      line-height: 1.7;
+      white-space: pre-line;
+      margin-bottom: 24px;
+    }
+
+    .service-coverage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px;
+    }
+
+    .service-coverage-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      font-size: 0.94rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .service-coverage-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #C89D46;
+      font-weight: bold;
+    }
+
+    .service-cta-box {
+      margin-top: 32px;
+      padding: 24px;
+      background: linear-gradient(135deg, #081225 0%, #11203E 100%);
+      border-radius: 14px;
+      border: 1px solid rgba(200, 157, 70, 0.4);
+      color: #FFFFFF;
+    }
+
+    .service-cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: #E6CA65;
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+
+    .service-cta-subtitle {
+      font-size: 0.88rem;
+      color: #CBD5E1;
+      margin: 0 0 18px;
+      line-height: 1.5;
+    }
+
+    .service-cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-service-book {
+      flex: 1;
+      min-width: 170px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-service-wa {
+      flex: 1;
+      min-width: 170px;
+      padding: 12px 20px;
+      background: #25D366;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="index.html" class="brand-link" aria-label="Shri Gurudatta Astroved Home">
+        <img src="image.png" alt="Shri Gurudatta Astroved Emblem" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-name">Shri Gurudatta</span>
+          <span class="brand-sub">Astroved</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="services.html" class="nav-item active">Services</a>
+        <a href="products.html" class="nav-item">Astro Products</a>
+        <a href="systems.html" class="nav-item">Astrology Systems</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+
+      <!-- Header Action -->
+      <div class="header-actions">
+        <a href="https://wa.me/919063862498" class="btn-header-wa dynamic-wa-link" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.94 1.33-.51.08-1.18.11-3.41-.81-2.85-1.18-4.69-4.08-4.83-4.27-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.28.53-.35.71-.35.18 0 .36 0 .52.01.17.01.4.06.61.56.24.58.82 2 .89 2.15.07.15.11.33.02.52-.09.19-.14.31-.28.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.17.29.74 1.22 1.6 1.98 1.1 0.98 2.03 1.28 2.32 1.42.29.14.46.12.63-.07.17-.19.74-.86.94-1.16.2-.29.4-.24.67-.14.28.1 1.76.83 2.06.98.3.15.5.22.57.34.07.13.07.74-.17 1.42z"/>
+          </svg>
+          <span>Talk on WhatsApp</span>
+        </a>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img src="image.png" alt="Shri Gurudatta Astroved" class="drawer-logo">
+        <span class="drawer-title">Shri Gurudatta Astroved</span>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close navigation">&times;</button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="services.html" class="mobile-nav-link active">Services</a>
+      <a href="products.html" class="mobile-nav-link">Astro Products</a>
+      <a href="systems.html" class="mobile-nav-link">Astrology Systems</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </nav>
+  </aside>
+
+  <!-- Breadcrumb -->
+  <div style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0; padding: 14px 20px;">
+    <div style="max-width: 1140px; margin: 0 auto; font-size: 0.85rem; color: #64748B;">
+      <a href="index.html" style="color: #64748B; text-decoration: none;">Home</a> &nbsp;/&nbsp; 
+      <a href="services.html" style="color: #64748B; text-decoration: none;">Services</a> &nbsp;/&nbsp; 
+      <span id="breadcrumbTitle" style="color: #C89D46; font-weight: 600;">Service Details</span>
+    </div>
+  </div>
+
+  <!-- Service Detail Main -->
+  <main class="service-detail-section" id="serviceContainer">
+    <div class="service-detail-grid">
+      
+      <!-- Left: Images Gallery -->
+      <div class="service-gallery-wrap">
+        <div class="service-main-img-box">
+          <img src="service_general.jpg" alt="Service Photo" class="service-main-img" id="mainServiceImg">
+        </div>
+        <div class="service-thumb-strip" id="serviceThumbStrip"></div>
+      </div>
+
+      <!-- Right: Service Details -->
+      <div class="service-content-card">
+        <span class="service-badge-pill" id="serviceBadge">🌟 Vedic Consultation</span>
+        <h1 class="service-title-h1" id="serviceTitle">Loading Service...</h1>
+        <p class="service-lead-text" id="serviceShortDesc"></p>
+
+        <h3 class="service-section-heading">About This Consultation</h3>
+        <div class="service-desc-body" id="serviceExplanation"></div>
+
+        <div id="serviceCoverageWrap" style="display: none;">
+          <h3 class="service-section-heading">What This Consultation Covers</h3>
+          <ul class="service-coverage-list" id="serviceCoverageList"></ul>
+        </div>
+
+        <div class="service-cta-box">
+          <h4 class="service-cta-title">Personalized Guidance by Guruji</h4>
+          <p class="service-cta-subtitle">Connect with Shri Gurudatta Astroved with your birth details for clear, authentic Vedic predictions.</p>
+          <div class="service-cta-actions">
+            <a href="contact.html" class="btn-service-book" id="serviceBookBtn">
+              📋 Book Consultation
+            </a>
+            <a href="https://wa.me/919063862498" class="btn-service-wa dynamic-wa-link" id="serviceWaBtn" target="_blank" rel="noopener noreferrer">
+              💬 Consult on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="image.png" alt="Shri Gurudatta Astroved Logo" class="footer-logo">
+        <div class="footer-brand-text">
+          <span class="footer-brand-title">Shri Gurudatta Astroved</span>
+          <span class="footer-brand-tagline">Rewriting your Luck Through Astrology</span>
+        </div>
+        <p class="footer-text">Classical Vedic Astrology and spiritual remedial guidance rooted in ancient Indian sacred traditions.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Guruji</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="products.html">Astro Products</a></li>
+          <li><a href="contact.html">Contact & Appointments</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Consultation Center</h4>
+        <p class="footer-address">
+          Kesanupalli village, Dachepalli mandal,<br>
+          Palnadu district – 522414, Andhra Pradesh
+        </p>
+        <p class="footer-phone">
+          <a href="tel:+917675966942" class="dynamic-call-link">+91 90638 62498 / +91 76759 66942</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Dynamic Loader Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Mobile Drawer Toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const drawerClose = document.getElementById("drawerClose");
+      const drawerOverlay = document.getElementById("drawerOverlay");
+      const mobileDrawer = document.getElementById("mobileDrawer");
+
+      if (menuToggle && mobileDrawer) {
+        menuToggle.addEventListener("click", () => mobileDrawer.classList.add("active"));
+      }
+      if (drawerClose && mobileDrawer) {
+        drawerClose.addEventListener("click", () => mobileDrawer.classList.remove("active"));
+      }
+      if (drawerOverlay && mobileDrawer) {
+        drawerOverlay.addEventListener("click", () => mobileDrawer.classList.remove("active"));
+      }
+
+      // 1. Fetch site data from Supabase/API/localStorage
+      let siteData = null;
+      try {
+        const res = await fetch("/api/data");
+        if (res.ok) siteData = await res.json();
+      } catch (e) {}
+
+      if (!siteData) {
+        const cached = localStorage.getItem("shri_gurudatta_site_data");
+        if (cached) {
+          try { siteData = JSON.parse(cached); } catch (e) {}
+        }
+      }
+
+      if (!siteData) {
+        try {
+          const resFallback = await fetch("site_data.json");
+          if (resFallback.ok) siteData = await resFallback.json();
+        } catch (e) {}
+      }
+
+      const services = siteData && siteData.services ? siteData.services : [];
+      const business = siteData && siteData.business ? siteData.business : { whatsappRaw: "9063862498" };
+
+      // Parse ID from URL parameter
+      const params = new URLSearchParams(window.location.search);
+      let serviceId = params.get("id");
+
+      let currentService = null;
+      if (serviceId) {
+        currentService = services.find(s => 
+          s.id === serviceId || 
+          (s.title && s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") === serviceId.toLowerCase())
+        );
+      }
+
+      if (!currentService && services.length > 0) {
+        currentService = services[0];
+      }
+
+      if (!currentService) {
+        document.getElementById("serviceContainer").innerHTML = `
+          <div style="text-align: center; padding: 60px 20px;">
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem;">Service Not Found</h2>
+            <p>Please browse all available services.</p>
+            <a href="services.html" class="btn-service-book" style="margin-top: 16px; display: inline-block;">View All Services</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Populate Title, Meta & Desc
+      document.title = `${currentService.title} | Shri Gurudatta Astroved`;
+      document.getElementById("breadcrumbTitle").textContent = currentService.title;
+      document.getElementById("serviceTitle").textContent = currentService.title;
+      document.getElementById("serviceShortDesc").textContent = currentService.shortDesc || "";
+      document.getElementById("serviceExplanation").textContent = currentService.explanation || currentService.desc || currentService.shortDesc || "Comprehensive Vedic astrological consultation with personalized insights and remedies.";
+
+      // Populate Coverage
+      if (Array.isArray(currentService.coverage) && currentService.coverage.length > 0) {
+        const list = document.getElementById("serviceCoverageList");
+        list.innerHTML = currentService.coverage.map(c => `<li>${c}</li>`).join("");
+        document.getElementById("serviceCoverageWrap").style.display = "block";
+      }
+
+      // Populate Multiple Images
+      const images = (currentService.images && currentService.images.length > 0) 
+        ? currentService.images 
+        : [currentService.img || "service_general.jpg"];
+
+      const mainImg = document.getElementById("mainServiceImg");
+      mainImg.src = images[0];
+      mainImg.alt = currentService.title;
+
+      const thumbStrip = document.getElementById("serviceThumbStrip");
+      thumbStrip.innerHTML = "";
+
+      if (images.length > 1) {
+        images.forEach((imgSrc, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `service-thumb-btn ${idx === 0 ? 'active' : ''}`;
+          btn.innerHTML = `<img src="${imgSrc}" alt="${currentService.title} photo ${idx + 1}" onerror="this.src='service_general.jpg'">`;
+          btn.addEventListener("click", () => {
+            mainImg.src = imgSrc;
+            document.querySelectorAll(".service-thumb-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+          });
+          thumbStrip.appendChild(btn);
+        });
+      }
+
+      // Populate WhatsApp Button
+      const waNumber = business.whatsappRaw || "9063862498";
+      const waMsg = currentService.waMessage || `Hello Guruji, I would like to consult regarding ${currentService.title}.`;
+      const waUrl = `https://wa.me/91${waNumber.replace(/^91/, '')}?text=${encodeURIComponent(waMsg)}`;
+      document.getElementById("serviceWaBtn").href = waUrl;
+    });
+  </script>
+</body>
+</html>

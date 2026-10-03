@@ -927,14 +927,16 @@ function bindAdminEvents() {
     const waMessage = document.getElementById("serviceInputWa").value.trim();
     const images = currentServiceImages.length > 0 ? [...currentServiceImages] : ["service_general.jpg"];
 
+    const serviceId = (idx >= 0 && siteData.services[idx].id) ? siteData.services[idx].id : title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const serviceObj = {
-      id: (idx >= 0 && siteData.services[idx].id) ? siteData.services[idx].id : title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      id: serviceId,
       title,
       shortDesc,
       explanation,
       headline: title,
       img: images[0],
       images: images,
+      pageUrl: (idx >= 0 && siteData.services[idx].pageUrl && siteData.services[idx].pageUrl !== "services.html") ? siteData.services[idx].pageUrl : `service.html?id=${serviceId}`,
       waMessage: waMessage || "Hello Guruji, I would like to consult regarding this service."
     };
 
