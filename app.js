@@ -285,7 +285,17 @@ class AstrologyApp {
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
-        if (parsed && parsed.business) this.data = parsed;
+        if (parsed && parsed.business && (
+          parsed.business.phoneRaw === "917675966942" || 
+          parsed.business.phoneRaw === "919876543210" || 
+          parsed.business.whatsappRaw === "7675966942" || 
+          parsed.business.whatsappRaw === "9876543210" ||
+          (parsed.business.phoneDisplay && parsed.business.phoneDisplay.includes("76759"))
+        )) {
+          localStorage.removeItem("shri_gurudatta_site_data");
+        } else if (parsed && parsed.business) {
+          this.data = parsed;
+        }
       } catch (e) {}
     }
 
