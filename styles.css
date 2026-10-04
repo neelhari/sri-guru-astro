@@ -250,6 +250,23 @@ img {
   color: var(--text-ivory);
 }
 
+/* Ensure outline buttons inside dark cards/boxes are brightly visible */
+.sidebar-contact-card .btn-outline-pill-dark,
+.about-page-cta-box .btn-outline-pill-dark,
+.section-contact-dark .btn-outline-pill-dark {
+  color: var(--text-ivory) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.sidebar-contact-card .btn-outline-pill-dark:hover,
+.about-page-cta-box .btn-outline-pill-dark:hover,
+.section-contact-dark .btn-outline-pill-dark:hover {
+  border-color: var(--gold-primary) !important;
+  color: var(--gold-light) !important;
+  background: rgba(223, 178, 90, 0.2) !important;
+}
+
 .btn-navy-pill {
   display: inline-flex;
   align-items: center;

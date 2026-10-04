@@ -364,7 +364,7 @@
         </div>
 
         <div class="service-cta-box">
-          <h4 class="service-cta-title">Personalized Guidance by Guruji</h4>
+          <h4 class="service-cta-title">Personalized Guidance by Dr. Ranganadh Sharma</h4>
           <p class="service-cta-subtitle">Connect with Shri Gurudatta Astroved with your birth details for clear, authentic Vedic predictions.</p>
           <div class="service-cta-actions">
             <button type="button" class="btn-service-book" id="btnOpenBookingModal">
@@ -447,7 +447,7 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Guruji</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="products.html">Astro Products</a></li>
             <li><a href="contact.html">Contact & Appointments</a></li>
@@ -557,7 +557,7 @@
       document.getElementById("serviceShortDesc").textContent = currentService.shortDesc || "Personalized Vedic Astrology Guidance & Remedies";
       
       const fullDesc = currentService.explanation || currentService.desc || currentService.shortDesc || 
-        "Comprehensive classical Vedic astrological consultation with Guruji. Provides deep insights into your natal chart, life cycles, current planetary transitions, and auspicious spiritual remedial guidance.";
+        "Comprehensive classical Vedic astrological consultation with Dr. Ranganadh Sharma. Provides deep insights into your natal chart, life cycles, current planetary transitions, and auspicious spiritual remedial guidance.";
       
       document.getElementById("serviceExplanation").textContent = fullDesc;
 
@@ -604,7 +604,7 @@
 
       // Populate WhatsApp Button
       const waNumber = business.whatsappRaw || "9063862498";
-      const waMsg = currentService.waMessage || `Hello Guruji, I would like to consult regarding ${currentService.title}.`;
+      const waMsg = currentService.waMessage || `Hello Dr. Ranganadh Sharma, I would like to consult regarding ${currentService.title}.`;
       const waUrl = `https://wa.me/91${waNumber.replace(/^91/, '')}?text=${encodeURIComponent(waMsg)}`;
       document.getElementById("serviceWaBtn").href = waUrl;
 
@@ -681,7 +681,7 @@
 📞 *Phone:* ${phone}
 🔮 *Service:* ${currentService.title}
 ${email ? `📧 *Email:* ${email}\n` : ''}${message ? `📝 *Query/Birth Details:* ${message}\n` : ''}
-Hello Guruji, I have submitted my consultation booking details above for ${currentService.title}. Please confirm my appointment timing.`;
+Hello Dr. Ranganadh Sharma, I have submitted my consultation booking details above for ${currentService.title}. Please confirm my appointment timing.`;
 
           window.open(`https://wa.me/91${cleanNum}?text=${encodeURIComponent(waLeadText)}`, "_blank");
           closeModal();
