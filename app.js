@@ -9,13 +9,13 @@ const DEFAULT_SITE_DATA = {
     name: "Shri GuruDatta Astroved",
     experience: "15+ Years",
     tagline: "Rewriting your Luck Through Astrology",
-    phoneDisplay: "+91 90638 62498 / +91 76759 66942",
-    phoneRaw: "917675966942",
+    phoneDisplay: "+91 90638 62498",
+    phoneRaw: "919063862498",
     whatsappRaw: "9063862498",
-    gpayNumber: "7675966942",
-    upiId: "7675966942@ybl",
+    gpayNumber: "9063862498",
+    upiId: "9063862498@ybl",
     qrImage: "payment_qr.png",
-    address: "Kesanupalli village, Dachepalli mandal, Palnadu district – 522414",
+    address: "Kesanupalli Village, Dachepalli Mandal, Palnadu District, Andhra Pradesh – 522414",
     timings: "Morning: 09:00 AM – 01:00 PM | Evening: 04:00 PM – 08:30 PM"
   },
 
@@ -36,7 +36,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Anyone seeking general clarity, feeling stuck at life crossroads, or planning major personal decisions.",
       pageUrl: "service-general-prediction.html",
-      waMessage: "Hello Guruji, I would like to know more about General Prediction guidance."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to know more about General Prediction guidance."
     },
     {
       id: "horoscope-analysis",
@@ -54,7 +54,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Individuals wanting an exhaustive, lifelong roadmap of their chart and planetary influences.",
       pageUrl: "service-horoscope-analysis.html",
-      waMessage: "Hello Guruji, I would like to know more about Complete Horoscope Analysis."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to know more about Complete Horoscope Analysis."
     },
     {
       id: "astro-counselling",
@@ -72,7 +72,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Those navigating stressful life transitions, career burnout, or complex personal dilemmas.",
       pageUrl: "service-astro-counselling.html",
-      waMessage: "Hello Guruji, I would like to seek Astro Counselling for personal guidance."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to seek Astro Counselling for personal guidance."
     },
     {
       id: "muhurtham",
@@ -90,7 +90,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Families and entrepreneurs preparing for milestone events, constructions, or ceremonies.",
       pageUrl: "service-muhurtham.html",
-      waMessage: "Hello Guruji, I need assistance in finding an Auspicious Muhurtham."
+      waMessage: "Hello Dr. Rannganadh Sarma, I need assistance in finding an Auspicious Muhurtham."
     },
     {
       id: "marriage-matching",
@@ -108,7 +108,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Parents, brides, and grooms seeking authentic compatibility before solemnizing marriage.",
       pageUrl: "service-marriage-matching.html",
-      waMessage: "Hello Guruji, I would like to know more about Marriage Matching consultation."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to know more about Marriage Matching consultation."
     },
     {
       id: "baby-naming",
@@ -126,7 +126,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "New parents looking for traditional Vedic and numerologically aligned names for their baby.",
       pageUrl: "service-baby-naming.html",
-      waMessage: "Hello Guruji, I would like guidance for Names for New Born Baby."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like guidance for Names for New Born Baby."
     },
     {
       id: "marriage-counselling",
@@ -144,7 +144,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Couples facing persistent misunderstandings, family tension, or relationship friction.",
       pageUrl: "service-marriage-counselling.html",
-      waMessage: "Hello Guruji, I would like to consult regarding Marriage Counselling."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to consult regarding Marriage Counselling."
     },
     {
       id: "homam-puja",
@@ -162,7 +162,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Individuals seeking spiritual remedies, removal of obstinate obstacles, or health protection.",
       pageUrl: "service-homam-puja.html",
-      waMessage: "Hello Guruji, I would like to enquire about Homam / Japam / Puja Services."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to enquire about Homam / Japam / Puja Services."
     },
     {
       id: "vastu",
@@ -180,7 +180,7 @@ const DEFAULT_SITE_DATA = {
       ],
       suitableFor: "Homeowners, plot buyers, builders, and business owners looking for harmonious spatial energy.",
       pageUrl: "service-vastu.html",
-      waMessage: "Hello Guruji, I would like to enquire about Vastu Services consultation."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to enquire about Vastu Services consultation."
     }
   ],
 
@@ -193,7 +193,7 @@ const DEFAULT_SITE_DATA = {
       shortDesc: "Sacred geometric energy plates & wearable golden kavach for wealth, health, and negative energy shield.",
       specs: "Authentic sacred geometric energy plates & wearable golden kavach consecrated through traditional Vedic Prana Pratishtha. Consecrated with 108 Shastric Beeja Mantras to shield against negative energies, promote financial growth, and bestow family harmony.",
       pageUrl: "product-yantras-pendants.html",
-      waMessage: "Hello Guruji, I would like to enquire about Yantras & Mantra-Energized Pendants."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to enquire about Yantras & Mantra-Energized Pendants."
     },
     {
       id: "energized-malas",
@@ -201,9 +201,9 @@ const DEFAULT_SITE_DATA = {
       images: ["product_mala.jpg", "product_mala_closeup.jpg"],
       title: "Mantra-Energized Malalu",
       shortDesc: "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for japa, peace, and spiritual power.",
-      specs: "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for daily japa, inner tranquility, and spiritual focus. Each bead is cleansed and energized with specific Beeja Mantras by Guruji.",
+      specs: "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for daily japa, inner tranquility, and spiritual focus. Each bead is cleansed and energized with specific Beeja Mantras by Dr. Rannganadh Sarma.",
       pageUrl: "product-energized-malas.html",
-      waMessage: "Hello Guruji, I would like to enquire about Mantra-Energized Malalu."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to enquire about Mantra-Energized Malalu."
     },
     {
       id: "pasupata-kankanam",
@@ -213,7 +213,7 @@ const DEFAULT_SITE_DATA = {
       shortDesc: "Sacred consecrated copper-silver wristband infused with Pasupata Astra mantra for unassailable protection.",
       specs: "Sacred consecrated copper-silver wristband infused with the powerful Pasupata Astra mantra for unassailable protection, dispelling fear, negative influences, and evil eye. Handcrafted in pure copper and sacred metals.",
       pageUrl: "product-pasupata-kankanam.html",
-      waMessage: "Hello Guruji, I would like to enquire about Pasupata Kankanalu Protection Bangle."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to enquire about Pasupata Kankanalu Protection Bangle."
     },
     {
       id: "customized-remedy-kits",
@@ -223,7 +223,7 @@ const DEFAULT_SITE_DATA = {
       shortDesc: "Individualized planetary pacification puja box tailored to your horoscope for career, marriage, and health obstacles.",
       specs: "Individualized planetary pacification puja box tailored directly to your horoscope for overcoming obstacles in career, marriage delays, and health issues. Includes consecrated planetary yantras, dhoop, and custom herbs.",
       pageUrl: "product-customized-remedy-kits.html",
-      waMessage: "Hello Guruji, I would like to enquire about Customized Remedy Kits."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to enquire about Customized Remedy Kits."
     }
   ],
 
@@ -256,14 +256,14 @@ const DEFAULT_SITE_DATA = {
       title: "Shri GuruDatta Consultation",
       buttonText: "Book Consultation",
       img: "astrologer_portrait.jpg",
-      waMessage: "Hello Guruji, I would like to book a Shri GuruDatta Consultation."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to book a Shri GuruDatta Consultation."
     },
     {
       id: "banner-2",
       title: "Vedic & Nadi Consultation",
       buttonText: "Take Consultation",
       img: "service_horoscope.jpg",
-      waMessage: "Hello Guruji, I would like to take Vedic & Nadi Consultation."
+      waMessage: "Hello Dr. Rannganadh Sarma, I would like to take Vedic & Nadi Consultation."
     }
   ]
 };
@@ -529,7 +529,7 @@ class AstrologyApp {
 📞 *Phone:* ${phone}
 🔮 *Service:* ${service || 'Astrology Consultation'}
 ${email ? `📧 *Email:* ${email}\n` : ''}${message ? `📝 *Query/Birth Details:* ${message}\n` : ''}
-Hello Guruji, I have submitted my consultation booking details above. Please confirm my appointment timing.`;
+Hello Dr. Rannganadh Sarma, I have submitted my consultation booking details above. Please confirm my appointment timing.`;
 
     const waUrl = `https://wa.me/91${cleanNum}?text=${encodeURIComponent(waText)}`;
     window.open(waUrl, "_blank");
@@ -553,7 +553,7 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
   generateWaLink(customMessage) {
     const rawNumber = this.data.business.whatsappRaw || "9063862498";
     const cleanNum = rawNumber.replace(/^91/, '');
-    const defaultMsg = "Hello Guruji, I would like to consult regarding astrology guidance.";
+    const defaultMsg = "Hello Dr. Rannganadh Sarma, I would like to consult regarding astrology guidance.";
     const text = encodeURIComponent(customMessage || defaultMsg);
     return `https://wa.me/91${cleanNum}?text=${text}`;
   }
@@ -597,7 +597,7 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
   updateGlobalContactInfo() {
     const b = this.data.business || {};
     const defaultWa = this.generateWaLink();
-    const cleanPhone = (b.phoneRaw || "917675966942").replace(/^91/, '');
+    const cleanPhone = (b.phoneRaw || "919063862498").replace(/^91/, '');
     const telUrl = `tel:+91${cleanPhone}`;
 
     // Update all dynamic WhatsApp links
@@ -618,7 +618,7 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
     });
 
     if (this.contactPhoneDisplay) {
-      this.contactPhoneDisplay.textContent = b.phoneDisplay || "+91 90638 62498 / +91 76759 66942";
+      this.contactPhoneDisplay.textContent = b.phoneDisplay || "+91 90638 62498";
     }
     if (this.contactWaDisplay) {
       this.contactWaDisplay.textContent = "+91 " + (b.whatsappRaw || "9063862498");
@@ -781,7 +781,7 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
     if (!service || !this.serviceModal || !this.modalBody) return;
 
     const specificWaLink = this.generateWaLink(service.waMessage);
-    const telUrl = `tel:+${this.data.business.phoneRaw || '917675966942'}`;
+    const telUrl = `tel:+${this.data.business.phoneRaw || '919063862498'}`;
     const bulletsHtml = (service.coverage || []).map(item => `<li>${item}</li>`).join("");
 
     this.modalBody.innerHTML = `
@@ -801,7 +801,7 @@ Hello Guruji, I have submitted my consultation booking details above. Please con
 
       <div class="modal-action-box">
         <h4>Connect with Shri Gurudatta Astroved</h4>
-        <p>Talk directly with Guruji via WhatsApp or direct call with your birth details.</p>
+        <p>Talk directly with Dr. Rannganadh Sarma via WhatsApp or direct call with your birth details.</p>
         <div class="modal-cta-buttons">
           <a href="${specificWaLink}" class="btn-gold-pill" target="_blank" rel="noopener noreferrer">
             <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">

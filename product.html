@@ -85,7 +85,7 @@
       </nav>
       <div class="drawer-footer">
         <a href="https://wa.me/919063862498" class="btn-gold-pill dynamic-wa-link full-width" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
-        <a href="tel:+917675966942" class="btn-outline-pill dynamic-call-link full-width">Call Now</a>
+        <a href="tel:+919063862498" class="btn-outline-pill dynamic-call-link full-width">Call Now</a>
       </div>
     </div>
   </div>
@@ -175,7 +175,7 @@
             </p>
             <p>
               <span class="contact-icon">📞</span>
-              <a href="tel:+917675966942" class="dynamic-call-link" id="footerPhoneText">+91 76759 66942 / +91 90638 62498</a>
+              <a href="tel:+919063862498" class="dynamic-call-link" id="footerPhoneText">+91 90638 62498</a>
             </p>
             <p>
               <span class="contact-icon">💬</span>
@@ -186,7 +186,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved. &bull; <a href="admin.html" style="color: #DFB25A; text-decoration: none;">Admin Portal</a></p>
+        <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved.</p>
         <p class="footer-locale">Palnadu, Andhra Pradesh &bull; English Edition</p>
       </div>
     </div>
@@ -293,7 +293,7 @@
 
       // Populate WhatsApp Order Button
       const waNumber = business.whatsappRaw || "9063862498";
-      const waMsg = currentProduct.waMessage || `Hello Guruji, I would like to order the ${currentProduct.title}.`;
+      const waMsg = currentProduct.waMessage || `Hello Dr. Rannganadh Sarma, I would like to order the ${currentProduct.title}.`;
       const waUrl = `https://wa.me/91${waNumber.replace(/^91/, '')}?text=${encodeURIComponent(waMsg)}`;
       document.getElementById("productWaBtn").href = waUrl;
     });

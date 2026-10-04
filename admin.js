@@ -263,13 +263,13 @@ async function loadAdminData() {
         name: "Shri GuruDatta Astroved",
         experience: "15+ Years",
         tagline: "Rewriting your Luck Through Astrology",
-        phoneDisplay: "+91 90638 62498 / +91 76759 66942",
-        phoneRaw: "917675966942",
+        phoneDisplay: "+91 90638 62498",
+        phoneRaw: "919063862498",
         whatsappRaw: "9063862498",
-        gpayNumber: "7675966942",
-        upiId: "7675966942@ybl",
+        gpayNumber: "9063862498",
+        upiId: "9063862498@ybl",
         qrImage: "payment_qr.png",
-        address: "Kesanupalli village, Dachepalli mandal, Palnadu district – 522414",
+        address: "Kesanupalli Village, Dachepalli Mandal, Palnadu District, Andhra Pradesh – 522414",
         timings: "Morning: 09:00 AM – 01:00 PM | Evening: 04:00 PM – 08:30 PM"
       },
       services: [],
@@ -347,7 +347,7 @@ async function syncDirectToSupabase(data, token) {
       images: JSON.stringify(Array.isArray(s.images) ? s.images : (s.img ? [s.img] : [])),
       image_url: (s.images && s.images[0]) || s.img || "service_general.jpg",
       page_url: s.pageUrl || `service.html?id=${s.id || ''}`,
-      wa_message: s.waMessage || `Hello Guruji, I would like to consult regarding ${s.title}.`,
+      wa_message: s.waMessage || `Hello Dr. Rannganadh Sarma, I would like to consult regarding ${s.title}.`,
       display_order: idx + 1,
       is_active: true,
       updated_at: new Date().toISOString()
@@ -363,7 +363,7 @@ async function syncDirectToSupabase(data, token) {
       images: JSON.stringify(Array.isArray(p.images) ? p.images : (p.img ? [p.img] : [])),
       image_url: (p.images && p.images[0]) || p.img || "product_yantra.jpg",
       page_url: p.pageUrl || `product.html?id=${p.id || ''}`,
-      wa_message: p.waMessage || "Hello Guruji, I would like to order this Astro Product.",
+      wa_message: p.waMessage || "Hello Dr. Rannganadh Sarma, I would like to order this Astro Product.",
       display_order: idx + 1,
       is_active: true,
       updated_at: new Date().toISOString()
@@ -647,7 +647,7 @@ window.openEditProductModal = function(index) {
     titleInput.value = "";
     shortDescInput.value = "";
     specsInput.value = "";
-    waInput.value = "Hello Guruji, I would like to order this Astro Product.";
+    waInput.value = "Hello Dr. Rannganadh Sarma, I would like to order this Astro Product.";
     currentProductImages = ["product_yantra.jpg"];
   }
 
@@ -763,7 +763,7 @@ window.openEditBannerModal = function(index) {
     btnTextInput.value = "Book Consultation";
     imgInput.value = "astrologer_portrait.jpg";
     previewImg.src = "astrologer_portrait.jpg";
-    waInput.value = "Hello Guruji, I would like to consult regarding this consultation banner.";
+    waInput.value = "Hello Dr. Rannganadh Sarma, I would like to consult regarding this consultation banner.";
   }
 
   modal.classList.add("active");
@@ -901,9 +901,9 @@ async function loadAndRenderBookings() {
 function populateSettings() {
   const b = siteData.business || {};
   document.getElementById("settingWhatsapp").value = b.whatsappRaw || "9063862498";
-  document.getElementById("settingGpay").value = b.gpayNumber || "7675966942";
-  document.getElementById("settingUpi").value = b.upiId || "7675966942@ybl";
-  document.getElementById("settingPhoneDisplay").value = b.phoneDisplay || "+91 90638 62498 / +91 76759 66942";
+  document.getElementById("settingGpay").value = b.gpayNumber || "9063862498";
+  document.getElementById("settingUpi").value = b.upiId || "9063862498@ybl";
+  document.getElementById("settingPhoneDisplay").value = b.phoneDisplay || "+91 90638 62498";
   document.getElementById("settingAddress").value = b.address || "";
   document.getElementById("settingTimings").value = b.timings || "Morning: 09:00 AM – 01:00 PM | Evening: 04:00 PM – 08:30 PM";
 
@@ -1018,7 +1018,7 @@ function bindAdminEvents() {
     // Auto-generate short description from explanation or title
     let shortDesc = explanation.split("\n")[0].trim();
     if (shortDesc.length > 130) shortDesc = shortDesc.substring(0, 127) + "...";
-    if (!shortDesc) shortDesc = "Vedic astrological consultation & personal remedial guidance with Guruji.";
+    if (!shortDesc) shortDesc = "Vedic astrological consultation & personal remedial guidance with Dr. Rannganadh Sarma.";
 
     const serviceObj = {
       id: serviceId,
@@ -1030,7 +1030,7 @@ function bindAdminEvents() {
       img: images[0],
       images: images,
       pageUrl: `service.html?id=${serviceId}`,
-      waMessage: `Hello Guruji, I would like to consult regarding ${title}.`
+      waMessage: `Hello Dr. Rannganadh Sarma, I would like to consult regarding ${title}.`
     };
 
     if (idx >= 0) {
@@ -1065,7 +1065,7 @@ function bindAdminEvents() {
       specs,
       img: images[0],
       images: images,
-      waMessage: waMessage || "Hello Guruji, I would like to order this Astro Product."
+      waMessage: waMessage || "Hello Dr. Rannganadh Sarma, I would like to order this Astro Product."
     };
 
     if (idx >= 0) {
@@ -1129,7 +1129,7 @@ function bindAdminEvents() {
 
       const buttonText = document.getElementById("bannerInputButtonText").value.trim() || "Book Consultation";
       const img = document.getElementById("bannerInputImg").value.trim() || "astrologer_portrait.jpg";
-      const waMessage = document.getElementById("bannerInputWa").value.trim() || "Hello Guruji, I would like to consult.";
+      const waMessage = document.getElementById("bannerInputWa").value.trim() || "Hello Dr. Rannganadh Sarma, I would like to consult.";
 
       const bannerObj = {
         id: (idx >= 0 && siteData.banners[idx] && siteData.banners[idx].id) ? siteData.banners[idx].id : ("banner-" + Date.now()),

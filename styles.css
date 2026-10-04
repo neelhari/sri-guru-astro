@@ -2773,25 +2773,28 @@ img {
 .gallery-photo-card {
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(14, 26, 52, 0.08);
-  border: 1px solid #EAE2D5;
-  background: #081020;
+  box-shadow: 0 6px 20px rgba(14, 26, 52, 0.08);
+  border: 1px solid rgba(200, 157, 70, 0.28);
+  background: #0B162C;
   aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .gallery-photo-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 14px 32px rgba(14, 26, 52, 0.14);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(14, 26, 52, 0.16);
   border-color: var(--gold-primary);
 }
 
 .gallery-clean-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .gallery-photo-card:hover .gallery-clean-img {
@@ -3005,17 +3008,27 @@ img {
   margin-bottom: 18px;
 }
 
+.creds-honors-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
 .creds-honor-gold {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--gold-light);
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: 2px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
   background: rgba(200, 157, 70, 0.12);
-  border: 1px solid rgba(200, 157, 70, 0.3);
+  border: 1px solid rgba(200, 157, 70, 0.35);
 }
 
 /* 2 Action Buttons */

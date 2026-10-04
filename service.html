@@ -364,7 +364,7 @@
         </div>
 
         <div class="service-cta-box">
-          <h4 class="service-cta-title">Personalized Guidance by Dr. Ranganadh Sharma</h4>
+          <h4 class="service-cta-title">Personalized Guidance by Dr. Rannganadh Sarma</h4>
           <p class="service-cta-subtitle">Connect with Shri Gurudatta Astroved with your birth details for clear, authentic Vedic predictions.</p>
           <div class="service-cta-actions">
             <button type="button" class="btn-service-book" id="btnOpenBookingModal">
@@ -463,7 +463,7 @@
             </p>
             <p>
               <span class="contact-icon">📞</span>
-              <a href="tel:+919063862498" class="dynamic-call-link">+91 90638 62498 / +91 76759 66942</a>
+              <a href="tel:+919063862498" class="dynamic-call-link">+91 90638 62498</a>
             </p>
             <p>
               <span class="contact-icon">💬</span>
@@ -474,7 +474,7 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved. &bull; <a href="admin.html" style="color: #DFB25A; text-decoration: none;">Admin Portal</a></p>
+        <p>&copy; 2026 Shri Gurudatta Astroved. All Rights Reserved.</p>
         <p class="footer-locale">Palnadu, Andhra Pradesh &bull; English Edition</p>
       </div>
     </div>
@@ -557,7 +557,7 @@
       document.getElementById("serviceShortDesc").textContent = currentService.shortDesc || "Personalized Vedic Astrology Guidance & Remedies";
       
       const fullDesc = currentService.explanation || currentService.desc || currentService.shortDesc || 
-        "Comprehensive classical Vedic astrological consultation with Dr. Ranganadh Sharma. Provides deep insights into your natal chart, life cycles, current planetary transitions, and auspicious spiritual remedial guidance.";
+        "Comprehensive classical Vedic astrological consultation with Dr. Rannganadh Sarma. Provides deep insights into your natal chart, life cycles, current planetary transitions, and auspicious spiritual remedial guidance.";
       
       document.getElementById("serviceExplanation").textContent = fullDesc;
 
@@ -604,7 +604,7 @@
 
       // Populate WhatsApp Button
       const waNumber = business.whatsappRaw || "9063862498";
-      const waMsg = currentService.waMessage || `Hello Dr. Ranganadh Sharma, I would like to consult regarding ${currentService.title}.`;
+      const waMsg = currentService.waMessage || `Hello Dr. Rannganadh Sarma, I would like to consult regarding ${currentService.title}.`;
       const waUrl = `https://wa.me/91${waNumber.replace(/^91/, '')}?text=${encodeURIComponent(waMsg)}`;
       document.getElementById("serviceWaBtn").href = waUrl;
 
@@ -681,7 +681,7 @@
 📞 *Phone:* ${phone}
 🔮 *Service:* ${currentService.title}
 ${email ? `📧 *Email:* ${email}\n` : ''}${message ? `📝 *Query/Birth Details:* ${message}\n` : ''}
-Hello Dr. Ranganadh Sharma, I have submitted my consultation booking details above for ${currentService.title}. Please confirm my appointment timing.`;
+Hello Dr. Rannganadh Sarma, I have submitted my consultation booking details above for ${currentService.title}. Please confirm my appointment timing.`;
 
           window.open(`https://wa.me/91${cleanNum}?text=${encodeURIComponent(waLeadText)}`, "_blank");
           closeModal();

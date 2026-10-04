@@ -1,6 +1,13 @@
 {
   "business": {
-    "name": "Shri GuruDatta Astroved"
+    "name": "Shri GuruDatta Astroved",
+    "phoneDisplay": "+91 90638 62498",
+    "phoneRaw": "919063862498",
+    "whatsappRaw": "9063862498",
+    "address": "Kesanupalli Village, Dachepalli Mandal, Palnadu District, AP – 522414",
+    "hours": "Mon - Sun: 8:00 AM - 8:00 PM (Appointments Required)",
+    "gpayNumber": "9063862498",
+    "upiId": "9063862498@ybl"
   },
   "banners": [
     {
@@ -8,14 +15,14 @@
       "title": "Shri GuruDatta Consultation",
       "buttonText": "Book Consultation",
       "img": "astrologer_portrait.jpg",
-      "waMessage": "Hello Guruji, I would like to book a Shri GuruDatta Consultation."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to book a Shri GuruDatta Consultation."
     },
     {
       "id": "banner-2",
       "title": "Vedic & Nadi Consultation",
       "buttonText": "Take Consultation",
       "img": "service_horoscope.jpg",
-      "waMessage": "Hello Guruji, I would like to take Vedic & Nadi Consultation."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to take Vedic & Nadi Consultation."
     }
   ],
   "services": [
@@ -30,7 +37,7 @@
         "service_general.jpg"
       ],
       "pageUrl": "service-general-prediction.html",
-      "waMessage": "Hello Guruji, I would like to know more about General Prediction guidance."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to know more about General Prediction guidance."
     },
     {
       "id": "horoscope-analysis",
@@ -43,7 +50,7 @@
         "service_horoscope.jpg"
       ],
       "pageUrl": "service-horoscope-analysis.html",
-      "waMessage": "Hello Guruji, I would like to know more about Complete Horoscope Analysis."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to know more about Complete Horoscope Analysis."
     },
     {
       "id": "astro-counselling",
@@ -56,7 +63,7 @@
         "service_general.jpg"
       ],
       "pageUrl": "service-astro-counselling.html",
-      "waMessage": "Hello Guruji, I would like to seek Astro Counselling for personal guidance."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to seek Astro Counselling for personal guidance."
     },
     {
       "id": "muhurtham",
@@ -69,7 +76,7 @@
         "service_muhurtham.jpg"
       ],
       "pageUrl": "service-muhurtham.html",
-      "waMessage": "Hello Guruji, I need assistance in finding an Auspicious Muhurtham."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I need assistance in finding an Auspicious Muhurtham."
     },
     {
       "id": "marriage-matching",
@@ -82,7 +89,7 @@
         "service_marriage.jpg"
       ],
       "pageUrl": "service-marriage-matching.html",
-      "waMessage": "Hello Guruji, I would like to know more about Marriage Matching consultation."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to know more about Marriage Matching consultation."
     },
     {
       "id": "baby-naming",
@@ -95,7 +102,7 @@
         "service_muhurtham.jpg"
       ],
       "pageUrl": "service-baby-naming.html",
-      "waMessage": "Hello Guruji, I would like guidance for Names for New Born Baby."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like guidance for Names for New Born Baby."
     },
     {
       "id": "marriage-counselling",
@@ -108,7 +115,7 @@
         "service_marriage.jpg"
       ],
       "pageUrl": "service-marriage-counselling.html",
-      "waMessage": "Hello Guruji, I would like to consult regarding Marriage Counselling."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to consult regarding Marriage Counselling."
     },
     {
       "id": "homam-puja",
@@ -121,7 +128,7 @@
         "homam_fire.jpg"
       ],
       "pageUrl": "service-homam-puja.html",
-      "waMessage": "Hello Guruji, I would like to enquire about Homam / Japam / Puja Services."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to enquire about Homam / Japam / Puja Services."
     },
     {
       "id": "vastu",
@@ -134,7 +141,7 @@
         "service_horoscope.jpg"
       ],
       "pageUrl": "service-vastu.html",
-      "waMessage": "Hello Guruji, I would like to enquire about Vastu Services consultation."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to enquire about Vastu Services consultation."
     }
   ],
   "products": [
@@ -148,19 +155,19 @@
         "product_yantra.jpg"
       ],
       "pageUrl": "product-yantras-pendants.html",
-      "waMessage": "Hello Guruji, I would like to enquire about Yantras & Mantra-Energized Pendants."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to enquire about Yantras & Mantra-Energized Pendants."
     },
     {
       "id": "energized-malas",
       "title": "Mantra-Energized Malalu",
       "shortDesc": "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for japa, peace, and spiritual power.",
-      "specs": "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for daily japa, inner tranquility, and spiritual focus. Each bead is cleansed and energized with specific Beeja Mantras by Guruji.",
+      "specs": "108-bead consecrated Nepali Rudraksha & clear Spatik malas energized for daily japa, inner tranquility, and spiritual focus. Each bead is cleansed and energized with specific Beeja Mantras by Dr. Rannganadh Sarma.",
       "img": "product_mala.jpg",
       "images": [
         "product_mala.jpg"
       ],
       "pageUrl": "product-energized-malas.html",
-      "waMessage": "Hello Guruji, I would like to enquire about Mantra-Energized Malalu."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to enquire about Mantra-Energized Malalu."
     },
     {
       "id": "pasupata-kankanam",
@@ -172,7 +179,7 @@
         "product_kankanam.jpg"
       ],
       "pageUrl": "product-pasupata-kankanam.html",
-      "waMessage": "Hello Guruji, I would like to enquire about Pasupata Kankanalu Protection Bangle."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to enquire about Pasupata Kankanalu Protection Bangle."
     },
     {
       "id": "customized-remedy-kits",
@@ -184,7 +191,7 @@
         "product_remedy_kit.jpg"
       ],
       "pageUrl": "product-customized-remedy-kits.html",
-      "waMessage": "Hello Guruji, I would like to enquire about Customized Remedy Kits."
+      "waMessage": "Hello Dr. Rannganadh Sarma, I would like to enquire about Customized Remedy Kits."
     }
   ]
 }
